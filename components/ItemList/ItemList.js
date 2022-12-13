@@ -1,13 +1,21 @@
+import styled from "styled-components";
 import dummyItems from "../../utils/data/dummyItems";
+import Item from "../Item/Item";
 
 export default function ItemList() {
   return (
     <>
-      <ul>
+      <StyledUl>
         {dummyItems.map((item) => (
-          <article key={item.id}>{item.title}</article>
+          <Item key={item.id} item={item} />
         ))}
-      </ul>
+      </StyledUl>
     </>
   );
 }
+
+const StyledUl = styled.ul`
+  list-style: none;
+  display: grid;
+  padding: 0;
+`;

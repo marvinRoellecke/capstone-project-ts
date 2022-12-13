@@ -18,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
 
     * {
         box-sizing: border-box;
-    
+    xborder: 1px solid black
     }
 
     #__next{

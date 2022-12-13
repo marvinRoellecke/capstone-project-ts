@@ -23,6 +23,22 @@ const dummyItems = [
     id: 6,
     title: "Soccer",
   },
+  {
+    id: 7,
+    title: "Dirt Park",
+  },
+  {
+    id: 8,
+    title: "Soccer Field",
+  },
+  {
+    id: 9,
+    title: "Basketball Court",
+  },
+  {
+    id: 10,
+    title: "Running",
+  },
 ];
 
 export default dummyItems;
