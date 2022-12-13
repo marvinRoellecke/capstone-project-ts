@@ -7,7 +7,15 @@ const GlobalStyles = createGlobalStyle`
         --color-foreground: #000000;
         --color-accent: #ABABAB;
         --box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-        --border-radius: 5px
+        --border-radius: 5px;
+        --background-filter: linear-gradient(
+      270deg,
+      rgba(0, 0, 0, 0.83) 27.34%,
+      rgba(0, 0, 0, 0.526172) 42.37%,
+      rgba(0, 0, 0, 0.222905) 54.53%,
+      rgba(0, 0, 0, 0.01) 70.46%,
+      rgba(0, 0, 0, 0) 100%
+    );
     }
 
     * {

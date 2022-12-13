@@ -23,8 +23,8 @@ const StyledLi = styled.li`
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
   margin: 0 1rem;
-  padding: 0 0.5rem;
-  background-image: url(${(props) => props.image});
+  padding: 0 1rem;
+  background-image: var(--background-filter), url(${(props) => props.image});
   background-position: center;
   background-size: cover;
   text-align: right;
