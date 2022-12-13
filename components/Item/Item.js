@@ -17,6 +17,12 @@ const StyledLi = styled.li`
   background-image: url(${(props) => props.image});
   background-position: center;
   background-size: cover;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
+    ". . title title"
+    ". . . rating "
+    ". . tags tags"
+    ". . city city";
 `;
-
-//background-image: url(/img/samplePics/soccer.jpg);
