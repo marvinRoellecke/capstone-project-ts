@@ -8,7 +8,7 @@ const testItemData = [
       address: "Mauritz-Lindenweg 93, 48145 Münster",
       city: "Münster",
     },
-    image: "lib/img/samplePics/soccer.jpg",
+    image: "/img/samplePics/soccer.jpg",
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const testItemData = [
       address: "Mauritz-Lindenweg 93, 48145 Münster",
       city: "Münster",
     },
-    image: "lib/img/samplePics/baskeball.jpg",
+    image: "/img/samplePics/basketball.jpg",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const testItemData = [
       address: "Mauritz-Lindenweg 93, 48145 Münster",
       city: "Münster",
     },
-    image: "lib/img/samplePics/beachvolleyball.jpg",
+    image: "/img/samplePics/beachvolleyball.jpg",
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ const testItemData = [
       address: "Mauritz-Lindenweg 93, 48145 Münster",
       city: "Münster",
     },
-    image: "lib/img/samplePics/tennis.jpg",
+    image: "/img/samplePics/tennis.jpg",
   },
   {
     id: 5,
@@ -52,7 +52,7 @@ const testItemData = [
       address: "Mauritz-Lindenweg 93, 48145 Münster",
       city: "Münster",
     },
-    image: "lib/img/samplePics/basketball2.jpg",
+    image: "/img/samplePics/basketball2.jpg",
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ const testItemData = [
       address: "Mauritz-Lindenweg 93, 48145 Münster",
       city: "Münster",
     },
-    image: "lib/img/samplePics/fitness.jpg",
+    image: "/img/samplePics/fitness.jpg",
   },
   {
     id: 7,
@@ -74,7 +74,7 @@ const testItemData = [
       address: "Mauritz-Lindenweg 93, 48145 Münster",
       city: "Münster",
     },
-    image: "lib/img/samplePics/beachvolleyball2.jpg",
+    image: "/img/samplePics/beachvolleyball2.jpg",
   },
   {
     id: 8,
@@ -85,7 +85,7 @@ const testItemData = [
       address: "Mauritz-Lindenweg 93, 48145 Münster",
       city: "Münster",
     },
-    image: "lib/img/samplePics/boule.jpg",
+    image: "/img/samplePics/boule.jpg",
   },
   {
     id: 9,
@@ -96,7 +96,7 @@ const testItemData = [
       address: "Mauritz-Lindenweg 93, 48145 Münster",
       city: "Münster",
     },
-    image: "lib/img/samplePics/tennis2.jpg",
+    image: "/img/samplePics/tennis2.jpg",
   },
   {
     id: 10,
@@ -107,7 +107,7 @@ const testItemData = [
       address: "Mauritz-Lindenweg 93, 48145 Münster",
       city: "Münster",
     },
-    image: "lib/img/samplePics/basketball3.jpg",
+    image: "/img/samplePics/basketball3.jpg",
   },
 ];
 
