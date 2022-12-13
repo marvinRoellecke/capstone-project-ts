@@ -1,4 +1,4 @@
-const dummyItems = [
+const testItemData = [
   {
     id: 1,
     title: "Soccer",
@@ -41,4 +41,4 @@ const dummyItems = [
   },
 ];
 
-export default dummyItems;
+export default testItemData;
