@@ -1,3 +1,5 @@
+import ItemList from "../ItemList/ItemList";
+
 export default function Main() {
-  return <p>Main Part</p>;
+  return <ItemList />;
 }
