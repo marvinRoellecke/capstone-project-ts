@@ -17,5 +17,6 @@ export default function ItemListGeneral() {
 const StyledUl = styled.ul`
   list-style: none;
   display: grid;
-  padding: 0;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
 `;

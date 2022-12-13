@@ -9,5 +9,5 @@ export default function Header() {
 }
 
 const StyledH1 = styled.h1`
-  margin-left: 2rem;
+  margin: 0.5rem 0 0 2rem;
 `;
