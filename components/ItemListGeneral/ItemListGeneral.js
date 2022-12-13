@@ -2,7 +2,7 @@ import styled from "styled-components";
 import dummyItems from "../../utils/data/dummyItems";
 import Item from "../Item/Item";
 
-export default function ItemList() {
+export default function ItemListGeneral() {
   return (
     <>
       <StyledUl>

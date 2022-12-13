@@ -1,5 +1,9 @@
-import ItemList from "../ItemList/ItemList";
+import ItemListGeneral from "../ItemListGeneral/ItemListGeneral";
 
 export default function Main() {
-  return <ItemList />;
+  return (
+    <main>
+      <ItemListGeneral />
+    </main>
+  );
 }

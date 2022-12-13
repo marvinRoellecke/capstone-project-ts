@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
 export default function Header() {
-  return <StyledH1>localSports</StyledH1>;
+  return (
+    <header>
+      <StyledH1>localSports</StyledH1>
+    </header>
+  );
 }
 
 const StyledH1 = styled.h1`
