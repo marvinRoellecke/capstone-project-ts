@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import testItemData from "../../utils/data/dummyItems";
+import testItemData from "../../utils/data/testItemData";
 import Item from "../Item/Item";
 
 export default function ItemListGeneral() {
