@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         padding: 0;
         margin: 0;
-        xborder: 1px solid black
+        xborder: 1px solid green
     }
 
     #__next {
@@ -35,6 +35,8 @@ const GlobalStyles = createGlobalStyle`
     body {
      
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
+        max-width: 800px;
+        margin: auto;
     }
 
     main {

@@ -1,18 +1,23 @@
 import styled from "styled-components";
-import Image from "next/image.js";
+import { IoStar, IoLocationSharp } from "react-icons/io5";
 
 export default function Item({ item }) {
   return (
     <StyledLi image={item.image}>
       <StyledTitle>{item.title}</StyledTitle>
-      <StyledRating>{item.rating}</StyledRating>
+      <StyledRating>
+        <IoStar />
+        {item.rating}
+      </StyledRating>
       <StyledTags>
         {item.tags.map((tag) => (
           <StyledTag key={tag}>{tag}</StyledTag>
         ))}
       </StyledTags>
 
-      <StyledAddress>{item.address.city}</StyledAddress>
+      <StyledAddress>
+        <IoLocationSharp /> {item.address.city}
+      </StyledAddress>
     </StyledLi>
   );
 }
@@ -47,6 +52,11 @@ const StyledTitle = styled.h2`
 
 const StyledRating = styled.p`
   grid-area: rating;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem;
 `;
 
 const StyledTags = styled.div`
@@ -60,4 +70,8 @@ const StyledTag = styled.span`
 
 const StyledAddress = styled.p`
   grid-area: city;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem;
 `;
