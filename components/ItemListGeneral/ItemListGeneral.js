@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import testItemData from "../../utils/data/dummyItems";
+import testItemData from "../../utils/data/testItemData";
 import Item from "../Item/Item";
 
 export default function ItemListGeneral() {
@@ -17,5 +17,6 @@ export default function ItemListGeneral() {
 const StyledUl = styled.ul`
   list-style: none;
   display: grid;
-  padding: 0;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
 `;
