@@ -9,11 +9,11 @@ export default function Item({ item }) {
         <IoStar />
         {item.rating}
       </StyledRating>
-      <StyledTags>
+      <StyledTagWrapper>
         {item.tags.map((tag) => (
           <StyledTag key={tag}>{tag}</StyledTag>
         ))}
-      </StyledTags>
+      </StyledTagWrapper>
 
       <StyledAddress>
         <IoLocationSharp /> {item.address.city}
@@ -61,7 +61,7 @@ const StyledRating = styled.p`
   gap: 0.3rem;
 `;
 
-const StyledTags = styled.div`
+const StyledTagWrapper = styled.div`
   grid-area: tags;
   align-self: flex-end;
 `;
