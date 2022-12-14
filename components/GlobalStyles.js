@@ -22,6 +22,7 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         padding: 0;
         margin: 0;
+        border: 1px solid green
     }
 
     #__next {
