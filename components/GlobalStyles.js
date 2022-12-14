@@ -16,12 +16,19 @@ const GlobalStyles = createGlobalStyle`
       rgba(0, 0, 0, 0.01) 70.46%,
       rgba(0, 0, 0, 0) 100%
     );
+    --background-filter-toBottom: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.81) 0%,
+        rgba(0, 0, 0, 0.53) 27.08%, 
+        rgba(0, 0, 0, 0) 41.67%
+    );
     }
 
     * {
         box-sizing: border-box;
         padding: 0;
         margin: 0;
+        xborder: 1px solid green;
     }
 
     #__next {

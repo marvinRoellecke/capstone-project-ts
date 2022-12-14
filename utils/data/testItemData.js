@@ -7,7 +7,7 @@ const testItemData = [
     rating: 3.7,
     address: {
       street: "Mauritz-Lindenweg",
-      number: 93,
+      streetNumber: 93,
       postcode: 48145,
       city: "Münster",
     },
@@ -21,7 +21,7 @@ const testItemData = [
     rating: 4.3,
     address: {
       street: "Mauritz-Lindenweg",
-      number: 93,
+      streetNumber: 93,
       postcode: 48145,
       city: "Münster",
     },
@@ -35,7 +35,7 @@ const testItemData = [
     rating: 4.7,
     address: {
       street: "Mauritz-Lindenweg",
-      number: 93,
+      streetNumber: 93,
       postcode: 48145,
       city: "Münster",
     },
@@ -49,7 +49,7 @@ const testItemData = [
     rating: 4.2,
     address: {
       street: "Mauritz-Lindenweg",
-      number: 93,
+      streetNumber: 93,
       postcode: 48145,
       city: "Münster",
     },
@@ -63,7 +63,7 @@ const testItemData = [
     rating: 3.7,
     address: {
       street: "Mauritz-Lindenweg",
-      number: 93,
+      streetNumber: 93,
       postcode: 48145,
       city: "Münster",
     },
@@ -77,7 +77,7 @@ const testItemData = [
     rating: 3.4,
     address: {
       street: "Mauritz-Lindenweg",
-      number: 93,
+      streetNumber: 93,
       postcode: 48145,
       city: "Münster",
     },
@@ -91,7 +91,7 @@ const testItemData = [
     rating: 4.4,
     address: {
       street: "Mauritz-Lindenweg",
-      number: 93,
+      streetNumber: 93,
       postcode: 48145,
       city: "Münster",
     },
@@ -105,7 +105,7 @@ const testItemData = [
     rating: 3.9,
     address: {
       street: "Mauritz-Lindenweg",
-      number: 93,
+      streetNumber: 93,
       postcode: 48145,
       city: "Münster",
     },
@@ -119,7 +119,7 @@ const testItemData = [
     rating: 4.1,
     address: {
       street: "Mauritz-Lindenweg",
-      number: 93,
+      streetNumber: 93,
       postcode: 48145,
       city: "Münster",
     },
@@ -133,7 +133,7 @@ const testItemData = [
     rating: 3.5,
     address: {
       street: "Mauritz-Lindenweg",
-      number: 93,
+      streetNumber: 93,
       postcode: 48145,
       city: "Münster",
     },
