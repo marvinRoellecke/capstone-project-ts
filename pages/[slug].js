@@ -24,7 +24,9 @@ export default function DetailsPage() {
         <StyledMain>
           <StyledDiv image={currentLocation.image}></StyledDiv>
           <StyledDivTitle>
-            <StyledIoChevronBackOutline />
+            <StyledLink href="/">
+              <StyledIoChevronBackOutline />
+            </StyledLink>
             <StyledTitle>{currentLocation.title}</StyledTitle>
           </StyledDivTitle>
           <StyledSection>
@@ -92,7 +94,12 @@ const StyledDivTitle = styled.div`
   color: white;
   width: 100%;
   height: 3rem;
-  padding: 2.5rem;
+  padding: 2.5rem 2rem;
+`;
+
+const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
 `;
 
 const StyledIoChevronBackOutline = styled(IoChevronBackOutline)`
