@@ -56,7 +56,7 @@ const testItemData = [
   },
   {
     id: 6,
-    title: "Fitness",
+    title: "Outdoor Gym",
     tags: ["fitness", "outdoor"],
     rating: 3.4,
     address: {

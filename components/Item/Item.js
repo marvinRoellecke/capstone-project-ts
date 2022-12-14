@@ -39,15 +39,17 @@ const StyledLi = styled.li`
   grid-template-rows: auto;
   grid-template-areas:
     "title title title title"
-    ". . . rating "
-    ". . tags tags"
-    ". . city city";
+    ". . rating rating "
+    ". tags tags tags"
+    ". city city city";
   align-items: center;
 `;
 
 const StyledTitle = styled.h2`
   grid-area: title;
   font-size: 1.7rem;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const StyledRating = styled.p`
@@ -65,7 +67,11 @@ const StyledTags = styled.div`
 `;
 
 const StyledTag = styled.span`
-  margin-left: 0.5rem;
+  font-size: 0.6rem;
+  margin-left: 0.3rem;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 0 2px;
 `;
 
 const StyledAddress = styled.p`
