@@ -8,7 +8,7 @@ const testItemData = [
     address: {
       street: "Mauritz-Lindenweg",
       number: 93,
-      postalCode: 48145,
+      postcode: 48145,
       city: "Münster",
     },
     image: "/img/samplePics/soccer.jpg",
@@ -22,7 +22,7 @@ const testItemData = [
     address: {
       street: "Mauritz-Lindenweg",
       number: 93,
-      postalCode: 48145,
+      postcode: 48145,
       city: "Münster",
     },
     image: "/img/samplePics/basketball.jpg",
@@ -36,7 +36,7 @@ const testItemData = [
     address: {
       street: "Mauritz-Lindenweg",
       number: 93,
-      postalCode: 48145,
+      postcode: 48145,
       city: "Münster",
     },
     image: "/img/samplePics/beachvolleyball.jpg",
@@ -50,7 +50,7 @@ const testItemData = [
     address: {
       street: "Mauritz-Lindenweg",
       number: 93,
-      postalCode: 48145,
+      postcode: 48145,
       city: "Münster",
     },
     image: "/img/samplePics/tennis.jpg",
@@ -64,7 +64,7 @@ const testItemData = [
     address: {
       street: "Mauritz-Lindenweg",
       number: 93,
-      postalCode: 48145,
+      postcode: 48145,
       city: "Münster",
     },
     image: "/img/samplePics/basketball2.jpg",
@@ -78,7 +78,7 @@ const testItemData = [
     address: {
       street: "Mauritz-Lindenweg",
       number: 93,
-      postalCode: 48145,
+      postcode: 48145,
       city: "Münster",
     },
     image: "/img/samplePics/fitness.jpg",
@@ -92,7 +92,7 @@ const testItemData = [
     address: {
       street: "Mauritz-Lindenweg",
       number: 93,
-      postalCode: 48145,
+      postcode: 48145,
       city: "Münster",
     },
     image: "/img/samplePics/beachvolleyball2.jpg",
@@ -106,7 +106,7 @@ const testItemData = [
     address: {
       street: "Mauritz-Lindenweg",
       number: 93,
-      postalCode: 48145,
+      postcode: 48145,
       city: "Münster",
     },
     image: "/img/samplePics/boule.jpg",
@@ -120,7 +120,7 @@ const testItemData = [
     address: {
       street: "Mauritz-Lindenweg",
       number: 93,
-      postalCode: 48145,
+      postcode: 48145,
       city: "Münster",
     },
     image: "/img/samplePics/tennis2.jpg",
@@ -134,7 +134,7 @@ const testItemData = [
     address: {
       street: "Mauritz-Lindenweg",
       number: 93,
-      postalCode: 48145,
+      postcode: 48145,
       city: "Münster",
     },
     image: "/img/samplePics/basketball3.jpg",
