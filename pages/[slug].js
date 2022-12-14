@@ -42,15 +42,19 @@ export default function DetailsPage() {
               </StyledRating>
             </StyledCaptionWrapper>
 
-            <StyledAddress>
-              <IoLocationSharp />
-              {currentLocation.address.street}{" "}
-              {currentLocation.address.streetNumber},{" "}
-              {currentLocation.address.postcode} {currentLocation.address.city}
-            </StyledAddress>
-
+            <Link
+              href={`https://www.google.com/maps/place/${currentLocation.address.street}+${currentLocation.address.streetNumber},+${currentLocation.address.postcode}+${currentLocation.address.city}`}
+              target="_blank"
+            >
+              <StyledAddress>
+                <IoLocationSharp />
+                {currentLocation.address.street}{" "}
+                {currentLocation.address.streetNumber},{" "}
+                {currentLocation.address.postcode}{" "}
+                {currentLocation.address.city}
+              </StyledAddress>
+            </Link>
             <StyledDivider />
-
             <StyledH2>Description</StyledH2>
             <article>
               Lorem ipsum dolor sit amet, pro lorem graeco consequuntur no, pri
@@ -61,9 +65,7 @@ export default function DetailsPage() {
               no quo, ea malis soluta convenire vis, volutpat argumentum
               voluptatibus id sea.
             </article>
-
             <StyledDivider />
-
             <StyledH2>Opening Times</StyledH2>
             <aside>8:00 - 22:00</aside>
           </StyledSection>
