@@ -5,7 +5,9 @@ const GlobalStyles = createGlobalStyle`
     :root {
         --color-background: #FFFFFF;
         --color-foreground: #000000;
+        --color-foreground-alt: #FFFFFF;
         --color-accent: #ABABAB;
+        --color-star: orange;
         --box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
         --border-radius: 5px;
         --background-filter: linear-gradient(

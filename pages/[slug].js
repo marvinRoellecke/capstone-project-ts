@@ -18,16 +18,16 @@ export default function DetailsPage() {
   }
 
   return (
-    <StyledMain>
+    <StyledContainer>
       <StyledHeader>
         <StyledLink href="/">
           <StyledIoChevronBackOutline />
         </StyledLink>
         <h1>{currentLocation.title}</h1>
       </StyledHeader>
-      <StyledImageContainer image={currentLocation.image} />
 
-      <section>
+      <StyledImageContainer image={currentLocation.image} />
+      <main>
         <StyledCaptionWrapper>
           <StyledTagWrapper>
             {currentLocation.tags.map((tag) => (
@@ -35,7 +35,8 @@ export default function DetailsPage() {
             ))}
           </StyledTagWrapper>
           <StyledRating>
-            <IoStar color="orange" /> {currentLocation.rating}
+            <IoStar style={{ color: `var(--color-star)` }} />
+            {currentLocation.rating}
           </StyledRating>
         </StyledCaptionWrapper>
 
@@ -60,16 +61,16 @@ export default function DetailsPage() {
         <CardLocationInfo title={"Opening Times"}>
           8:00 - 22:00
         </CardLocationInfo>
-      </section>
-    </StyledMain>
+      </main>
+    </StyledContainer>
   );
 }
 
-const StyledMain = styled.main`
+const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  section {
+  main {
     margin: 0.5rem 1rem;
   }
 `;
@@ -79,14 +80,18 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
   width: 100%;
-  height: 3rem;
-  padding: 2.5rem 2rem;
+  padding: 1rem 1.5rem;
+  color: var(--color-foreground-alt);
 
   h1 {
     font-size: 1.5rem;
   }
+`;
+
+const StyledLink = styled(Link)`
+  color: var(--color-foreground-alt);
+  text-decoration: none;
 `;
 
 const StyledImageContainer = styled.div`
@@ -95,11 +100,6 @@ const StyledImageContainer = styled.div`
     url(${(props) => props.image});
   background-position: center;
   background-size: cover;
-`;
-
-const StyledLink = styled(Link)`
-  color: white;
-  text-decoration: none;
 `;
 
 const StyledIoChevronBackOutline = styled(IoChevronBackOutline)`
