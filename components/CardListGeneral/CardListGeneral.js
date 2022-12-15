@@ -4,13 +4,11 @@ import Card from "../Card/Card";
 
 export default function CardListGeneral() {
   return (
-    <>
       <StyledUl>
         {sportLocationsData.map((location) => (
           <Card key={location.id} location={location} />
         ))}
       </StyledUl>
-    </>
   );
 }
 
