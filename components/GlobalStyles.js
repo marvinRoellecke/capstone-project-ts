@@ -31,9 +31,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     #__next {
-        display: grid;
-        grid-template-rows: 4rem auto;
-        height: 100vh;
+        
         color: var(--color-foreground)
     }
 
@@ -45,7 +43,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     main {
-       overflow-y: scroll;
+       
        background-color: var(--color-background);
 }
 `;
