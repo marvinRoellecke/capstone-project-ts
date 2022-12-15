@@ -1,26 +1,33 @@
 import styled from "styled-components";
 import { IoStar, IoLocationSharp } from "react-icons/io5";
+import Link from "next/link";
 
-export default function Item({ item }) {
+export default function Card({ location }) {
   return (
-    <StyledLi image={item.image}>
-      <StyledTitle>{item.title}</StyledTitle>
-      <StyledRating>
-        <IoStar />
-        {item.rating}
-      </StyledRating>
-      <StyledTagWrapper>
-        {item.tags.map((tag) => (
-          <StyledTag key={tag}>{tag}</StyledTag>
-        ))}
-      </StyledTagWrapper>
+    <StyledLink href={`/${location.slug}`}>
+      <StyledLi image={location.image}>
+        <StyledTitle>{location.title}</StyledTitle>
+        <StyledRating>
+          <IoStar color="orange" />
+          {location.rating}
+        </StyledRating>
+        <StyledTagWrapper>
+          {location.tags.map((tag) => (
+            <StyledTag key={tag}>{tag}</StyledTag>
+          ))}
+        </StyledTagWrapper>
 
-      <StyledAddress>
-        <IoLocationSharp /> {item.address.city}
-      </StyledAddress>
-    </StyledLi>
+        <StyledAddress>
+          <IoLocationSharp /> {location.address.city}
+        </StyledAddress>
+      </StyledLi>
+    </StyledLink>
   );
 }
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 const StyledLi = styled.li`
   font-size: 0.8rem;

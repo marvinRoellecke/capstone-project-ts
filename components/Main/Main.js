@@ -1,9 +1,9 @@
-import ItemListGeneral from "../ItemListGeneral/ItemListGeneral";
+import CardListGeneral from "../CardListGeneral/CardListGeneral";
 
 export default function Main() {
   return (
     <main>
-      <ItemListGeneral />
+      <CardListGeneral />
     </main>
   );
 }
