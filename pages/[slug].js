@@ -1,4 +1,4 @@
-import testItemData from "../utils/data/testItemData";
+import sportLocationsData from "../lib/data/sportLocationsData";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
@@ -7,7 +7,9 @@ import { IoStar, IoLocationSharp, IoChevronBackOutline } from "react-icons/io5";
 export default function DetailsPage() {
   const router = useRouter();
   const slug = router.query.slug;
-  const currentLocation = testItemData.find((item) => item.slug === slug);
+  const currentLocation = sportLocationsData.find(
+    (location) => location.slug === slug
+  );
 
   if (!currentLocation) {
     return (
@@ -20,7 +22,6 @@ export default function DetailsPage() {
   return (
     <>
       <div>
-        <header></header>
         <StyledMain>
           <StyledDiv image={currentLocation.image}></StyledDiv>
           <StyledDivTitle>

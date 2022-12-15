@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import testItemData from "../../utils/data/testItemData";
-import Item from "../Item/Item";
+import sportLocationsData from "../../lib/data/sportLocationsData";
+import Item from "../Item/Card";
 
 export default function ItemListGeneral() {
   return (
     <>
       <StyledUl>
-        {testItemData.map((item) => (
-          <Item key={item.id} item={item} />
+        {sportLocationsData.map((location) => (
+          <Item key={location.id} location={location} />
         ))}
       </StyledUl>
     </>
