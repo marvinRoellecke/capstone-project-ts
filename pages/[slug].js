@@ -81,6 +81,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  max-width: 800px;
   padding: 1rem 1.5rem;
   color: var(--color-foreground-alt);
 
