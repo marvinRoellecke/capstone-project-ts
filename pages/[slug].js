@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { IoStar, IoLocationSharp, IoChevronBackOutline } from "react-icons/io5";
+import CardLocationInfo from "../components/CardLocationInfo/CardLocationInfo";
 
 export default function DetailsPage() {
   const router = useRouter();
@@ -10,11 +11,12 @@ export default function DetailsPage() {
   const currentLocation = sportLocationsData.find(
     (location) => location.slug === slug
   );
+  const locationAddress = currentLocation?.address;
 
   if (!currentLocation) {
     return (
       <>
-        <h2>Diese Seite gibt es nicht</h2>
+        <h2>Sorry, this page does not exist!</h2>
       </>
     );
   }
@@ -23,41 +25,37 @@ export default function DetailsPage() {
     <>
       <div>
         <StyledMain>
-          <StyledDiv image={currentLocation.image}></StyledDiv>
-          <StyledDivTitle>
+          <StyledImageContainer image={currentLocation.image} />
+          <StyledTitleWrapper>
             <StyledLink href="/">
               <StyledIoChevronBackOutline />
             </StyledLink>
-            <StyledTitle>{currentLocation.title}</StyledTitle>
-          </StyledDivTitle>
-          <StyledSection>
+            <h1>{currentLocation.title}</h1>
+          </StyledTitleWrapper>
+
+          <section>
             <StyledCaptionWrapper>
               <StyledTagWrapper>
                 {currentLocation.tags.map((tag) => (
                   <StyledTag key={tag}>{tag} </StyledTag>
                 ))}
               </StyledTagWrapper>
-
               <StyledRating>
                 <IoStar color="orange" /> {currentLocation.rating}
               </StyledRating>
             </StyledCaptionWrapper>
 
-            <Link
-              href={`https://www.google.com/maps/place/${currentLocation.address.street}+${currentLocation.address.streetNumber},+${currentLocation.address.postcode}+${currentLocation.address.city}`}
+            <StyledAdressLink
+              href={`https://www.google.com/maps/place/${locationAddress.street}+${locationAddress.streetNumber},+${locationAddress.postcode}+${locationAddress.city}`}
               target="_blank"
             >
               <StyledAddress>
                 <IoLocationSharp />
-                {currentLocation.address.street}{" "}
-                {currentLocation.address.streetNumber},{" "}
-                {currentLocation.address.postcode}{" "}
-                {currentLocation.address.city}
+                {locationAddress.street} {locationAddress.streetNumber},{" "}
+                {locationAddress.postcode} {locationAddress.city}
               </StyledAddress>
-            </Link>
-            <StyledDivider />
-            <StyledH2>Description</StyledH2>
-            <article>
+            </StyledAdressLink>
+            <CardLocationInfo title={"Description"}>
               Lorem ipsum dolor sit amet, pro lorem graeco consequuntur no, pri
               an dictas placerat, pri labore delenit no. Ad sea errem legendos,
               et eos posse prompta. An adhuc aliquam vis, commune nominavi ex
@@ -65,11 +63,11 @@ export default function DetailsPage() {
               commodo labitur, in dicit viris legendos pri. Virtute sententiae
               no quo, ea malis soluta convenire vis, volutpat argumentum
               voluptatibus id sea.
-            </article>
-            <StyledDivider />
-            <StyledH2>Opening Times</StyledH2>
-            <aside>8:00 - 22:00</aside>
-          </StyledSection>
+            </CardLocationInfo>
+            <CardLocationInfo title={"Opening Times"}>
+              8:00 - 22:00
+            </CardLocationInfo>
+          </section>
         </StyledMain>
       </div>
     </>
@@ -79,9 +77,13 @@ export default function DetailsPage() {
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
+
+  section {
+    margin: 0.5rem 1rem;
+  }
 `;
 
-const StyledDiv = styled.div`
+const StyledImageContainer = styled.div`
   height: 12rem;
   background-image: var(--background-filter-toBottom),
     url(${(props) => props.image});
@@ -89,7 +91,7 @@ const StyledDiv = styled.div`
   background-size: cover;
 `;
 
-const StyledDivTitle = styled.div`
+const StyledTitleWrapper = styled.div`
   position: absolute;
   display: flex;
   justify-content: space-between;
@@ -98,6 +100,10 @@ const StyledDivTitle = styled.div`
   width: 100%;
   height: 3rem;
   padding: 2.5rem 2rem;
+
+  h1 {
+    font-size: 1.5rem;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -108,14 +114,6 @@ const StyledLink = styled(Link)`
 const StyledIoChevronBackOutline = styled(IoChevronBackOutline)`
   width: auto;
   height: 2rem;
-`;
-
-const StyledTitle = styled.h1`
-  font-size: 1.5rem;
-`;
-
-const StyledSection = styled.section`
-  margin: 0.5rem 1rem;
 `;
 
 const StyledCaptionWrapper = styled.div`
@@ -152,15 +150,6 @@ const StyledAddress = styled.p`
   gap: 0.2rem;
 `;
 
-const StyledDivider = styled.aside`
-  height: 2px;
-  background-color: lightgrey;
-  margin: 2rem 0.5rem;
-  &:first-of-type {
-    margin-top: 1rem;
-  }
-`;
-
-const StyledH2 = styled.h2`
-  margin-bottom: 1rem;
+const StyledAdressLink = styled(Link)`
+  color: var(--foreground-color);
 `;
