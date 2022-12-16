@@ -18,63 +18,81 @@ export default function DetailsPage() {
   }
 
   return (
-    <div>
-      <StyledMain>
-        <StyledImageContainer image={currentLocation.image} />
-        <StyledTitleWrapper>
-          <StyledLink href="/">
-            <StyledIoChevronBackOutline />
-          </StyledLink>
-          <h1>{currentLocation.title}</h1>
-        </StyledTitleWrapper>
+    <StyledContainer>
+      <StyledHeader>
+        <StyledLink href="/">
+          <StyledIoChevronBackOutline />
+        </StyledLink>
+        <h1>{currentLocation.title}</h1>
+      </StyledHeader>
 
-        <section>
-          <StyledCaptionWrapper>
-            <StyledTagWrapper>
-              {currentLocation.tags.map((tag) => (
-                <StyledTag key={tag}>{tag} </StyledTag>
-              ))}
-            </StyledTagWrapper>
-            <StyledRating>
-              <IoStar color="orange" /> {currentLocation.rating}
-            </StyledRating>
-          </StyledCaptionWrapper>
+      <StyledImageContainer image={currentLocation.image} />
+      <main>
+        <StyledCaptionWrapper>
+          <StyledTagWrapper>
+            {currentLocation.tags.map((tag) => (
+              <StyledTag key={tag}>{tag} </StyledTag>
+            ))}
+          </StyledTagWrapper>
+          <StyledRating>
+            <IoStar style={{ color: `var(--color-star)` }} />
+            {currentLocation.rating}
+          </StyledRating>
+        </StyledCaptionWrapper>
 
-          <StyledAdressLink
-            href={`https://www.google.com/maps/place/${locationAddress.street}+${locationAddress.streetNumber},+${locationAddress.postcode}+${locationAddress.city}`}
-            target="_blank"
-          >
-            <StyledAddress>
-              <IoLocationSharp />
-              {locationAddress.street} {locationAddress.streetNumber},{" "}
-              {locationAddress.postcode} {locationAddress.city}
-            </StyledAddress>
-          </StyledAdressLink>
-          <CardLocationInfo title={"Description"}>
-            Lorem ipsum dolor sit amet, pro lorem graeco consequuntur no, pri an
-            dictas placerat, pri labore delenit no. Ad sea errem legendos, et
-            eos posse prompta. An adhuc aliquam vis, commune nominavi ex pro,
-            legere quidam essent cu duo. Diceret postulant vis no, nam in
-            commodo labitur, in dicit viris legendos pri. Virtute sententiae no
-            quo, ea malis soluta convenire vis, volutpat argumentum voluptatibus
-            id sea.
-          </CardLocationInfo>
-          <CardLocationInfo title={"Opening Times"}>
-            8:00 - 22:00
-          </CardLocationInfo>
-        </section>
-      </StyledMain>
-    </div>
+        <StyledAdressLink
+          href={`https://www.google.com/maps/place/${locationAddress.street}+${locationAddress.streetNumber},+${locationAddress.postcode}+${locationAddress.city}`}
+          target="_blank"
+        >
+          <StyledAddress>
+            <IoLocationSharp />
+            {locationAddress.street} {locationAddress.streetNumber},{" "}
+            {locationAddress.postcode} {locationAddress.city}
+          </StyledAddress>
+        </StyledAdressLink>
+        <CardLocationInfo title={"Description"}>
+          Lorem ipsum dolor sit amet, pro lorem graeco consequuntur no, pri an
+          dictas placerat, pri labore delenit no. Ad sea errem legendos, et eos
+          posse prompta. An adhuc aliquam vis, commune nominavi ex pro, legere
+          quidam essent cu duo. Diceret postulant vis no, nam in commodo
+          labitur, in dicit viris legendos pri. Virtute sententiae no quo, ea
+          malis soluta convenire vis, volutpat argumentum voluptatibus id sea.
+        </CardLocationInfo>
+        <CardLocationInfo title={"Opening Times"}>
+          8:00 - 22:00
+        </CardLocationInfo>
+      </main>
+    </StyledContainer>
   );
 }
 
-const StyledMain = styled.main`
+const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  section {
+  main {
     margin: 0.5rem 1rem;
   }
+`;
+
+const StyledHeader = styled.header`
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 1rem 1.5rem;
+  color: var(--color-foreground-alt);
+
+  h1 {
+    font-size: 1.5rem;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  color: var(--color-foreground-alt);
+  text-decoration: none;
 `;
 
 const StyledImageContainer = styled.div`
@@ -83,26 +101,6 @@ const StyledImageContainer = styled.div`
     url(${(props) => props.image});
   background-position: center;
   background-size: cover;
-`;
-
-const StyledTitleWrapper = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  width: 100%;
-  height: 3rem;
-  padding: 2.5rem 2rem;
-
-  h1 {
-    font-size: 1.5rem;
-  }
-`;
-
-const StyledLink = styled(Link)`
-  color: white;
-  text-decoration: none;
 `;
 
 const StyledIoChevronBackOutline = styled(IoChevronBackOutline)`

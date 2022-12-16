@@ -8,7 +8,7 @@ export default function Card({ location }) {
       <StyledLi image={location.image}>
         <StyledTitle>{location.title}</StyledTitle>
         <StyledRating>
-          <IoStar color="orange" />
+          <IoStar style={{ color: `var(--color-star)` }} />
           {location.rating}
         </StyledRating>
         <StyledTagWrapper>
