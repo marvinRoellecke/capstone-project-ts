@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { IoOptionsOutline } from "react-icons/io5";
 
-export default function Header() {
+export default function Header({ onShowFilterMenu }) {
   return (
     <StyledHeader>
       <StyledH1>localSports</StyledH1>
-      <StyledButton>
+      <StyledButton type="button" onClick={onShowFilterMenu}>
         <StyledFilterButton />
       </StyledButton>
     </StyledHeader>

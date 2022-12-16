@@ -2,8 +2,15 @@ import styled from "styled-components";
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
+import { useState } from "react";
 
 export default function Home() {
+  const [isShowingFilterMenu, setIsShowingFilterMenu] = useState(false);
+
+  function handleShowFilterMenu() {
+    setIsShowingFilterMenu(!isShowingFilterMenu);
+  }
+
   return (
     <>
       <Head>
@@ -12,7 +19,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MobileLayout>
-        <Header />
+        <Header onShowFilterMenu={handleShowFilterMenu} />
         <Main />
       </MobileLayout>
     </>
