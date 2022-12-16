@@ -6,8 +6,12 @@ export default function Header() {
     <StyledHeader>
       <StyledH1>localSports</StyledH1>
       <div>
-        <StyledSortButton />
-        <StyledFilterButton />
+        <StyledButton>
+          <StyledSortButton />
+        </StyledButton>
+        <StyledButton>
+          <StyledFilterButton />
+        </StyledButton>
       </div>
     </StyledHeader>
   );
@@ -28,6 +32,11 @@ const StyledHeader = styled.header`
     justify-content: space-between;
     gap: 0.5rem;
   }
+`;
+
+const StyledButton = styled.button`
+  background: none;
+  border: none;
 `;
 
 const StyledSortButton = styled(IoSwapVertical)`
