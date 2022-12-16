@@ -22,7 +22,7 @@ export default function Home() {
       <MobileLayout>
         <Header onShowFilterMenu={handleShowFilterMenu} />
         <Main />
-        <FilterMenu />
+        {isShowingFilterMenu && <FilterMenu />}
       </MobileLayout>
     </>
   );
