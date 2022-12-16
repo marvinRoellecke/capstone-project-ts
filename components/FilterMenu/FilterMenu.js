@@ -7,7 +7,7 @@ export default function FilterMenu({ onShowFilterMenu, onChangeSort }) {
       <StyledButton type="button" onClick={onShowFilterMenu}>
         <GoBackButton />
       </StyledButton>
-      <h2>Filter</h2>
+      <h2>sort</h2>
       <form>
         <label htmlFor="sort"></label>
         <select

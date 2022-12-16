@@ -50,6 +50,7 @@ export default function Home() {
     } else if (event === "toNew") {
       setSortSportLocations([...sportLocationsData]);
     }
+    handleShowFilterMenu();
   }
 
   return (
