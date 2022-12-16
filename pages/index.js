@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
+import FilterMenu from "../components/FilterMenu/FilterMenu";
 import { useState } from "react";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <MobileLayout>
         <Header onShowFilterMenu={handleShowFilterMenu} />
         <Main />
+        <FilterMenu />
       </MobileLayout>
     </>
   );
