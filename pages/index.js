@@ -4,12 +4,52 @@ import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import { useState } from "react";
+import sportLocationsData from "../lib/data/sportLocationsData";
 
 export default function Home() {
   const [isShowingFilterMenu, setIsShowingFilterMenu] = useState(false);
 
+  const [sortSportLocations, setSortSportLocations] =
+    useState(sportLocationsData);
+
   function handleShowFilterMenu() {
     setIsShowingFilterMenu(!isShowingFilterMenu);
+  }
+
+  function handleChangeSort(event) {
+    if (event === "az") {
+      setSortSportLocations(
+        [...sortSportLocations].sort((a, b) => {
+          const nameA = a.title;
+          const nameB = b.title;
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+          return 0;
+        })
+      );
+    } else if (event === "za") {
+      setSortSportLocations(
+        [...sortSportLocations].sort((a, b) => {
+          const nameA = a.title;
+          const nameB = b.title;
+          if (nameA < nameB) {
+            return 1;
+          }
+          if (nameA > nameB) {
+            return -1;
+          }
+          return 0;
+        })
+      );
+    } else if (event === "toOld") {
+      setSortSportLocations([...sportLocationsData].reverse());
+    } else if (event === "toNew") {
+      setSortSportLocations([...sportLocationsData]);
+    }
   }
 
   return (
@@ -21,9 +61,12 @@ export default function Home() {
       </Head>
       <MobileLayout>
         <Header onShowFilterMenu={handleShowFilterMenu} />
-        <Main />
+        <Main sortSportLocations={sortSportLocations} />
         {isShowingFilterMenu && (
-          <FilterMenu onShowFilterMenu={handleShowFilterMenu} />
+          <FilterMenu
+            onShowFilterMenu={handleShowFilterMenu}
+            onChangeSort={handleChangeSort}
+          />
         )}
       </MobileLayout>
     </>

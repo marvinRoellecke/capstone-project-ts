@@ -1,13 +1,27 @@
 import styled from "styled-components";
 import GoBackButton from "../GoBackButton/GoBackButton";
 
-export default function FilterMenu({ onShowFilterMenu }) {
+export default function FilterMenu({ onShowFilterMenu, onChangeSort }) {
   return (
     <StyledMenu>
-      <h2>Filter</h2>
       <StyledButton type="button" onClick={onShowFilterMenu}>
         <GoBackButton />
       </StyledButton>
+      <h2>Filter</h2>
+      <form>
+        <label htmlFor="sort"></label>
+        <select
+          name="sort"
+          id="sort"
+          onChange={(event) => onChangeSort(event.target.value)}
+        >
+          <option value="default">choose option</option>
+          <option value="az">a - z</option>
+          <option value="za">z - a</option>
+          <option value="toOld">newest first</option>
+          <option value="toNew">oldest first</option>
+        </select>
+      </form>
     </StyledMenu>
   );
 }

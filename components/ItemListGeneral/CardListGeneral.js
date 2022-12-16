@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import sportLocationsData from "../../lib/data/sportLocationsData";
 import Item from "../Item/Card";
 
-export default function ItemListGeneral() {
+export default function CardListGeneral({ sortSportLocations }) {
   return (
     <>
       <StyledUl>
-        {sportLocationsData.map((location) => (
+        {sortSportLocations.map((location) => (
           <Item key={location.id} location={location} />
         ))}
       </StyledUl>

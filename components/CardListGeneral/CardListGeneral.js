@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import sportLocationsData from "../../lib/data/sportLocationsData";
+/* import sportLocationsData from "../../lib/data/sportLocationsData"; */
 import Card from "../Card/Card";
 
-export default function CardListGeneral() {
+export default function CardListGeneral({ sortSportLocations }) {
   return (
-      <StyledUl>
-        {sportLocationsData.map((location) => (
-          <Card key={location.id} location={location} />
-        ))}
-      </StyledUl>
+    <StyledUl>
+      {sortSportLocations.map((location) => (
+        <Card key={location.id} location={location} />
+      ))}
+    </StyledUl>
   );
 }
 
