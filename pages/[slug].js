@@ -21,7 +21,7 @@ export default function DetailsPage() {
     <StyledContainer>
       <StyledHeader>
         <StyledLink href="/">
-          <StyledIoChevronBackOutline />
+          <StyledGoBackButton />
         </StyledLink>
         <h1>{currentLocation.title}</h1>
       </StyledHeader>
@@ -103,7 +103,7 @@ const StyledImageContainer = styled.div`
   background-size: cover;
 `;
 
-const StyledIoChevronBackOutline = styled(IoChevronBackOutline)`
+const StyledGoBackButton = styled(IoChevronBackOutline)`
   width: auto;
   height: 2rem;
 `;
