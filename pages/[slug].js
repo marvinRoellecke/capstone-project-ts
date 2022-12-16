@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { IoStar, IoLocationSharp, IoChevronBackOutline } from "react-icons/io5";
 import CardLocationInfo from "../components/CardLocationInfo/CardLocationInfo";
+import GoBackButton from "../components/GoBackButton/GoBackButton";
 
 export default function DetailsPage() {
   const router = useRouter();
@@ -21,7 +22,7 @@ export default function DetailsPage() {
     <StyledContainer>
       <StyledHeader>
         <StyledLink href="/">
-          <StyledGoBackButton />
+          <GoBackButton />
         </StyledLink>
         <h1>{currentLocation.title}</h1>
       </StyledHeader>
@@ -101,11 +102,6 @@ const StyledImageContainer = styled.div`
     url(${(props) => props.image});
   background-position: center;
   background-size: cover;
-`;
-
-const StyledGoBackButton = styled(IoChevronBackOutline)`
-  width: auto;
-  height: 2rem;
 `;
 
 const StyledCaptionWrapper = styled.div`

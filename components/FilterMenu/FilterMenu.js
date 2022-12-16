@@ -1,7 +1,15 @@
 import styled from "styled-components";
+import GoBackButton from "../GoBackButton/GoBackButton";
 
 export default function FilterMenu() {
-  return <StyledMenu>Filter</StyledMenu>;
+  return (
+    <StyledMenu>
+      <h2>Filter</h2>
+      <button>
+        <GoBackButton />
+      </button>
+    </StyledMenu>
+  );
 }
 
 const StyledMenu = styled.div`
