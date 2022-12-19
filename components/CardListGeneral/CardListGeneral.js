@@ -10,7 +10,11 @@ export default function CardListGeneral({ passedLocations, filterData }) {
               <Item key={location.id} location={location} />
             ))
           : passedLocations
-              .filter((location) => filterData.includes(location.title))
+              .filter(
+                (location) =>
+                  filterData.includes(location.title) ||
+                  filterData.includes(location.address.city)
+              )
               .map((location) => (
                 <Item key={location.id} location={location} />
               ))}

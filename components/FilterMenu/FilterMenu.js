@@ -26,7 +26,7 @@ export default function FilterMenu({
           <option value="toNew">oldest first</option>
         </select>
       </form>
-      <h2>filter</h2>
+      <h2>filter - sport</h2>
       <form>
         <input
           type="checkbox"
@@ -55,6 +55,22 @@ export default function FilterMenu({
           onChange={(event) => onFilter(event)}
         />
         <label>volleyball</label>
+      </form>
+      <h2>filter - city</h2>
+      <form>
+        <input
+          type="checkbox"
+          value="Münster"
+          onChange={(event) => onFilter(event)}
+        />
+        <label>Münster</label>
+
+        <input
+          type="checkbox"
+          value="Düsseldorf"
+          onChange={(event) => onFilter(event)}
+        />
+        <label>Düsseldorf</label>
       </form>
     </StyledMenu>
   );
