@@ -29,7 +29,9 @@ export default function FilterMenu({
         </StyledSelect>
       </form>
 
-      <StyledH2>filter - sport</StyledH2>
+      <StyledH2>filter</StyledH2>
+
+      <StyledH3>sport</StyledH3>
       <form>
         {Object.entries(filterData.sport).map((entry) => (
           <Fragment key={entry[0]}>
@@ -41,12 +43,12 @@ export default function FilterMenu({
                 onChange={(event) => onFilter(event, "sport")}
                 checked={entry[1]}
               />
-              <label htmlFor={entry[0]}>{entry}</label>
+              <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
             </StyledInputWrapper>
           </Fragment>
         ))}
       </form>
-      <StyledH2>filter - city</StyledH2>
+      <StyledH3>city</StyledH3>
       <form>
         {Object.entries(filterData.city).map((entry) => (
           <Fragment key={entry[0]}>
@@ -58,12 +60,12 @@ export default function FilterMenu({
                 onChange={(event) => onFilter(event, "city")}
                 checked={entry[1]}
               />
-              <label htmlFor={entry[0]}>{entry}</label>
+              <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
             </StyledInputWrapper>
           </Fragment>
         ))}
       </form>
-      <StyledH2>filter - rating</StyledH2>
+      <StyledH3>rating</StyledH3>
       <form>
         {Object.entries(filterData.rating).map((entry) => (
           <Fragment key={entry[0]}>
@@ -74,7 +76,7 @@ export default function FilterMenu({
                 onChange={(event) => onFilter(event, "rating")}
                 checked={entry[1]}
               />
-              <label>{entry}</label>
+              <StyledLabel>{entry}</StyledLabel>
             </StyledInputWrapper>
           </Fragment>
         ))}
@@ -103,6 +105,15 @@ const StyledH2 = styled.h2`
   margin: 2rem 0 0.3rem 0.5rem;
 `;
 
+const StyledH3 = styled.h3`
+  font-size: 1rem;
+  font-weight: lighter;
+  margin: 2rem 0 0.3rem 0.5rem;
+  &:first-of-type {
+    margin-top: 0;
+  }
+`;
+
 const StyledSelect = styled.select`
   margin-left: 0.5rem;
 `;
@@ -113,4 +124,8 @@ const StyledInputWrapper = styled.div`
 
 const StyledInput = styled.input`
   margin: 0 0.3rem 0 0.8rem;
+`;
+
+const StyledLabel = styled.label`
+  font-weight: lighter;
 `;
