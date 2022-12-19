@@ -3,18 +3,42 @@ import Head from "next/head";
 import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import sportLocationsData from "../lib/data/sportLocationsData";
 
 export default function Home() {
-  const [isShowingFilterMenu, setIsShowingFilterMenu] = useState(false);
+  //filter entries -> goal: set multiple filter together
 
-  const [sortSportLocations, setSortSportLocations] =
-    useState(sportLocationsData);
+  // Es wird nur der Eintrag filter im Array passedLocations auf true oder false gesetzt.
+  //Das Filtern soll in der Komponente CardListGeneral passieren
+  const [passedLocations, setPassedLocations] = useState(sportLocationsData);
+
+  const [filterData, setFilterData] = useState([]);
+
+  function handleFilter(event) {
+    setFilterData([...filterData, event.target.value]);
+    console.log(filterData);
+    console.log(event.target.value);
+    setPassedLocations(
+      passedLocations.map((location) =>
+        location.title === event.target.value
+          ? { ...location, filter: !location.filter }
+          : location
+      )
+    );
+    console.log(passedLocations);
+  }
+
+  //show / hide Filter Menu
+  const [isShowingFilterMenu, setIsShowingFilterMenu] = useState(false);
 
   function handleShowFilterMenu() {
     setIsShowingFilterMenu(!isShowingFilterMenu);
   }
+
+  // sort list entries
+  const [sortSportLocations, setSortSportLocations] =
+    useState(sportLocationsData);
 
   function handleChangeSort(event) {
     if (event === "az") {
@@ -62,11 +86,12 @@ export default function Home() {
       </Head>
       <MobileLayout>
         <Header onShowFilterMenu={handleShowFilterMenu} />
-        <Main sortSportLocations={sortSportLocations} />
+        <Main passedSportLocations={passedLocations} filterData={filterData} />
         {isShowingFilterMenu && (
           <FilterMenu
             onShowFilterMenu={handleShowFilterMenu}
             onChangeSort={handleChangeSort}
+            onFilter={handleFilter}
           />
         )}
       </MobileLayout>
@@ -83,3 +108,117 @@ const MobileLayout = styled.div`
     overflow-y: scroll;
   }
 `;
+
+/*   Zeigt nur den letzten geklickten Filter an
+
+function handleFilter(event) {
+    console.log(event);
+    if (event.target.checked) {
+      const data = sportLocationsData.filter((location) => {
+        return location.title.includes(event.target.value);
+      });
+      setSortSportLocations(data);
+    } else {
+      setSortSportLocations(sportLocationsData);
+    }
+  } */
+
+/* Funktioniert aber immer einen Filter Eintrag hinterher. Zurücksetzen der Filter noch nicht berücksichtigt
+ 
+ const [selectedLocations, setSelectedLocations] =
+  useState(sportLocationsData);
+
+const [passedLocations, setPassedLocations] = useState(sportLocationsData);
+
+const [filterData, setFilterData] = useState([]);
+
+function handleFilter(event) {
+  setFilterData( [...filterData, event.target.value]);
+  setPassedLocations(
+    [...selectedLocations].filter((location) => {
+      return (
+        location.title.includes(filterData[0]) ||
+        location.title.includes(filterData[1]) ||
+        location.title.includes(filterData[2]) ||
+        location.title.includes(filterData[3])
+      );
+    })
+  );
+} */
+
+/* passedLocations wird immer ein leeres Array zurückgegeben.
+
+const [selectedLocations, setSelectedLocations] =
+useState(sportLocationsData);
+
+const [passedLocations, setPassedLocations] = useState(sportLocationsData);
+
+function handleFilter(event) {
+console.log(event.target.value);
+setSelectedLocations(
+  selectedLocations.map((location) =>
+    location.title === event.target.value
+      ? { ...location, filter: !location.filter }
+      : location
+  )
+);
+console.log(selectedLocations);
+setPassedLocations((prevSelectedLocations) =>
+  prevSelectedLocations.filter((location) => location.filter)
+);
+console.log(passedLocations);
+} */
+
+/*   const [filterCriteria, setFilterCriteria] = useState({
+    Basketball: false,
+    Volleyball: false,
+    Soccer: false,
+    Tennis: false,
+  }); */
+
+/* Mit useEffect, funktioniert so gar nicht
+
+  const [selectedLocations, setSelectedLocations] =
+  useState(sportLocationsData);
+
+const [passedLocations, setPassedLocations] = useState(sportLocationsData);
+  
+  useEffect(() => {
+    setPassedLocations(
+      selectedLocations.filter((location) => {
+        return location.filter;
+      })
+    );
+  }, [selectedLocations]);
+
+  function handleFilter(event) {
+    console.log(event.target.value);
+    selectedLocations.map((location) =>
+      location.title === event.target.value
+        ? { ...location, filter: !location.filter }
+        : location
+    );
+    console.log(sportLocationsData);
+    setSelectedLocations(
+      selectedLocations.filter((location) => location.filter)
+    );
+  } */
+
+/*   Stand mit Ulli
+  
+  const [filterData, setFilterData] = useState([]);
+  
+  function handleFilter(location) {
+    console.log(location);
+    setFilterData([...filterData, location]);
+    console.log(filterData);
+    if (filterData.includes(location)) {
+      setSelectedLocations();
+    } else {}
+    setSelectedLocations(
+      selectedLocations.filter((location) => {
+        return filterData.includes(location.title);
+      })
+    );
+    console.log(selectedLocations);
+  } */

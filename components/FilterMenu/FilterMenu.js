@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import GoBackButton from "../GoBackButton/GoBackButton";
 
-export default function FilterMenu({ onShowFilterMenu, onChangeSort }) {
+export default function FilterMenu({
+  onShowFilterMenu,
+  onChangeSort,
+  onFilter,
+}) {
   return (
     <StyledMenu>
       <StyledButton type="button" onClick={onShowFilterMenu}>
@@ -21,6 +25,36 @@ export default function FilterMenu({ onShowFilterMenu, onChangeSort }) {
           <option value="toOld">newest first</option>
           <option value="toNew">oldest first</option>
         </select>
+      </form>
+      <h2>filter</h2>
+      <form>
+        <input
+          type="checkbox"
+          value="Basketball"
+          onChange={(event) => onFilter(event)}
+        />
+        <label>basketball</label>
+
+        <input
+          type="checkbox"
+          value="Soccer"
+          onChange={(event) => onFilter(event)}
+        />
+        <label>soccer</label>
+
+        <input
+          type="checkbox"
+          value="Tennis"
+          onChange={(event) => onFilter(event)}
+        />
+        <label>tennis</label>
+
+        <input
+          type="checkbox"
+          value="Volleyball"
+          onChange={(event) => onFilter(event)}
+        />
+        <label>volleyball</label>
       </form>
     </StyledMenu>
   );

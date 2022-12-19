@@ -1,9 +1,12 @@
 import CardListGeneral from "../CardListGeneral/CardListGeneral";
 
-export default function Main({ sortSportLocations }) {
+export default function Main({ passedSportLocations, filterData }) {
   return (
     <main>
-      <CardListGeneral sortSportLocations={sortSportLocations} />
+      <CardListGeneral
+        sortSportLocations={passedSportLocations}
+        filterData={filterData}
+      />
     </main>
   );
 }
