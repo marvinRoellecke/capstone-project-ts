@@ -5,15 +5,17 @@ export default function CardListGeneral({ passedLocations, filterData }) {
   return (
     <>
       <StyledUl>
-        {filterData.length === 0
+        {filterData.sport.length === 0 && filterData.city.length === 0
           ? passedLocations.map((location) => (
               <Item key={location.id} location={location} />
             ))
           : passedLocations
               .filter(
                 (location) =>
-                  filterData.includes(location.title) ||
-                  filterData.includes(location.address.city)
+                  (filterData.sport.includes(location.title) ||
+                    filterData.sport.length === 0) &&
+                  (filterData.city.includes(location.address.city) ||
+                    filterData.city.length === 0)
               )
               .map((location) => (
                 <Item key={location.id} location={location} />

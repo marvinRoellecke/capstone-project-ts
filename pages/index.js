@@ -12,15 +12,28 @@ export default function Home() {
 
   const [passedLocations, setPassedLocations] = useState(sportLocationsData);
 
-  const [filterData, setFilterData] = useState([]);
+  const [filterData, setFilterData] = useState({
+    sport: [],
+    city: [],
+  });
 
-  function handleFilter(event) {
+  function handleFilter(event, category) {
     if (event.target.checked) {
-      setFilterData([...filterData, event.target.value]);
+      setFilterData({
+        ...filterData,
+        [category]: [...filterData[category], event.target.value],
+      });
     } else {
-      console.log("Hello");
-      setFilterData(filterData.filter((entry) => entry !== event.target.value));
+      setFilterData({
+        ...filterData,
+        [category]: [
+          ...filterData[category].filter(
+            (entry) => entry !== event.target.value
+          ),
+        ],
+      });
     }
+    console.log(filterData);
   }
 
   //show / hide Filter Menu

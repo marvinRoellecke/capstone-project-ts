@@ -31,28 +31,28 @@ export default function FilterMenu({
         <input
           type="checkbox"
           value="Basketball"
-          onChange={(event) => onFilter(event)}
+          onChange={(event) => onFilter(event, "sport")}
         />
         <label>basketball</label>
 
         <input
           type="checkbox"
           value="Soccer"
-          onChange={(event) => onFilter(event)}
+          onChange={(event) => onFilter(event, "sport")}
         />
         <label>soccer</label>
 
         <input
           type="checkbox"
           value="Tennis"
-          onChange={(event) => onFilter(event)}
+          onChange={(event) => onFilter(event, "sport")}
         />
         <label>tennis</label>
 
         <input
           type="checkbox"
           value="Volleyball"
-          onChange={(event) => onFilter(event)}
+          onChange={(event) => onFilter(event, "sport")}
         />
         <label>volleyball</label>
       </form>
@@ -61,14 +61,14 @@ export default function FilterMenu({
         <input
           type="checkbox"
           value="Münster"
-          onChange={(event) => onFilter(event)}
+          onChange={(event) => onFilter(event, "city")}
         />
         <label>Münster</label>
 
         <input
           type="checkbox"
           value="Düsseldorf"
-          onChange={(event) => onFilter(event)}
+          onChange={(event) => onFilter(event, "city")}
         />
         <label>Düsseldorf</label>
       </form>
