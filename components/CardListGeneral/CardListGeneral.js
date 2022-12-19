@@ -1,14 +1,17 @@
 import styled from "styled-components";
-/* import sportLocationsData from "../../lib/data/sportLocationsData"; */
-import Card from "../Card/Card";
+import Item from "../Card/Card";
 
-export default function CardListGeneral({ sortSportLocations }) {
+export default function CardListGeneral({ passedLocations, filterData }) {
   return (
-    <StyledUl>
-      {sortSportLocations.map((location) => (
-        <Card key={location.id} location={location} />
-      ))}
-    </StyledUl>
+    <>
+      <StyledUl>
+        {passedLocations
+          .filter((location) => filterData.includes(location.title))
+          .map((location) => (
+            <Item key={location.id} location={location} />
+          ))}
+      </StyledUl>
+    </>
   );
 }
 
@@ -18,3 +21,21 @@ const StyledUl = styled.ul`
   gap: 0.5rem;
   margin: 0.5rem 0;
 `;
+
+/* 
+ Rendert Array komplett
+{sortSportLocations.map((location) => (
+  <Item key={location.id} location={location} />
+))} */
+
+/* Logik, dass das Filtern erst hier passiert
+
+ {sortSportLocations.every((location) => !location.filter)
+          ? sortSportLocations.map((location) => (
+              <Item key={location.id} location={location} />
+            ))
+          : sortSportLocations
+              .filter((location) => location.filter)
+              .map((location) => (
+                <Item key={location.id} location={location} />
+              ))} */
