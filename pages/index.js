@@ -10,7 +10,7 @@ export default function Home() {
   //filter entries -> goal: set multiple filter together
   //Das Filtern soll in der Komponente CardListGeneral passieren
 
-  const passedLocations = sportLocationsData;
+  const [passedLocations, setPassedLocations] = useState(sportLocationsData);
 
   const [filterData, setFilterData] = useState([]);
 
@@ -75,7 +75,7 @@ export default function Home() {
       </Head>
       <MobileLayout>
         <Header onShowFilterMenu={handleShowFilterMenu} />
-        <Main passedSportLocations={passedLocations} filterData={filterData} />
+        <Main passedLocations={passedLocations} filterData={filterData} />
         {isShowingFilterMenu && (
           <FilterMenu
             onShowFilterMenu={handleShowFilterMenu}

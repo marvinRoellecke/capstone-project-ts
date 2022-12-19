@@ -1,10 +1,10 @@
 import CardListGeneral from "../CardListGeneral/CardListGeneral";
 
-export default function Main({ passedSportLocations, filterData }) {
+export default function Main({ passedLocations, filterData }) {
   return (
     <main>
       <CardListGeneral
-        sortSportLocations={passedSportLocations}
+        passedLocations={passedLocations}
         filterData={filterData}
       />
     </main>

@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import Item from "../Item/Card";
 
-export default function CardListGeneral({ passedSportLocations, filterData }) {
+export default function CardListGeneral({ passedLocations, filterData }) {
   return (
     <>
       <StyledUl>
-        {passedSportLocations
+        {passedLocations
           .filter((location) => filterData.includes(location.title))
           .map((location) => (
             <Item key={location.id} location={location} />
