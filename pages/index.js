@@ -8,25 +8,14 @@ import sportLocationsData from "../lib/data/sportLocationsData";
 
 export default function Home() {
   //filter entries -> goal: set multiple filter together
-
-  // Es wird nur der Eintrag filter im Array passedLocations auf true oder false gesetzt.
   //Das Filtern soll in der Komponente CardListGeneral passieren
-  const [passedLocations, setPassedLocations] = useState(sportLocationsData);
+
+  const passedLocations = sportLocationsData;
 
   const [filterData, setFilterData] = useState([]);
 
   function handleFilter(event) {
     setFilterData([...filterData, event.target.value]);
-    console.log(filterData);
-    console.log(event.target.value);
-    setPassedLocations(
-      passedLocations.map((location) =>
-        location.title === event.target.value
-          ? { ...location, filter: !location.filter }
-          : location
-      )
-    );
-    console.log(passedLocations);
   }
 
   //show / hide Filter Menu
