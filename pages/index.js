@@ -15,7 +15,12 @@ export default function Home() {
   const [filterData, setFilterData] = useState([]);
 
   function handleFilter(event) {
-    setFilterData([...filterData, event.target.value]);
+    if (event.target.checked) {
+      setFilterData([...filterData, event.target.value]);
+    } else {
+      console.log("Hello");
+      setFilterData(filterData.filter((entry) => entry !== event.target.value));
+    }
   }
 
   //show / hide Filter Menu
@@ -97,117 +102,3 @@ const MobileLayout = styled.div`
     overflow-y: scroll;
   }
 `;
-
-/*   Zeigt nur den letzten geklickten Filter an
-
-function handleFilter(event) {
-    console.log(event);
-    if (event.target.checked) {
-      const data = sportLocationsData.filter((location) => {
-        return location.title.includes(event.target.value);
-      });
-      setSortSportLocations(data);
-    } else {
-      setSortSportLocations(sportLocationsData);
-    }
-  } */
-
-/* Funktioniert aber immer einen Filter Eintrag hinterher. Zurücksetzen der Filter noch nicht berücksichtigt
- 
- const [selectedLocations, setSelectedLocations] =
-  useState(sportLocationsData);
-
-const [passedLocations, setPassedLocations] = useState(sportLocationsData);
-
-const [filterData, setFilterData] = useState([]);
-
-function handleFilter(event) {
-  setFilterData( [...filterData, event.target.value]);
-  setPassedLocations(
-    [...selectedLocations].filter((location) => {
-      return (
-        location.title.includes(filterData[0]) ||
-        location.title.includes(filterData[1]) ||
-        location.title.includes(filterData[2]) ||
-        location.title.includes(filterData[3])
-      );
-    })
-  );
-} */
-
-/* passedLocations wird immer ein leeres Array zurückgegeben.
-
-const [selectedLocations, setSelectedLocations] =
-useState(sportLocationsData);
-
-const [passedLocations, setPassedLocations] = useState(sportLocationsData);
-
-function handleFilter(event) {
-console.log(event.target.value);
-setSelectedLocations(
-  selectedLocations.map((location) =>
-    location.title === event.target.value
-      ? { ...location, filter: !location.filter }
-      : location
-  )
-);
-console.log(selectedLocations);
-setPassedLocations((prevSelectedLocations) =>
-  prevSelectedLocations.filter((location) => location.filter)
-);
-console.log(passedLocations);
-} */
-
-/*   const [filterCriteria, setFilterCriteria] = useState({
-    Basketball: false,
-    Volleyball: false,
-    Soccer: false,
-    Tennis: false,
-  }); */
-
-/* Mit useEffect, funktioniert so gar nicht
-
-  const [selectedLocations, setSelectedLocations] =
-  useState(sportLocationsData);
-
-const [passedLocations, setPassedLocations] = useState(sportLocationsData);
-  
-  useEffect(() => {
-    setPassedLocations(
-      selectedLocations.filter((location) => {
-        return location.filter;
-      })
-    );
-  }, [selectedLocations]);
-
-  function handleFilter(event) {
-    console.log(event.target.value);
-    selectedLocations.map((location) =>
-      location.title === event.target.value
-        ? { ...location, filter: !location.filter }
-        : location
-    );
-    console.log(sportLocationsData);
-    setSelectedLocations(
-      selectedLocations.filter((location) => location.filter)
-    );
-  } */
-
-/*   Stand mit Ulli
-  
-  const [filterData, setFilterData] = useState([]);
-  
-  function handleFilter(location) {
-    console.log(location);
-    setFilterData([...filterData, location]);
-    console.log(filterData);
-    if (filterData.includes(location)) {
-      setSelectedLocations();
-    } else {}
-    setSelectedLocations(
-      selectedLocations.filter((location) => {
-        return filterData.includes(location.title);
-      })
-    );
-    console.log(selectedLocations);
-  } */
