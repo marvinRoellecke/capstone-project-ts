@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import styled from "styled-components";
 import GoBackButton from "../GoBackButton/GoBackButton";
 
@@ -5,6 +6,7 @@ export default function FilterMenu({
   onShowFilterMenu,
   onChangeSort,
   onFilter,
+  filterData,
 }) {
   return (
     <StyledMenu>
@@ -26,51 +28,48 @@ export default function FilterMenu({
           <option value="toNew">oldest first</option>
         </select>
       </form>
+
       <h2>filter - sport</h2>
       <form>
-        <input
-          type="checkbox"
-          value="Basketball"
-          onChange={(event) => onFilter(event, "sport")}
-        />
-        <label>basketball</label>
-
-        <input
-          type="checkbox"
-          value="Soccer"
-          onChange={(event) => onFilter(event, "sport")}
-        />
-        <label>soccer</label>
-
-        <input
-          type="checkbox"
-          value="Tennis"
-          onChange={(event) => onFilter(event, "sport")}
-        />
-        <label>tennis</label>
-
-        <input
-          type="checkbox"
-          value="Volleyball"
-          onChange={(event) => onFilter(event, "sport")}
-        />
-        <label>volleyball</label>
+        {Object.entries(filterData.sport).map((entry) => (
+          <Fragment key={entry[0]}>
+            <input
+              type="checkbox"
+              value={entry[0]}
+              onChange={(event) => onFilter(event, "sport")}
+              checked={entry[1]}
+            />
+            <label>{entry}</label>
+          </Fragment>
+        ))}
       </form>
       <h2>filter - city</h2>
       <form>
-        <input
-          type="checkbox"
-          value="Münster"
-          onChange={(event) => onFilter(event, "city")}
-        />
-        <label>Münster</label>
-
-        <input
-          type="checkbox"
-          value="Düsseldorf"
-          onChange={(event) => onFilter(event, "city")}
-        />
-        <label>Düsseldorf</label>
+        {Object.entries(filterData.city).map((entry) => (
+          <Fragment key={entry[0]}>
+            <input
+              type="checkbox"
+              value={entry[0]}
+              onChange={(event) => onFilter(event, "city")}
+              checked={entry[1]}
+            />
+            <label>{entry}</label>
+          </Fragment>
+        ))}
+      </form>
+      <h2>filter - rating</h2>
+      <form>
+        {Object.entries(filterData.rating).map((entry) => (
+          <Fragment key={entry[0]}>
+            <input
+              type="checkbox"
+              value={entry[0]}
+              onChange={(event) => onFilter(event, "rating")}
+              checked={entry[1]}
+            />
+            <label>{entry}</label>
+          </Fragment>
+        ))}
       </form>
     </StyledMenu>
   );
@@ -81,7 +80,7 @@ const StyledMenu = styled.div`
   right: 0;
   z-index: 1;
   height: 100vh;
-  width: 80vw;
+  width: 60%;
   background-color: var(--color-background);
   opacity: 0.95;
 `;

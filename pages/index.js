@@ -13,27 +13,30 @@ export default function Home() {
   const [passedLocations, setPassedLocations] = useState(sportLocationsData);
 
   const [filterData, setFilterData] = useState({
-    sport: [],
-    city: [],
+    sport: {
+      basketball: false,
+      fitness: false,
+      other: false,
+      soccer: false,
+      tennis: false,
+      volleyball: false,
+    },
+    city: { Münster: false, Düsseldorf: false },
+    rating: { 1: false, 2: false, 3: false, 4: false, 5: false },
   });
 
   function handleFilter(event, category) {
     if (event.target.checked) {
       setFilterData({
         ...filterData,
-        [category]: [...filterData[category], event.target.value],
+        [category]: { ...filterData[category], [event.target.value]: true },
       });
     } else {
       setFilterData({
         ...filterData,
-        [category]: [
-          ...filterData[category].filter(
-            (entry) => entry !== event.target.value
-          ),
-        ],
+        [category]: { ...filterData[category], [event.target.value]: false },
       });
     }
-    console.log(filterData);
   }
 
   //show / hide Filter Menu
@@ -94,6 +97,7 @@ export default function Home() {
             onShowFilterMenu={handleShowFilterMenu}
             onChangeSort={handleChangeSort}
             onFilter={handleFilter}
+            filterData={filterData}
           />
         )}
       </MobileLayout>
@@ -110,3 +114,32 @@ const MobileLayout = styled.div`
     overflow-y: scroll;
   }
 `;
+
+/* Stand vorher
+  <Main passedLocations={passedLocations} filterData={filterData} />
+
+const [passedLocations, setPassedLocations] = useState(sportLocationsData);
+
+const [filterData, setFilterData] = useState({
+  sport: [],
+  city: [],
+});
+
+function handleFilter(event, category) {
+  if (event.target.checked) {
+    setFilterData({
+      ...filterData,
+      [category]: [...filterData[category], event.target.value],
+    });
+  } else {
+    setFilterData({
+      ...filterData,
+      [category]: [
+        ...filterData[category].filter(
+          (entry) => entry !== event.target.value
+        ),
+      ],
+    });
+  }
+  console.log(filterData);
+} */
