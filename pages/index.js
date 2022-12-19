@@ -30,14 +30,10 @@ export default function Home() {
     setIsShowingFilterMenu(!isShowingFilterMenu);
   }
 
-  // sort list entries
-  const [sortSportLocations, setSortSportLocations] =
-    useState(sportLocationsData);
-
   function handleChangeSort(event) {
     if (event === "az") {
-      setSortSportLocations(
-        [...sortSportLocations].sort((a, b) => {
+      setPassedLocations(
+        [...passedLocations].sort((a, b) => {
           const nameA = a.title;
           const nameB = b.title;
           if (nameA < nameB) {
@@ -50,8 +46,8 @@ export default function Home() {
         })
       );
     } else if (event === "za") {
-      setSortSportLocations(
-        [...sortSportLocations].sort((a, b) => {
+      setPassedLocations(
+        [...passedLocations].sort((a, b) => {
           const nameA = a.title;
           const nameB = b.title;
           if (nameA < nameB) {
@@ -64,11 +60,10 @@ export default function Home() {
         })
       );
     } else if (event === "toOld") {
-      setSortSportLocations([...sportLocationsData].reverse());
+      setPassedLocations([...sportLocationsData].reverse());
     } else if (event === "toNew") {
-      setSortSportLocations([...sportLocationsData]);
+      setPassedLocations([...sportLocationsData]);
     }
-    handleShowFilterMenu();
   }
 
   return (
