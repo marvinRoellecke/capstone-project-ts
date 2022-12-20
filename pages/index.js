@@ -46,6 +46,7 @@ export default function Home() {
     setIsShowingFilterMenu(!isShowingFilterMenu);
   }
 
+  //sort function
   function handleChangeSort(event) {
     if (event === "az") {
       setPassedLocations(
@@ -81,6 +82,9 @@ export default function Home() {
       setPassedLocations([...sportLocationsData]);
     }
   }
+
+  //favorite function
+  function handleToggleFavorite(id) {}
 
   return (
     <>
