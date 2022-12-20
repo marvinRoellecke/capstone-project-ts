@@ -4,13 +4,16 @@ import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import { useState, useEffect } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import sportLocationsData from "../lib/data/sportLocationsData";
 
 export default function Home() {
   //filter entries -> goal: set multiple filter together
   //Das Filtern soll in der Komponente CardListGeneral passieren
 
-  const [passedLocations, setPassedLocations] = useState(sportLocationsData);
+  const [locations, setLocations] = useLocalStorageState("locations", {
+    defaultValue: sportLocationsData,
+  });
 
   const [filterData, setFilterData] = useState({
     sport: {
@@ -49,8 +52,8 @@ export default function Home() {
   //sort function
   function handleChangeSort(event) {
     if (event === "az") {
-      setPassedLocations(
-        [...passedLocations].sort((a, b) => {
+      setLocations(
+        [...locations].sort((a, b) => {
           const nameA = a.title;
           const nameB = b.title;
           if (nameA < nameB) {
@@ -63,8 +66,8 @@ export default function Home() {
         })
       );
     } else if (event === "za") {
-      setPassedLocations(
-        [...passedLocations].sort((a, b) => {
+      setLocations(
+        [...locations].sort((a, b) => {
           const nameA = a.title;
           const nameB = b.title;
           if (nameA < nameB) {
@@ -77,21 +80,19 @@ export default function Home() {
         })
       );
     } else if (event === "toOld") {
-      setPassedLocations([...sportLocationsData].reverse());
+      setLocations([...sportLocationsData].reverse());
     } else if (event === "toNew") {
-      setPassedLocations([...sportLocationsData]);
+      setLocations([...sportLocationsData]);
     }
   }
 
   //favorite function
-  const favoriteLocations = passedLocations.filter(
-    (location) => location.isFavorite
-  );
+  const favoriteLocations = locations.filter((location) => location.isFavorite);
   console.log(favoriteLocations);
 
   function handleToggleFavorite(id) {
-    setPassedLocations(
-      passedLocations.map((location) =>
+    setLocations(
+      locations.map((location) =>
         location.id === id
           ? { ...location, isFavorite: !location.isFavorite }
           : location
@@ -109,7 +110,7 @@ export default function Home() {
       <MobileLayout>
         <Header onShowFilterMenu={handleShowFilterMenu} />
         <Main
-          passedLocations={passedLocations}
+          locations={locations}
           filterData={filterData}
           onToggleFavorite={handleToggleFavorite}
         />

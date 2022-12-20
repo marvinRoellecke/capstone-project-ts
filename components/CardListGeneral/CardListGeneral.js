@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Card from "../Card/Card";
 
 export default function CardListGeneral({
-  passedLocations,
+  locations,
   filterData,
   onToggleFavorite,
 }) {
@@ -12,14 +12,14 @@ export default function CardListGeneral({
         {Object.values(filterData.sport).every((entry) => !entry) &&
         Object.values(filterData.city).every((entry) => !entry) &&
         Object.values(filterData.rating).every((entry) => !entry)
-          ? passedLocations.map((location) => (
+          ? locations.map((location) => (
               <Card
                 key={location.id}
                 location={location}
                 onToggleFavorite={onToggleFavorite}
               />
             ))
-          : passedLocations
+          : locations
               .filter(
                 (location) =>
                   (filterData.sport[location.category] ||
