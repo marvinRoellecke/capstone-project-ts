@@ -8,5 +8,4 @@ export default function FavoriteButton() {
 const StyledFavoriteButton = styled(IoHeartOutline)`
   width: auto;
   height: 2rem;
-  grid-area: favoriteButton;
 `;

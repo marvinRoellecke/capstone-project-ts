@@ -108,7 +108,11 @@ export default function Home() {
       </Head>
       <MobileLayout>
         <Header onShowFilterMenu={handleShowFilterMenu} />
-        <Main passedLocations={passedLocations} filterData={filterData} />
+        <Main
+          passedLocations={passedLocations}
+          filterData={filterData}
+          onToggleFavorite={handleToggleFavorite}
+        />
         {isShowingFilterMenu && (
           <FilterMenu
             onShowFilterMenu={handleShowFilterMenu}
