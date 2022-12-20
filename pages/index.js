@@ -84,7 +84,20 @@ export default function Home() {
   }
 
   //favorite function
-  function handleToggleFavorite(id) {}
+  const favoriteLocations = passedLocations.filter(
+    (location) => location.isFavorite
+  );
+  console.log(favoriteLocations);
+
+  function handleToggleFavorite(id) {
+    setPassedLocations(
+      passedLocations.map((location) =>
+        location.id === id
+          ? { ...location, isFavorite: !location.isFavorite }
+          : location
+      )
+    );
+  }
 
   return (
     <>
