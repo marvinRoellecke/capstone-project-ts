@@ -1,9 +1,12 @@
 import CardListGeneral from "../CardListGeneral/CardListGeneral";
 
-export default function Main() {
+export default function Main({ passedLocations, filterData }) {
   return (
     <main>
-      <CardListGeneral />
+      <CardListGeneral
+        passedLocations={passedLocations}
+        filterData={filterData}
+      />
     </main>
   );
 }
