@@ -34,51 +34,45 @@ export default function FilterMenu({
       <StyledH3>sport</StyledH3>
       <form>
         {Object.entries(filterData.sport).map((entry) => (
-          <Fragment key={entry[0]}>
-            <StyledInputWrapper>
-              <StyledInput
-                type="checkbox"
-                value={entry[0]}
-                id={entry[0]}
-                onChange={(event) => onFilter(event, "sport")}
-                checked={entry[1]}
-              />
-              <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
-            </StyledInputWrapper>
-          </Fragment>
+          <StyledInputWrapper key={entry[0]}>
+            <StyledInput
+              type="checkbox"
+              value={entry[0]}
+              id={entry[0]}
+              onChange={(event) => onFilter(event, "sport")}
+              checked={entry[1]}
+            />
+            <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
+          </StyledInputWrapper>
         ))}
       </form>
       <StyledH3>city</StyledH3>
       <form>
         {Object.entries(filterData.city).map((entry) => (
-          <Fragment key={entry[0]}>
-            <StyledInputWrapper>
-              <StyledInput
-                type="checkbox"
-                value={entry[0]}
-                id={entry[0]}
-                onChange={(event) => onFilter(event, "city")}
-                checked={entry[1]}
-              />
-              <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
-            </StyledInputWrapper>
-          </Fragment>
+          <StyledInputWrapper key={entry[0]}>
+            <StyledInput
+              type="checkbox"
+              value={entry[0]}
+              id={entry[0]}
+              onChange={(event) => onFilter(event, "city")}
+              checked={entry[1]}
+            />
+            <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
+          </StyledInputWrapper>
         ))}
       </form>
       <StyledH3>rating</StyledH3>
       <form>
         {Object.entries(filterData.rating).map((entry) => (
-          <Fragment key={entry[0]}>
-            <StyledInputWrapper>
-              <StyledInput
-                type="checkbox"
-                value={entry[0]}
-                onChange={(event) => onFilter(event, "rating")}
-                checked={entry[1]}
-              />
-              <StyledLabel>{entry}</StyledLabel>
-            </StyledInputWrapper>
-          </Fragment>
+          <StyledInputWrapper key={entry[0]}>
+            <StyledInput
+              type="checkbox"
+              value={entry[0]}
+              onChange={(event) => onFilter(event, "rating")}
+              checked={entry[1]}
+            />
+            <StyledLabel>{entry}</StyledLabel>
+          </StyledInputWrapper>
         ))}
       </form>
     </StyledMenu>
