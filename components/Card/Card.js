@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { IoStar, IoLocationSharp } from "react-icons/io5";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import Link from "next/link";
 
 export default function Card({ location }) {
   return (
     <StyledLink href={`/${location.slug}`}>
       <StyledLi image={location.image}>
+        <FavoriteButton />
         <StyledTitle>{location.title}</StyledTitle>
         <StyledRating>
           <IoStar style={{ color: `var(--color-star)` }} />
@@ -45,7 +47,7 @@ const StyledLi = styled.li`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-template-areas:
-    "title title title title"
+    "favoriteButton title title title"
     ". . rating rating "
     ". tags tags tags"
     ". city city city";
