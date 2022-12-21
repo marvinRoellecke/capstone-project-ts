@@ -4,16 +4,9 @@ import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import { useState, useEffect } from "react";
-import useLocalStorageState from "use-local-storage-state";
 import sportLocationsData from "../lib/data/sportLocationsData";
 
-export default function Home({ locations }) {
-  //filter entries -> goal: set multiple filter together
-  //Das Filtern soll in der Komponente CardListGeneral passieren
-
-  /* moved to _app.js
-  const [locations, setLocations] = useState(sportLocationsData); */
-
+export default function Home({ locations, onToggleFavorite, favorites }) {
   const [filterData, setFilterData] = useState({
     sport: {
       basketball: false,
@@ -94,7 +87,12 @@ export default function Home({ locations }) {
       </Head>
       <MobileLayout>
         <Header onShowFilterMenu={handleShowFilterMenu} />
-        <Main locations={locations} filterData={filterData} />
+        <Main
+          locations={locations}
+          filterData={filterData}
+          onToggleFavorite={onToggleFavorite}
+          favorites={favorites}
+        />
         {isShowingFilterMenu && (
           <FilterMenu
             onShowFilterMenu={handleShowFilterMenu}
@@ -117,32 +115,3 @@ const MobileLayout = styled.div`
     overflow-y: scroll;
   }
 `;
-
-/* Stand vorher
-  <Main passedLocations={passedLocations} filterData={filterData} />
-
-const [passedLocations, setPassedLocations] = useState(sportLocationsData);
-
-const [filterData, setFilterData] = useState({
-  sport: [],
-  city: [],
-});
-
-function handleFilter(event, category) {
-  if (event.target.checked) {
-    setFilterData({
-      ...filterData,
-      [category]: [...filterData[category], event.target.value],
-    });
-  } else {
-    setFilterData({
-      ...filterData,
-      [category]: [
-        ...filterData[category].filter(
-          (entry) => entry !== event.target.value
-        ),
-      ],
-    });
-  }
-  console.log(filterData);
-} */

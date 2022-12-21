@@ -6,13 +6,16 @@ import CardLocationInfo from "../components/CardLocationInfo/CardLocationInfo";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
 import FavoriteButton from "../components/FavoriteButton/FavoriteButton";
 
-export default function DetailsPage({ locations, onToggleFavorite }) {
+export default function DetailsPage({
+  locations,
+  onToggleFavorite,
+  favorites,
+}) {
   const router = useRouter();
   const slug = router.query.slug;
   const currentLocation = locations.find((location) => location.slug === slug);
   const locationAddress = currentLocation?.address;
-  const favorites = localStorage.getItem("favorites");
-  const isFavorite = favorites.includes(currentLocation.id);
+  const isFavorite = favorites.includes(currentLocation?.id);
 
   if (!currentLocation) {
     return <h2>Sorry, this page does not exist!</h2>;
@@ -27,7 +30,7 @@ export default function DetailsPage({ locations, onToggleFavorite }) {
         <h1>{currentLocation.title}</h1>
         <StyledButton
           title="toggle Favorite"
-          onClick={() => onToggleFavorite(currentLocation.id)}
+          onClick={(event) => onToggleFavorite(event, currentLocation.id)}
         >
           <FavoriteButton isFavorite={isFavorite} />
         </StyledButton>

@@ -1,12 +1,21 @@
 import styled from "styled-components";
 import { IoStar, IoLocationSharp } from "react-icons/io5";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 import Link from "next/link";
 
-export default function Card({ location }) {
+export default function Card({ location, onToggleFavorite, favorites }) {
+  const isFavorite = favorites.includes(location?.id);
+
   return (
     <StyledLink href={`/${location.slug}`}>
       <StyledLi image={location.image}>
+        <StyledButton
+          title="toggle Favorite"
+          onClick={(event) => onToggleFavorite(event, location.id)}
+        >
+          <FavoriteButton isFavorite={isFavorite} />
+        </StyledButton>
         <StyledTitle>{location.title}</StyledTitle>
         <StyledRating>
           <IoStar style={{ color: `var(--color-star)` }} />
@@ -46,11 +55,19 @@ const StyledLi = styled.li`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-template-areas:
-    "title title title title"
+    "favoriteButton title title title"
     ". . rating rating "
     ". tags tags tags"
     ". city city city";
   align-items: center;
+`;
+
+const StyledButton = styled.button`
+  background: none;
+  border: none;
+  grid-area: favoriteButton;
+  color: var(--color-foreground-alt);
+  justify-self: flex-start;
 `;
 
 const StyledTitle = styled.h2`

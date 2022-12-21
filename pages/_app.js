@@ -11,7 +11,9 @@ export default function App({ Component, pageProps }) {
     defaultValue: defaultFavorites,
   });
 
-  function handleToggleFavorite(id) {
+  function handleToggleFavorite(event, id) {
+    event.preventDefault();
+    event.stopPropagation();
     setFavorites(
       favorites.includes(id)
         ? favorites.filter((favorite) => favorite !== id)
@@ -26,6 +28,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         locations={locations}
         onToggleFavorite={handleToggleFavorite}
+        favorites={favorites}
       />
     </>
   );
