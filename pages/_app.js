@@ -1,20 +1,22 @@
 import GlobalStyles from "../components/GlobalStyles";
 import sportLocationsData from "../lib/data/sportLocationsData";
 import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
   //favorite function
   const [locations, setLocations] = useState(sportLocationsData);
+  const defaultFavorites = [];
+  const [favorites, setFavorites] = useLocalStorageState("favorites", {
+    defaultValue: defaultFavorites,
+  });
 
   function handleToggleFavorite(id) {
-    setLocations(
-      locations.map((location) =>
-        location.id === id
-          ? { ...location, isFavorite: !location.isFavorite }
-          : location
-      )
+    setFavorites(
+      favorites.includes(id)
+        ? favorites.filter((favorite) => favorite !== id)
+        : [...favorites, id]
     );
-    console.log(locations);
   }
 
   return (
