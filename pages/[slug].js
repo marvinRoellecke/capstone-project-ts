@@ -24,7 +24,10 @@ export default function DetailsPage({ locations, onToggleFavorite }) {
           <GoBackButton />
         </StyledLink>
         <h1>{currentLocation.title}</h1>
-        <StyledButton onClick={() => onToggleFavorite(currentLocation.id)}>
+        <StyledButton
+          title="toggle Favorite"
+          onClick={() => onToggleFavorite(currentLocation.id)}
+        >
           <FavoriteButton isFavorite={currentLocation.isFavorite} />
         </StyledButton>
       </StyledHeader>

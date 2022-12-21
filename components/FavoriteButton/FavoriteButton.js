@@ -12,9 +12,11 @@ export default function FavoriteButton({ isFavorite }) {
 const StyledFavoriteButton = styled(IoHeartOutline)`
   width: auto;
   height: 2rem;
+  cursor: pointer;
 `;
 
 const StyledFavoriteButtonFilled = styled(IoHeart)`
   width: auto;
   height: 2rem;
+  cursor: pointer;
 `;
