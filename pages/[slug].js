@@ -1,18 +1,21 @@
-import sportLocationsData from "../lib/data/sportLocationsData";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { IoStar, IoLocationSharp, IoChevronBackOutline } from "react-icons/io5";
+import { IoStar, IoLocationSharp } from "react-icons/io5";
 import CardLocationInfo from "../components/CardLocationInfo/CardLocationInfo";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
+import FavoriteButton from "../components/FavoriteButton/FavoriteButton";
 
-export default function DetailsPage() {
+export default function DetailsPage({
+  locations,
+  onToggleFavorite,
+  favorites,
+}) {
   const router = useRouter();
   const slug = router.query.slug;
-  const currentLocation = sportLocationsData.find(
-    (location) => location.slug === slug
-  );
+  const currentLocation = locations.find((location) => location.slug === slug);
   const locationAddress = currentLocation?.address;
+  const isFavorite = favorites.includes(currentLocation?.id);
 
   if (!currentLocation) {
     return <h2>Sorry, this page does not exist!</h2>;
@@ -25,6 +28,12 @@ export default function DetailsPage() {
           <GoBackButton />
         </StyledLink>
         <h1>{currentLocation.title}</h1>
+        <StyledButton
+          title="toggle Favorite"
+          onClick={(event) => onToggleFavorite(event, currentLocation.id)}
+        >
+          <FavoriteButton isFavorite={isFavorite} />
+        </StyledButton>
       </StyledHeader>
 
       <StyledImageContainer image={currentLocation.image} />
@@ -94,6 +103,14 @@ const StyledHeader = styled.header`
 const StyledLink = styled(Link)`
   color: var(--color-foreground-alt);
   text-decoration: none;
+`;
+
+const StyledButton = styled.button`
+  background: none;
+  border: none;
+  grid-area: favoriteButton;
+  color: var(--color-foreground-alt);
+  justify-self: flex-start;
 `;
 
 const StyledImageContainer = styled.div`

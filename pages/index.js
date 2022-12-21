@@ -6,12 +6,12 @@ import FilterMenu from "../components/FilterMenu/FilterMenu";
 import { useState, useEffect } from "react";
 import sportLocationsData from "../lib/data/sportLocationsData";
 
-export default function Home() {
-  //filter entries -> goal: set multiple filter together
-  //Das Filtern soll in der Komponente CardListGeneral passieren
-
-  const [passedLocations, setPassedLocations] = useState(sportLocationsData);
-
+export default function Home({
+  locations,
+  onToggleFavorite,
+  favorites,
+  setLocations,
+}) {
   const [filterData, setFilterData] = useState({
     sport: {
       basketball: false,
@@ -46,12 +46,13 @@ export default function Home() {
     setIsShowingFilterMenu(!isShowingFilterMenu);
   }
 
+  //sort function
   function handleChangeSort(event) {
     if (event === "az") {
-      setPassedLocations(
-        [...passedLocations].sort((a, b) => {
-          const nameA = a.title;
-          const nameB = b.title;
+      setLocations(
+        [...locations].sort((a, b) => {
+          const nameA = a.title.toLowerCase();
+          const nameB = b.title.toLowerCase();
           if (nameA < nameB) {
             return -1;
           }
@@ -62,10 +63,10 @@ export default function Home() {
         })
       );
     } else if (event === "za") {
-      setPassedLocations(
-        [...passedLocations].sort((a, b) => {
-          const nameA = a.title;
-          const nameB = b.title;
+      setLocations(
+        [...locations].sort((a, b) => {
+          const nameA = a.title.toLowerCase();
+          const nameB = b.title.toLowerCase();
           if (nameA < nameB) {
             return 1;
           }
@@ -76,9 +77,9 @@ export default function Home() {
         })
       );
     } else if (event === "toOld") {
-      setPassedLocations([...sportLocationsData].reverse());
+      setLocations([...sportLocationsData].reverse());
     } else if (event === "toNew") {
-      setPassedLocations([...sportLocationsData]);
+      setLocations([...sportLocationsData]);
     }
   }
 
@@ -91,7 +92,12 @@ export default function Home() {
       </Head>
       <MobileLayout>
         <Header onShowFilterMenu={handleShowFilterMenu} />
-        <Main passedLocations={passedLocations} filterData={filterData} />
+        <Main
+          locations={locations}
+          filterData={filterData}
+          onToggleFavorite={onToggleFavorite}
+          favorites={favorites}
+        />
         {isShowingFilterMenu && (
           <FilterMenu
             onShowFilterMenu={handleShowFilterMenu}
@@ -114,32 +120,3 @@ const MobileLayout = styled.div`
     overflow-y: scroll;
   }
 `;
-
-/* Stand vorher
-  <Main passedLocations={passedLocations} filterData={filterData} />
-
-const [passedLocations, setPassedLocations] = useState(sportLocationsData);
-
-const [filterData, setFilterData] = useState({
-  sport: [],
-  city: [],
-});
-
-function handleFilter(event, category) {
-  if (event.target.checked) {
-    setFilterData({
-      ...filterData,
-      [category]: [...filterData[category], event.target.value],
-    });
-  } else {
-    setFilterData({
-      ...filterData,
-      [category]: [
-        ...filterData[category].filter(
-          (entry) => entry !== event.target.value
-        ),
-      ],
-    });
-  }
-  console.log(filterData);
-} */

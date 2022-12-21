@@ -1,17 +1,27 @@
 import styled from "styled-components";
-import Item from "../Card/Card";
+import Card from "../Card/Card";
 
-export default function CardListGeneral({ passedLocations, filterData }) {
+export default function CardListGeneral({
+  locations,
+  filterData,
+  onToggleFavorite,
+  favorites,
+}) {
   return (
     <>
       <StyledUl>
         {Object.values(filterData.sport).every((entry) => !entry) &&
         Object.values(filterData.city).every((entry) => !entry) &&
         Object.values(filterData.rating).every((entry) => !entry)
-          ? passedLocations.map((location) => (
-              <Item key={location.id} location={location} />
+          ? locations.map((location) => (
+              <Card
+                key={location.id}
+                location={location}
+                onToggleFavorite={onToggleFavorite}
+                favorites={favorites}
+              />
             ))
-          : passedLocations
+          : locations
               .filter(
                 (location) =>
                   (filterData.sport[location.category] ||
@@ -22,7 +32,12 @@ export default function CardListGeneral({ passedLocations, filterData }) {
                     Object.values(filterData.rating).every((entry) => !entry))
               )
               .map((location) => (
-                <Item key={location.id} location={location} />
+                <Card
+                  key={location.id}
+                  location={location}
+                  onToggleFavorite={onToggleFavorite}
+                  favorites={favorites}
+                />
               ))}
       </StyledUl>
     </>
@@ -35,21 +50,3 @@ const StyledUl = styled.ul`
   gap: 0.5rem;
   margin: 0.5rem 0;
 `;
-
-/* Stand vorher
-
-{filterData.sport.length === 0 && filterData.city.length === 0
-  ? passedLocations.map((location) => (
-      <Item key={location.id} location={location} />
-    ))
-  : passedLocations
-      .filter(
-        (location) =>
-          (filterData.sport.includes(location.title) ||
-            filterData.sport.length === 0) &&
-          (filterData.city.includes(location.address.city) ||
-            filterData.city.length === 0)
-      )
-      .map((location) => (
-        <Item key={location.id} location={location} />
-      ))} */

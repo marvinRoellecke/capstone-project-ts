@@ -1,11 +1,18 @@
 import CardListGeneral from "../CardListGeneral/CardListGeneral";
 
-export default function Main({ passedLocations, filterData }) {
+export default function Main({
+  locations,
+  filterData,
+  onToggleFavorite,
+  favorites,
+}) {
   return (
     <main>
       <CardListGeneral
-        passedLocations={passedLocations}
+        locations={locations}
         filterData={filterData}
+        onToggleFavorite={onToggleFavorite}
+        favorites={favorites}
       />
     </main>
   );
