@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import Card from "../Card/Card";
 
-export default function CardListGeneral({
-  locations,
-  filterData,
-  onToggleFavorite,
-}) {
+export default function CardListGeneral({ locations, filterData }) {
   return (
     <>
       <StyledUl>
@@ -13,11 +9,7 @@ export default function CardListGeneral({
         Object.values(filterData.city).every((entry) => !entry) &&
         Object.values(filterData.rating).every((entry) => !entry)
           ? locations.map((location) => (
-              <Card
-                key={location.id}
-                location={location}
-                onToggleFavorite={onToggleFavorite}
-              />
+              <Card key={location.id} location={location} />
             ))
           : locations
               .filter(
@@ -30,11 +22,7 @@ export default function CardListGeneral({
                     Object.values(filterData.rating).every((entry) => !entry))
               )
               .map((location) => (
-                <Card
-                  key={location.id}
-                  location={location}
-                  onToggleFavorite={onToggleFavorite}
-                />
+                <Card key={location.id} location={location} />
               ))}
       </StyledUl>
     </>

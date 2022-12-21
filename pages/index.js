@@ -7,13 +7,12 @@ import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import sportLocationsData from "../lib/data/sportLocationsData";
 
-export default function Home() {
+export default function Home({ locations }) {
   //filter entries -> goal: set multiple filter together
   //Das Filtern soll in der Komponente CardListGeneral passieren
 
-  const [locations, setLocations] = useLocalStorageState("locations", {
-    defaultValue: sportLocationsData,
-  });
+  /* moved to _app.js
+  const [locations, setLocations] = useState(sportLocationsData); */
 
   const [filterData, setFilterData] = useState({
     sport: {
@@ -86,20 +85,6 @@ export default function Home() {
     }
   }
 
-  //favorite function
-  const favoriteLocations = locations.filter((location) => location.isFavorite);
-  console.log(favoriteLocations);
-
-  function handleToggleFavorite(id) {
-    setLocations(
-      locations.map((location) =>
-        location.id === id
-          ? { ...location, isFavorite: !location.isFavorite }
-          : location
-      )
-    );
-  }
-
   return (
     <>
       <Head>
@@ -109,11 +94,7 @@ export default function Home() {
       </Head>
       <MobileLayout>
         <Header onShowFilterMenu={handleShowFilterMenu} />
-        <Main
-          locations={locations}
-          filterData={filterData}
-          onToggleFavorite={handleToggleFavorite}
-        />
+        <Main locations={locations} filterData={filterData} />
         {isShowingFilterMenu && (
           <FilterMenu
             onShowFilterMenu={handleShowFilterMenu}
