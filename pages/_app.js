@@ -29,6 +29,7 @@ export default function App({ Component, pageProps }) {
         locations={locations}
         onToggleFavorite={handleToggleFavorite}
         favorites={favorites}
+        setLocations={setLocations}
       />
     </>
   );

@@ -32,7 +32,12 @@ export default function CardListGeneral({
                     Object.values(filterData.rating).every((entry) => !entry))
               )
               .map((location) => (
-                <Card key={location.id} location={location} />
+                <Card
+                  key={location.id}
+                  location={location}
+                  onToggleFavorite={onToggleFavorite}
+                  favorites={favorites}
+                />
               ))}
       </StyledUl>
     </>

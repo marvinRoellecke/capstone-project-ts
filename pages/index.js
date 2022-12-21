@@ -6,7 +6,12 @@ import FilterMenu from "../components/FilterMenu/FilterMenu";
 import { useState, useEffect } from "react";
 import sportLocationsData from "../lib/data/sportLocationsData";
 
-export default function Home({ locations, onToggleFavorite, favorites }) {
+export default function Home({
+  locations,
+  onToggleFavorite,
+  favorites,
+  setLocations,
+}) {
   const [filterData, setFilterData] = useState({
     sport: {
       basketball: false,
@@ -46,8 +51,8 @@ export default function Home({ locations, onToggleFavorite, favorites }) {
     if (event === "az") {
       setLocations(
         [...locations].sort((a, b) => {
-          const nameA = a.title;
-          const nameB = b.title;
+          const nameA = a.title.toLowerCase();
+          const nameB = b.title.toLowerCase();
           if (nameA < nameB) {
             return -1;
           }
@@ -60,8 +65,8 @@ export default function Home({ locations, onToggleFavorite, favorites }) {
     } else if (event === "za") {
       setLocations(
         [...locations].sort((a, b) => {
-          const nameA = a.title;
-          const nameB = b.title;
+          const nameA = a.title.toLowerCase();
+          const nameB = b.title.toLowerCase();
           if (nameA < nameB) {
             return 1;
           }
