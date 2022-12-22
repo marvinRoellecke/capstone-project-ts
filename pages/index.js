@@ -92,7 +92,7 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MobileLayout>
-        <Header onShowFilterMenu={handleShowFilterMenu} />
+        <Header onShowFilterMenu={handleShowFilterMenu} filterMenu />
         <Main
           locations={locations}
           filterData={filterData}
