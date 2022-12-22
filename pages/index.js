@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
+import Footer from "../components/Footer/Footer";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import { useState, useEffect } from "react";
 import sportLocationsData from "../lib/data/sportLocationsData";
@@ -106,6 +107,7 @@ export default function Home({
             filterData={filterData}
           />
         )}
+        <Footer />
       </MobileLayout>
     </>
   );
@@ -113,7 +115,7 @@ export default function Home({
 
 const MobileLayout = styled.div`
   display: grid;
-  grid-template-rows: 4rem auto;
+  grid-template-rows: 4rem auto 4rem;
   height: 100vh;
 
   main {
