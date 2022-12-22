@@ -1,23 +1,35 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { IoListOutline } from "react-icons/io5";
+import ListButton from "../ListButton/ListButton";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 export default function NavigationBar() {
   return (
     <nav>
-      <ul>
+      <StyledUl>
         <li>
-          <Link href={"/"}>
-            <IoListOutline />
-          </Link>
+          <StyledLink href={"/"}>
+            <ListButton />
+          </StyledLink>
         </li>
         <li>
-          <Link href={"/favorites"}>
+          <StyledLink href={"/favorites"}>
             <FavoriteButton />
-          </Link>
+          </StyledLink>
         </li>
-      </ul>
+      </StyledUl>
     </nav>
   );
 }
+
+const StyledUl = styled.ul`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: var(--color-foreground);
+`;
