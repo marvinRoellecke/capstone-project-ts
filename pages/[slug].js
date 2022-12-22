@@ -24,9 +24,9 @@ export default function DetailsPage({
   return (
     <StyledContainer>
       <StyledHeader>
-        <StyledLink href="/">
+        <StyledBackButton onClick={() => router.back()}>
           <GoBackButton />
-        </StyledLink>
+        </StyledBackButton>
         <h1>{currentLocation.title}</h1>
         <StyledButton
           title="toggle Favorite"
@@ -103,6 +103,12 @@ const StyledHeader = styled.header`
 const StyledLink = styled(Link)`
   color: var(--color-foreground-alt);
   text-decoration: none;
+`;
+
+const StyledBackButton = styled.button`
+  background: none;
+  border: none;
+  color: var(--color-foreground-alt);
 `;
 
 const StyledButton = styled.button`

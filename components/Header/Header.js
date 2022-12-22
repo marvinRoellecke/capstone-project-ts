@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import { IoOptionsOutline } from "react-icons/io5";
 
-export default function Header({ onShowFilterMenu }) {
+export default function Header({ onShowFilterMenu, filterMenu }) {
   return (
     <StyledHeader>
       <StyledH1>localSports</StyledH1>
-      <StyledButton type="button" onClick={onShowFilterMenu}>
-        <StyledFilterButton />
-      </StyledButton>
+      {filterMenu && (
+        <StyledButton type="button" onClick={onShowFilterMenu}>
+          <StyledFilterButton />
+        </StyledButton>
+      )}
     </StyledHeader>
   );
 }
