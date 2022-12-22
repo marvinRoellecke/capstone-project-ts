@@ -5,6 +5,7 @@ import { IoStar, IoLocationSharp } from "react-icons/io5";
 import CardLocationInfo from "../components/CardLocationInfo/CardLocationInfo";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
 import FavoriteButton from "../components/FavoriteButton/FavoriteButton";
+import ShareButton from "../components/ShareButton/ShareButton";
 
 export default function DetailsPage({
   locations,
@@ -28,12 +29,17 @@ export default function DetailsPage({
           <GoBackButton />
         </StyledBackButton>
         <h1>{currentLocation.title}</h1>
-        <StyledButton
-          title="toggle Favorite"
-          onClick={(event) => onToggleFavorite(event, currentLocation.id)}
-        >
-          <FavoriteButton isFavorite={isFavorite} />
-        </StyledButton>
+        <StyledButtonWrapper>
+          <StyledButton>
+            <ShareButton />
+          </StyledButton>
+          <StyledButton
+            title="toggle Favorite"
+            onClick={(event) => onToggleFavorite(event, currentLocation.id)}
+          >
+            <FavoriteButton isFavorite={isFavorite} />
+          </StyledButton>
+        </StyledButtonWrapper>
       </StyledHeader>
 
       <StyledImageContainer image={currentLocation.image} />
@@ -100,15 +106,17 @@ const StyledHeader = styled.header`
   }
 `;
 
-const StyledLink = styled(Link)`
-  color: var(--color-foreground-alt);
-  text-decoration: none;
-`;
-
 const StyledBackButton = styled.button`
   background: none;
   border: none;
   color: var(--color-foreground-alt);
+`;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 `;
 
 const StyledButton = styled.button`
