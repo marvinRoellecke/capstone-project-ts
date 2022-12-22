@@ -3,18 +3,20 @@ import styled from "styled-components";
 import ListButton from "../ListButton/ListButton";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
-export default function NavigationBar() {
+export default function NavigationBar({ atHomePage, atFavoritesPage }) {
   return (
     <nav>
       <StyledUl>
         <li>
           <StyledLink href={"/"}>
             <ListButton />
+            {atHomePage && <hr />}
           </StyledLink>
         </li>
         <li>
           <StyledLink href={"/favorites"}>
             <FavoriteButton />
+            {atFavoritesPage && <hr />}
           </StyledLink>
         </li>
       </StyledUl>
@@ -30,6 +32,5 @@ const StyledUl = styled.ul`
 `;
 
 const StyledLink = styled(Link)`
-  text-decoration: none;
   color: var(--color-foreground);
 `;

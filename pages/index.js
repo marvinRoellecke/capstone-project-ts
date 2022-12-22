@@ -107,7 +107,7 @@ export default function Home({
             filterData={filterData}
           />
         )}
-        <Footer />
+        <Footer atHomePage />
       </MobileLayout>
     </>
   );

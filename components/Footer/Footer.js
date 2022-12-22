@@ -1,10 +1,13 @@
 import NavigationBar from "../NavigationBar/NavigationBar";
 import styled from "styled-components";
 
-export default function Footer() {
+export default function Footer({ atHomePage, atFavoritesPage }) {
   return (
     <StyledFooter>
-      <NavigationBar />
+      <NavigationBar
+        atHomePage={atHomePage}
+        atFavoritesPage={atFavoritesPage}
+      />
     </StyledFooter>
   );
 }
