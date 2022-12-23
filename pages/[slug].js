@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import styled from "styled-components";
 import { IoStar, IoLocationSharp } from "react-icons/io5";
 import CardLocationInfo from "../components/CardLocationInfo/CardLocationInfo";
@@ -17,6 +18,25 @@ export default function DetailsPage({
   const currentLocation = locations.find((location) => location.slug === slug);
   const locationAddress = currentLocation?.address;
   const isFavorite = favorites.includes(currentLocation?.id);
+  const [isCopied, setIsCopied] = useState(false);
+
+  async function handleShare() {
+    try {
+      const shareData = {
+        title: "localSports",
+        text: "Let's play together!",
+        url: location.href,
+      };
+      await navigator.share(shareData);
+    } catch {
+      navigator.clipboard.writeText(location.href);
+
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    }
+  }
 
   if (!currentLocation) {
     return <h2>Sorry, this page does not exist!</h2>;
@@ -30,7 +50,7 @@ export default function DetailsPage({
         </StyledBackButton>
         <h1>{currentLocation.title}</h1>
         <StyledButtonWrapper>
-          <StyledButton>
+          <StyledButton onClick={handleShare}>
             <ShareButton />
           </StyledButton>
           <StyledButton
@@ -41,6 +61,7 @@ export default function DetailsPage({
           </StyledButton>
         </StyledButtonWrapper>
       </StyledHeader>
+      {isCopied && <StyledPopUp>copied to clipboard</StyledPopUp>}
 
       <StyledImageContainer image={currentLocation.image} />
       <main>
@@ -125,6 +146,18 @@ const StyledButton = styled.button`
   grid-area: favoriteButton;
   color: var(--color-foreground-alt);
   justify-self: flex-start;
+`;
+
+const StyledPopUp = styled.div`
+  align-self: center;
+  position: absolute;
+  top: 5rem;
+  background-color: var(--color-background);
+  opacity: 0.7;
+  color: var(--color-foreground);
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
 `;
 
 const StyledImageContainer = styled.div`
