@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import styled from "styled-components";
 import { IoStar, IoLocationSharp } from "react-icons/io5";
 import CardLocationInfo from "../components/CardLocationInfo/CardLocationInfo";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
 import FavoriteButton from "../components/FavoriteButton/FavoriteButton";
+import ShareButton from "../components/ShareButton/ShareButton";
 
 export default function DetailsPage({
   locations,
@@ -16,6 +18,28 @@ export default function DetailsPage({
   const currentLocation = locations.find((location) => location.slug === slug);
   const locationAddress = currentLocation?.address;
   const isFavorite = favorites.includes(currentLocation?.id);
+  const [isCopied, setIsCopied] = useState(false);
+
+  async function handleShare() {
+    if (navigator.share) {
+      try {
+        const shareData = {
+          title: "localSports",
+          text: "Let's play together!",
+          url: location.href,
+        };
+        return await navigator.share(shareData);
+      } catch {
+        console.log("failed to open share dialog");
+      }
+    } else {
+      navigator.clipboard.writeText(location.href);
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    }
+  }
 
   if (!currentLocation) {
     return <h2>Sorry, this page does not exist!</h2>;
@@ -28,13 +52,19 @@ export default function DetailsPage({
           <GoBackButton />
         </StyledBackButton>
         <h1>{currentLocation.title}</h1>
-        <StyledButton
-          title="toggle Favorite"
-          onClick={(event) => onToggleFavorite(event, currentLocation.id)}
-        >
-          <FavoriteButton isFavorite={isFavorite} />
-        </StyledButton>
+        <StyledButtonWrapper>
+          <StyledButton onClick={handleShare}>
+            <ShareButton />
+          </StyledButton>
+          <StyledButton
+            title="toggle Favorite"
+            onClick={(event) => onToggleFavorite(event, currentLocation.id)}
+          >
+            <FavoriteButton isFavorite={isFavorite} />
+          </StyledButton>
+        </StyledButtonWrapper>
       </StyledHeader>
+      {isCopied && <StyledPopUp>copied to clipboard</StyledPopUp>}
 
       <StyledImageContainer image={currentLocation.image} />
       <main>
@@ -100,15 +130,17 @@ const StyledHeader = styled.header`
   }
 `;
 
-const StyledLink = styled(Link)`
-  color: var(--color-foreground-alt);
-  text-decoration: none;
-`;
-
 const StyledBackButton = styled.button`
   background: none;
   border: none;
   color: var(--color-foreground-alt);
+`;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 `;
 
 const StyledButton = styled.button`
@@ -117,6 +149,18 @@ const StyledButton = styled.button`
   grid-area: favoriteButton;
   color: var(--color-foreground-alt);
   justify-self: flex-start;
+`;
+
+const StyledPopUp = styled.div`
+  align-self: center;
+  position: absolute;
+  top: 5rem;
+  background-color: var(--color-background);
+  opacity: 0.7;
+  color: var(--color-foreground);
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
 `;
 
 const StyledImageContainer = styled.div`
