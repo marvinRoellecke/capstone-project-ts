@@ -21,16 +21,19 @@ export default function DetailsPage({
   const [isCopied, setIsCopied] = useState(false);
 
   async function handleShare() {
-    try {
-      const shareData = {
-        title: "localSports",
-        text: "Let's play together!",
-        url: location.href,
-      };
-      await navigator.share(shareData);
-    } catch {
+    if (navigator.share) {
+      try {
+        const shareData = {
+          title: "localSports",
+          text: "Let's play together!",
+          url: location.href,
+        };
+        return await navigator.share(shareData);
+      } catch {
+        console.log("failed to open share dialog");
+      }
+    } else {
       navigator.clipboard.writeText(location.href);
-
       setIsCopied(true);
       setTimeout(() => {
         setIsCopied(false);
