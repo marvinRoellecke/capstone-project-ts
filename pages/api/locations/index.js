@@ -14,7 +14,7 @@ export default async function handler(request, response) {
         slug: location.slug,
         tags: location.tags,
         rating: location.rating,
-
+        address: location.address,
         image: location.image,
         category: location.category,
       };
