@@ -26,6 +26,14 @@ export default function Home({
     rating: { 1: false, 2: false, 3: false, 4: false, 5: false },
   });
 
+  async function getLocations() {
+    const response = await fetch("/api/locations");
+    const noteList = await response.json();
+    console.log(noteList);
+  }
+
+  getLocations();
+
   function handleFilter(event, category) {
     if (event.target.checked) {
       setFilterData({
