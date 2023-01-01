@@ -1,11 +1,21 @@
 import GlobalStyles from "../components/GlobalStyles";
 import sportLocationsData from "../lib/data/sportLocationsData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
+  useEffect(() => {
+    async function startFetching() {
+      const response = await fetch("/api/locations");
+      const noteList = await response.json();
+      setLocations(noteList);
+    }
+
+    startFetching();
+  }, []);
+
   //favorite function
-  const [locations, setLocations] = useState(sportLocationsData);
+  const [locations, setLocations] = useState([]);
   const defaultFavorites = [];
   const [favorites, setFavorites] = useLocalStorageState("favorites", {
     defaultValue: defaultFavorites,
