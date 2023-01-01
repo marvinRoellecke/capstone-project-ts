@@ -4,19 +4,14 @@ import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
-  async function getLocations() {
-    try {
+  useEffect(() => {
+    async function startFetching() {
       const response = await fetch("/api/locations");
       const noteList = await response.json();
-      console.log(noteList);
       setLocations(noteList);
-    } catch (error) {
-      console.error(error);
     }
-  }
 
-  useEffect(() => {
-    getLocations();
+    startFetching();
   }, []);
 
   //favorite function

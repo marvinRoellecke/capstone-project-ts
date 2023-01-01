@@ -28,14 +28,14 @@ export default function Home({
 
   const [sportLocationsData, setSportLocationsData] = useState([]);
 
-  async function getLocations() {
-    const response = await fetch("/api/locations");
-    const noteList = await response.json();
-    setSportLocationsData(noteList);
-  }
-
   useEffect(() => {
-    getLocations();
+    async function startFetching() {
+      const response = await fetch("/api/locations");
+      const noteList = await response.json();
+      setSportLocationsData(noteList);
+    }
+
+    startFetching();
   }, []);
 
   function handleFilter(event, category) {

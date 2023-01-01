@@ -20,8 +20,6 @@ export default async function handler(request, response) {
       };
     });
 
-    console.log(locationsArray);
-
     response.status(200).json(locationsArray);
   }
 
