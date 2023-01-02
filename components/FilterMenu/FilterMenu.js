@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import styled from "styled-components";
 import Icon from "../Icon/Icon";
 
@@ -12,6 +13,7 @@ export default function FilterMenu({
       <StyledButton type="button" onClick={onShowFilterMenu}>
         <Icon back />
       </StyledButton>
+
       <StyledH2>sort</StyledH2>
       <form>
         <label htmlFor="sort"></label>
@@ -29,51 +31,25 @@ export default function FilterMenu({
       </form>
 
       <StyledH2>filter</StyledH2>
-
-      <StyledH3>sport</StyledH3>
-      <form>
-        {Object.entries(filterData.sport).map((entry) => (
-          <StyledInputWrapper key={entry[0]}>
-            <StyledInput
-              type="checkbox"
-              value={entry[0]}
-              id={entry[0]}
-              onChange={(event) => onFilter(event, "sport")}
-              checked={entry[1]}
-            />
-            <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
-          </StyledInputWrapper>
-        ))}
-      </form>
-      <StyledH3>city</StyledH3>
-      <form>
-        {Object.entries(filterData.city).map((entry) => (
-          <StyledInputWrapper key={entry[0]}>
-            <StyledInput
-              type="checkbox"
-              value={entry[0]}
-              id={entry[0]}
-              onChange={(event) => onFilter(event, "city")}
-              checked={entry[1]}
-            />
-            <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
-          </StyledInputWrapper>
-        ))}
-      </form>
-      <StyledH3>rating</StyledH3>
-      <form>
-        {Object.entries(filterData.rating).map((entry) => (
-          <StyledInputWrapper key={entry[0]}>
-            <StyledInput
-              type="checkbox"
-              value={entry[0]}
-              onChange={(event) => onFilter(event, "rating")}
-              checked={entry[1]}
-            />
-            <StyledLabel>{entry}</StyledLabel>
-          </StyledInputWrapper>
-        ))}
-      </form>
+      {Object.entries(filterData).map((entry) => (
+        <Fragment key={entry[0]}>
+          <StyledH3>{entry[0]}</StyledH3>
+          <form>
+            {Object.entries(entry[1]).map((entryData) => (
+              <StyledInputWrapper key={entryData[0]}>
+                <StyledInput
+                  type="checkbox"
+                  value={entryData[0]}
+                  id={entryData[0]}
+                  onChange={(event) => onFilter(event, entry[0])}
+                  checked={entryData[1]}
+                />
+                <StyledLabel htmlFor={entryData[0]}>{entryData}</StyledLabel>
+              </StyledInputWrapper>
+            ))}
+          </form>
+        </Fragment>
+      ))}
     </StyledMenu>
   );
 }
