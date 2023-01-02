@@ -5,7 +5,6 @@ import Main from "../components/Main/Main";
 import Footer from "../components/Footer/Footer";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
 import { useState, useEffect } from "react";
-import sportLocationsData from "../lib/data/sportLocationsData";
 
 export default function Home({
   locations,
@@ -26,18 +25,14 @@ export default function Home({
     rating: { 1: false, 2: false, 3: false, 4: false, 5: false },
   });
 
-  const [sportLocationsData, setSportLocationsData] = useState([]);
+  //show / hide Filter Menu
+  const [isShowingFilterMenu, setIsShowingFilterMenu] = useState(false);
 
-  useEffect(() => {
-    async function startFetching() {
-      const response = await fetch("/api/locations");
-      const noteList = await response.json();
-      setSportLocationsData(noteList);
-    }
+  function handleShowFilterMenu() {
+    setIsShowingFilterMenu(!isShowingFilterMenu);
+  }
 
-    startFetching();
-  }, []);
-
+  //filter function
   function handleFilter(event, category) {
     if (event.target.checked) {
       setFilterData({
@@ -50,13 +45,6 @@ export default function Home({
         [category]: { ...filterData[category], [event.target.value]: false },
       });
     }
-  }
-
-  //show / hide Filter Menu
-  const [isShowingFilterMenu, setIsShowingFilterMenu] = useState(false);
-
-  function handleShowFilterMenu() {
-    setIsShowingFilterMenu(!isShowingFilterMenu);
   }
 
   //sort function
@@ -90,9 +78,9 @@ export default function Home({
         })
       );
     } else if (event === "toOld") {
-      setLocations([...sportLocationsData].reverse());
+      setLocations([...locations].sort((a, b) => a.id - b.id));
     } else if (event === "toNew") {
-      setLocations([...sportLocationsData]);
+      setLocations([...locations].sort((a, b) => b.id - a.id));
     }
   }
 

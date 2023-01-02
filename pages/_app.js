@@ -1,5 +1,4 @@
 import GlobalStyles from "../components/GlobalStyles";
-import sportLocationsData from "../lib/data/sportLocationsData";
 import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 

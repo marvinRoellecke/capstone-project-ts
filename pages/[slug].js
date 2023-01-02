@@ -30,7 +30,7 @@ export default function DetailsPage({
         };
         return await navigator.share(shareData);
       } catch {
-        console.log("failed to open share dialog");
+        console.error("failed to open share dialog");
       }
     } else {
       navigator.clipboard.writeText(location.href);
