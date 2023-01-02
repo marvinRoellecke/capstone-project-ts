@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
 import Footer from "../components/Footer/Footer";
 import FilterMenu from "../components/FilterMenu/FilterMenu";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Home({
   locations,
