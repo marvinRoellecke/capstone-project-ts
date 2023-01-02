@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import { IoStar, IoLocationSharp } from "react-icons/io5";
-import FavoriteButton from "../FavoriteButton/FavoriteButton";
-
 import Link from "next/link";
+import Icon from "../Icon/Icon";
 
 export default function Card({ location, onToggleFavorite, favorites }) {
   const isFavorite = favorites.includes(location?.id);
@@ -14,11 +12,11 @@ export default function Card({ location, onToggleFavorite, favorites }) {
           title="toggle Favorite"
           onClick={(event) => onToggleFavorite(event, location.id)}
         >
-          <FavoriteButton isFavorite={isFavorite} />
+          <Icon favorite isFavorite={isFavorite} />
         </StyledButton>
         <StyledTitle>{location.title}</StyledTitle>
         <StyledRating>
-          <IoStar style={{ color: `var(--color-star)` }} />
+          <Icon star />
           {location.rating}
         </StyledRating>
         <StyledTagWrapper>
@@ -28,7 +26,7 @@ export default function Card({ location, onToggleFavorite, favorites }) {
         </StyledTagWrapper>
 
         <StyledAddress>
-          <IoLocationSharp /> {location.address.city}
+          <Icon location /> {location.address.city}
         </StyledAddress>
       </StyledLi>
     </StyledLink>

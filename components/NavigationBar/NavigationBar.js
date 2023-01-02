@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import ListButton from "../ListButton/ListButton";
-import FavoriteButton from "../FavoriteButton/FavoriteButton";
+import Icon from "../Icon/Icon";
 
 export default function NavigationBar({ atHomePage, atFavoritesPage }) {
   return (
@@ -9,13 +8,13 @@ export default function NavigationBar({ atHomePage, atFavoritesPage }) {
       <StyledUl>
         <li>
           <StyledLink href={"/"}>
-            <ListButton />
+            <Icon list />
             {atHomePage && <hr />}
           </StyledLink>
         </li>
         <li>
           <StyledLink href={"/favorites"}>
-            <FavoriteButton />
+            <Icon favorite />
             {atFavoritesPage && <hr />}
           </StyledLink>
         </li>

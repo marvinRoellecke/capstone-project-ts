@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IoOptionsOutline } from "react-icons/io5";
+import Icon from "../Icon/Icon";
 
 export default function Header({ onShowFilterMenu, filterMenu }) {
   return (
@@ -7,7 +7,7 @@ export default function Header({ onShowFilterMenu, filterMenu }) {
       <StyledH1>localSports</StyledH1>
       {filterMenu && (
         <StyledButton type="button" onClick={onShowFilterMenu}>
-          <StyledFilterButton />
+          <Icon option />
         </StyledButton>
       )}
     </StyledHeader>
@@ -29,9 +29,4 @@ const StyledH1 = styled.h1`
 const StyledButton = styled.button`
   background: none;
   border: none;
-`;
-
-const StyledFilterButton = styled(IoOptionsOutline)`
-  width: auto;
-  height: 1.5rem;
 `;

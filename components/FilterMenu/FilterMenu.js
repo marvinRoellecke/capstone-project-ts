@@ -1,6 +1,5 @@
-import { Fragment } from "react";
 import styled from "styled-components";
-import GoBackButton from "../GoBackButton/GoBackButton";
+import Icon from "../Icon/Icon";
 
 export default function FilterMenu({
   onShowFilterMenu,
@@ -11,7 +10,7 @@ export default function FilterMenu({
   return (
     <StyledMenu>
       <StyledButton type="button" onClick={onShowFilterMenu}>
-        <GoBackButton />
+        <Icon back />
       </StyledButton>
       <StyledH2>sort</StyledH2>
       <form>

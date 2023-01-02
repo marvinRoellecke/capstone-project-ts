@@ -6,8 +6,8 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     async function startFetching() {
       const response = await fetch("/api/locations");
-      const noteList = await response.json();
-      setLocations(noteList);
+      const data = await response.json();
+      setLocations(data);
     }
 
     startFetching();
