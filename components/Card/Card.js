@@ -6,7 +6,7 @@ export default function Card({ location, onToggleFavorite, favorites }) {
   const isFavorite = favorites.includes(location?.id);
 
   return (
-    <StyledLink href={`/${location.slug}`}>
+    <StyledLink href={`/${location.id}`}>
       <StyledLi image={location.image}>
         <StyledButton
           title="toggle Favorite"
@@ -20,8 +20,8 @@ export default function Card({ location, onToggleFavorite, favorites }) {
           {location.rating}
         </StyledRating>
         <StyledTagWrapper>
-          {location.tags.map((tag) => (
-            <StyledTag key={tag}>{tag}</StyledTag>
+          {location.info.map((tag) => (
+            <StyledTag key={tag.sport}>{tag.sport}</StyledTag>
           ))}
         </StyledTagWrapper>
 
