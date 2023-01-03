@@ -70,8 +70,7 @@ const StyledButton = styled.button`
 
 const StyledTitle = styled.h2`
   grid-area: title;
-  font-size: 1.7rem;
-  white-space: nowrap;
+  font-size: 1rem;
   overflow: hidden;
 `;
 
@@ -87,17 +86,24 @@ const StyledRating = styled.p`
 const StyledTagWrapper = styled.div`
   grid-area: tags;
   align-self: flex-end;
+  justify-content: flex-end;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const StyledTag = styled.span`
+  width: fit-content;
+  height: fit-content;
   font-size: 0.6rem;
+  margin-top: 0.3rem;
   margin-left: 0.3rem;
   border: 1px solid;
   border-radius: 3px;
   padding: 0 2px;
+  white-space: nowrap;
 `;
 
-const StyledAddress = styled.p`
+const StyledAddress = styled.span`
   grid-area: city;
   display: flex;
   align-items: center;

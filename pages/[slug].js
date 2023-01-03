@@ -50,7 +50,7 @@ export default function DetailsPage({
         <StyledBackButton onClick={() => router.back()}>
           <Icon back />
         </StyledBackButton>
-        <h1>{currentLocation.title}</h1>
+        <StyledTitle>{currentLocation.title}</StyledTitle>
         <StyledButtonWrapper>
           <StyledButton onClick={handleShare}>
             <Icon share />
@@ -135,6 +135,11 @@ const StyledBackButton = styled.button`
   color: var(--color-foreground-alt);
 `;
 
+const StyledTitle = styled.h2`
+  font-size: 1rem;
+  margin-left: 0.5rem;
+`;
+
 const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -177,9 +182,9 @@ const StyledCaptionWrapper = styled.div`
 
 const StyledTagWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
-  gap: 0.2rem;
+  gap: 0.3rem;
+  flex-wrap: wrap;
 `;
 
 const StyledTag = styled.span`
@@ -187,6 +192,7 @@ const StyledTag = styled.span`
   border: 1px solid;
   border-radius: 3px;
   padding: 0 2px;
+  white-space: nowrap;
 `;
 
 const StyledRating = styled.span`
