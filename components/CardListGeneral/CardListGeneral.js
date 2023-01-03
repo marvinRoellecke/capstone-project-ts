@@ -10,7 +10,7 @@ export default function CardListGeneral({
   return (
     <>
       <StyledUl>
-        {Object.values(filterData.sport).every((entry) => !entry) &&
+        {Object.values(filterData.sport).every((entry) => !entry) && //map over all entries if no filter is active
         Object.values(filterData.city).every((entry) => !entry) &&
         Object.values(filterData.rating).every((entry) => !entry)
           ? locations.map((location) => (
@@ -31,6 +31,7 @@ export default function CardListGeneral({
                   (filterData.rating[Math.floor(location.rating)] ||
                     Object.values(filterData.rating).every((entry) => !entry))
               )
+              //map over entries with active filter
               .map((location) => (
                 <Card
                   key={location.id}

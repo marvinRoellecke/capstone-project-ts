@@ -2,11 +2,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
-import { IoStar, IoLocationSharp } from "react-icons/io5";
 import CardLocationInfo from "../components/CardLocationInfo/CardLocationInfo";
-import GoBackButton from "../components/GoBackButton/GoBackButton";
-import FavoriteButton from "../components/FavoriteButton/FavoriteButton";
-import ShareButton from "../components/ShareButton/ShareButton";
+import Icon from "../components/Icon/Icon";
 
 export default function DetailsPage({
   locations,
@@ -30,7 +27,7 @@ export default function DetailsPage({
         };
         return await navigator.share(shareData);
       } catch {
-        console.log("failed to open share dialog");
+        console.error("failed to open share dialog");
       }
     } else {
       navigator.clipboard.writeText(location.href);
@@ -49,18 +46,18 @@ export default function DetailsPage({
     <StyledContainer>
       <StyledHeader>
         <StyledBackButton onClick={() => router.back()}>
-          <GoBackButton />
+          <Icon back />
         </StyledBackButton>
         <h1>{currentLocation.title}</h1>
         <StyledButtonWrapper>
           <StyledButton onClick={handleShare}>
-            <ShareButton />
+            <Icon share />
           </StyledButton>
           <StyledButton
             title="toggle Favorite"
             onClick={(event) => onToggleFavorite(event, currentLocation.id)}
           >
-            <FavoriteButton isFavorite={isFavorite} />
+            <Icon favorite isFavorite={isFavorite} />
           </StyledButton>
         </StyledButtonWrapper>
       </StyledHeader>
@@ -75,7 +72,7 @@ export default function DetailsPage({
             ))}
           </StyledTagWrapper>
           <StyledRating>
-            <IoStar style={{ color: `var(--color-star)` }} />
+            <Icon star />
             {currentLocation.rating}
           </StyledRating>
         </StyledCaptionWrapper>
@@ -85,7 +82,7 @@ export default function DetailsPage({
           target="_blank"
         >
           <StyledAddress>
-            <IoLocationSharp />
+            <Icon location />
             {locationAddress.street} {locationAddress.streetNumber},{" "}
             {locationAddress.postcode} {locationAddress.city}
           </StyledAddress>

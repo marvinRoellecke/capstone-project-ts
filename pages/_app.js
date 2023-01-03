@@ -1,5 +1,4 @@
 import GlobalStyles from "../components/GlobalStyles";
-import sportLocationsData from "../lib/data/sportLocationsData";
 import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
@@ -7,8 +6,8 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     async function startFetching() {
       const response = await fetch("/api/locations");
-      const noteList = await response.json();
-      setLocations(noteList);
+      const data = await response.json();
+      setLocations(data);
     }
 
     startFetching();
