@@ -12,10 +12,14 @@ export default function DetailsPage({
 }) {
   const router = useRouter();
   const slug = router.query.slug;
-  const currentLocation = locations.find((location) => location.slug === slug);
+  const currentLocation = locations.find(
+    (location) => location.id.toString() === slug
+  );
   const locationAddress = currentLocation?.address;
   const isFavorite = favorites.includes(currentLocation?.id);
   const [isCopied, setIsCopied] = useState(false);
+  console.log(router.query);
+  console.log(locations);
 
   async function handleShare() {
     if (navigator.share) {
@@ -67,8 +71,8 @@ export default function DetailsPage({
       <main>
         <StyledCaptionWrapper>
           <StyledTagWrapper>
-            {currentLocation.tags.map((tag) => (
-              <StyledTag key={tag}>{tag} </StyledTag>
+            {currentLocation.info.map((tag) => (
+              <StyledTag key={tag.sport}>{tag.sport} </StyledTag>
             ))}
           </StyledTagWrapper>
           <StyledRating>
@@ -78,12 +82,12 @@ export default function DetailsPage({
         </StyledCaptionWrapper>
 
         <StyledAdressLink
-          href={`https://www.google.com/maps/place/${locationAddress.street}+${locationAddress.streetNumber},+${locationAddress.postcode}+${locationAddress.city}`}
+          href={`https://www.google.com/maps/place/${locationAddress.street}+${locationAddress.houseNumber},+${locationAddress.postcode}+${locationAddress.city}`}
           target="_blank"
         >
           <StyledAddress>
             <Icon location />
-            {locationAddress.street} {locationAddress.streetNumber},{" "}
+            {locationAddress.street} {locationAddress.houseNumber},{" "}
             {locationAddress.postcode} {locationAddress.city}
           </StyledAddress>
         </StyledAdressLink>
