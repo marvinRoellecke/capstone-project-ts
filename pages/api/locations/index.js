@@ -22,7 +22,6 @@ export default async function handler(request, response) {
         rating: location.rating,
       };
     });
-    console.log(locationsArray);
     response.status(200).json(locationsArray);
   }
 

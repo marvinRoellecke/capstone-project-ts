@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const infoChildSchema = new Schema({
+const infoSchema = new Schema({
   sport: { type: String, required: true },
   numberOfCourts: { type: Number, required: false },
   surface: { type: String, required: false },
@@ -11,7 +11,7 @@ const infoChildSchema = new Schema({
 const locationSchema = new Schema({
   id: { type: Number, required: true },
   title: { type: String, required: true },
-  info: [infoChildSchema],
+  info: [infoSchema],
   address: {
     street: { type: String, required: true },
     houseNumber: { type: Number, required: true },
@@ -19,7 +19,7 @@ const locationSchema = new Schema({
     city: { type: String, required: true },
   },
   latitude: { type: String, required: false },
-  longiitude: { type: String, required: false },
+  longitude: { type: String, required: false },
   image: { type: String, required: false },
   infrastructure: {
     lighting: { type: Boolean, required: false },

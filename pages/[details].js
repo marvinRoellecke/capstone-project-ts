@@ -11,7 +11,7 @@ export default function DetailsPage({
   favorites,
 }) {
   const router = useRouter();
-  const slug = router.query.slug;
+  const slug = router.query.details;
   const currentLocation = locations.find(
     (location) => location.id.toString() === slug
   );
