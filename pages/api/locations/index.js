@@ -11,15 +11,17 @@ export default async function handler(request, response) {
       return {
         id: location.id,
         title: location.title,
-        slug: location.slug,
-        tags: location.tags,
-        rating: location.rating,
+        info: location.info,
         address: location.address,
+        latitude: location.latitude,
+        longitude: location.longitude,
         image: location.image,
-        category: location.category,
+        infrastructure: location.infrastructure,
+        outdoor: location.outdoor,
+        public: location.public,
+        rating: location.rating,
       };
     });
-
     response.status(200).json(locationsArray);
   }
 

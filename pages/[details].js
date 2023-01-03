@@ -11,8 +11,10 @@ export default function DetailsPage({
   favorites,
 }) {
   const router = useRouter();
-  const slug = router.query.slug;
-  const currentLocation = locations.find((location) => location.slug === slug);
+  const slug = router.query.details;
+  const currentLocation = locations.find(
+    (location) => location.id.toString() === slug
+  );
   const locationAddress = currentLocation?.address;
   const isFavorite = favorites.includes(currentLocation?.id);
   const [isCopied, setIsCopied] = useState(false);
@@ -48,7 +50,7 @@ export default function DetailsPage({
         <StyledBackButton onClick={() => router.back()}>
           <Icon back />
         </StyledBackButton>
-        <h1>{currentLocation.title}</h1>
+        <StyledTitle>{currentLocation.title}</StyledTitle>
         <StyledButtonWrapper>
           <StyledButton onClick={handleShare}>
             <Icon share />
@@ -67,8 +69,8 @@ export default function DetailsPage({
       <main>
         <StyledCaptionWrapper>
           <StyledTagWrapper>
-            {currentLocation.tags.map((tag) => (
-              <StyledTag key={tag}>{tag} </StyledTag>
+            {currentLocation.info.map((tag) => (
+              <StyledTag key={tag.sport}>{tag.sport} </StyledTag>
             ))}
           </StyledTagWrapper>
           <StyledRating>
@@ -78,12 +80,12 @@ export default function DetailsPage({
         </StyledCaptionWrapper>
 
         <StyledAdressLink
-          href={`https://www.google.com/maps/place/${locationAddress.street}+${locationAddress.streetNumber},+${locationAddress.postcode}+${locationAddress.city}`}
+          href={`https://www.google.com/maps/place/${locationAddress.street}+${locationAddress.houseNumber},+${locationAddress.postcode}+${locationAddress.city}`}
           target="_blank"
         >
           <StyledAddress>
             <Icon location />
-            {locationAddress.street} {locationAddress.streetNumber},{" "}
+            {locationAddress.street} {locationAddress.houseNumber},{" "}
             {locationAddress.postcode} {locationAddress.city}
           </StyledAddress>
         </StyledAdressLink>
@@ -133,6 +135,11 @@ const StyledBackButton = styled.button`
   color: var(--color-foreground-alt);
 `;
 
+const StyledTitle = styled.h2`
+  font-size: 1rem;
+  margin-left: 0.5rem;
+`;
+
 const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -175,9 +182,9 @@ const StyledCaptionWrapper = styled.div`
 
 const StyledTagWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
-  gap: 0.2rem;
+  gap: 0.3rem;
+  flex-wrap: wrap;
 `;
 
 const StyledTag = styled.span`
@@ -185,6 +192,7 @@ const StyledTag = styled.span`
   border: 1px solid;
   border-radius: 3px;
   padding: 0 2px;
+  white-space: nowrap;
 `;
 
 const StyledRating = styled.span`
