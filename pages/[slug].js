@@ -18,8 +18,6 @@ export default function DetailsPage({
   const locationAddress = currentLocation?.address;
   const isFavorite = favorites.includes(currentLocation?.id);
   const [isCopied, setIsCopied] = useState(false);
-  console.log(router.query);
-  console.log(locations);
 
   async function handleShare() {
     if (navigator.share) {
