@@ -3,19 +3,44 @@ import Head from "next/head";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
-export default function newEntryForm({}) {
+export default function newEntryForm() {
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target.elements;
-    const text = form.text.value;
+    const title = form.title.value;
+    const info = {
+      sport: form.sport.value,
+      numberOfCourts: Number(form.numberOfCourts.value),
+      surface: form.surface.value,
+    };
+    const address = {
+      street: form.street.value,
+      houseNumber: Number(form.houseNumber.value),
+      postcode: Number(form.postcode.value),
+      city: form.city.value,
+    };
+    const infrastructure = {
+      lighting: form.lighting.checked,
+      wheelchair: form.wheelchair.checked,
+    };
+    const outdoor = form.outdoor.checked;
+    const isPublic = form.isPublic.checked;
+    const rating = Number(form.rating.value);
 
     const newLocation = {
-      text: text,
+      title: title,
+      info: info,
+      address: address,
+      infrastructure: infrastructure,
+      outdoor: outdoor,
+      public: isPublic,
+      rating: rating,
     };
 
-    onCreateNewLocation(newLocation);
-    event.target.reset();
-    form.text.focus();
+    //onCreateNewLocation(newLocation);
+    console.log(newLocation);
+    //event.target.reset();
+    form.title.focus();
   }
 
   return (
@@ -26,12 +51,57 @@ export default function newEntryForm({}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <StyledMobileLayout>
-        <Header />
+        <Header addLocation />
         <main>
-          <form onSubmit={handleSubmit}>
-            <input />
-            <button type="submit">submit</button>
-          </form>
+          <StyledForm aria-labelledby="formTitle" onSubmit={handleSubmit}>
+            <fieldset>
+              <legend>Allgemeine Infos</legend>
+              <label htmlFor="title">Titel</label>
+              <input type="text" name="title" id="title" required />
+            </fieldset>
+            <fieldset>
+              <legend>Sportplatz</legend>
+              <label htmlFor="sport">Sportart</label>
+              <input type="text" name="sport" id="sport" required />
+              <label htmlFor="numberOfCourts">Anzahl an Plätzen</label>
+              <input type="number" name="numberOfCourts" id="numberOfCourts" />
+              <label htmlFor="surface">Untergrund</label>
+              <input type="text" name="surface" id="surface" />
+            </fieldset>
+            <fieldset>
+              <legend>Adresse</legend>
+              <label htmlFor="street">Straße</label>
+              <input type="text" name="street" id="street" required />
+              <label htmlFor="houseNumber">Hausnummer</label>
+              <input
+                type="number"
+                name="houseNumber"
+                id="houseNumber"
+                required
+              />
+              <label htmlFor="postcode">Postleitzahl</label>
+              <input type="number" name="postcode" id="postcode" required />
+              <label htmlFor="city">Stadt</label>
+              <input type="text" name="city" id="city" required />
+            </fieldset>
+            <fieldset>
+              <legend>Infrastruktur</legend>
+              <input type="checkbox" name="lighting" id="lighting" />
+              <label htmlFor="lighting">Beleuchtung</label>
+              <input type="checkbox" name="wheelchair" id="wheelchair" />
+              <label htmlFor="wheelchair">Barrierefreiheit</label>
+            </fieldset>
+            <fieldset>
+              <legend>Weitere Infos</legend>
+              <input type="checkbox" name="outdoor" id="outdoor" />
+              <label htmlFor="outdoor">draußen</label>
+              <input type="checkbox" name="isPublic" id="isPublic" />
+              <label htmlFor="isPublic">öffentlich</label>
+              <label htmlFor="rating">Bewertung</label>
+              <input type="number" name="rating" id="rating" />
+            </fieldset>
+            <button type="submit">Abschicken</button>
+          </StyledForm>
         </main>
         <Footer atNewEntryForm />
       </StyledMobileLayout>
@@ -46,5 +116,12 @@ const StyledMobileLayout = styled.div`
 
   main {
     overflow-y: scroll;
+  }
+`;
+
+const StyledForm = styled.form`
+  * {
+    display: grid;
+    margin: 0.5rem;
   }
 `;
