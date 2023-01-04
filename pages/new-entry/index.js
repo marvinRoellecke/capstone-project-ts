@@ -25,7 +25,6 @@ export default function newEntryForm() {
     };
     const outdoor = form.outdoor.checked;
     const isPublic = form.isPublic.checked;
-    const rating = Number(form.rating.value);
 
     const newLocation = {
       title: title,
@@ -34,7 +33,6 @@ export default function newEntryForm() {
       infrastructure: infrastructure,
       outdoor: outdoor,
       public: isPublic,
-      rating: rating,
     };
 
     //onCreateNewLocation(newLocation);
@@ -57,32 +55,78 @@ export default function newEntryForm() {
             <fieldset>
               <legend>Allgemeine Infos</legend>
               <label htmlFor="title">Titel</label>
-              <input type="text" name="title" id="title" required />
+              <input
+                type="text"
+                name="title"
+                id="title"
+                placeholder="Titel"
+                required
+              />
             </fieldset>
             <fieldset>
               <legend>Sportplatz</legend>
               <label htmlFor="sport">Sportart</label>
-              <input type="text" name="sport" id="sport" required />
+              <select name="sport" id="sport" required>
+                <option value="">-- Sportart --</option>
+                <option value="american football">American Football</option>
+                <option value="basketball">Basketball</option>
+                <option value="fitness">Fitness</option>
+                <option value="fussball">Fussball</option>
+                <option value="skateboard">Skateboard</option>
+                <option value="tennis">Tennis</option>
+                <option value="tischtennis">Tischtennis</option>
+                <option value="volleyball">Volleyball</option>
+              </select>
               <label htmlFor="numberOfCourts">Anzahl an Plätzen</label>
-              <input type="number" name="numberOfCourts" id="numberOfCourts" />
+              <input
+                type="number"
+                name="numberOfCourts"
+                id="numberOfCourts"
+                placeholder="Anzahl an Plätzen"
+              />
               <label htmlFor="surface">Untergrund</label>
-              <input type="text" name="surface" id="surface" />
+              <select name="surface" id="surface">
+                <option value="">-- Untergrund --</option>
+                <option value="ash">Asche</option>
+                <option value="beton">Beton</option>
+                <option value="rubber">Kunststoff</option>
+                <option value="green">Rasen</option>
+              </select>
             </fieldset>
             <fieldset>
               <legend>Adresse</legend>
               <label htmlFor="street">Straße</label>
-              <input type="text" name="street" id="street" required />
+              <input
+                type="text"
+                name="street"
+                id="street"
+                placeholder="Straße"
+                required
+              />
               <label htmlFor="houseNumber">Hausnummer</label>
               <input
                 type="number"
                 name="houseNumber"
                 id="houseNumber"
+                placeholder="Hausnummer"
                 required
               />
               <label htmlFor="postcode">Postleitzahl</label>
-              <input type="number" name="postcode" id="postcode" required />
+              <input
+                type="number"
+                name="postcode"
+                id="postcode"
+                placeholder="Postleitzahl"
+                required
+              />
               <label htmlFor="city">Stadt</label>
-              <input type="text" name="city" id="city" required />
+              <input
+                type="text"
+                name="city"
+                id="city"
+                placeholder="Stadt"
+                required
+              />
             </fieldset>
             <fieldset>
               <legend>Infrastruktur</legend>
@@ -97,8 +141,6 @@ export default function newEntryForm() {
               <label htmlFor="outdoor">draußen</label>
               <input type="checkbox" name="isPublic" id="isPublic" />
               <label htmlFor="isPublic">öffentlich</label>
-              <label htmlFor="rating">Bewertung</label>
-              <input type="number" name="rating" id="rating" />
             </fieldset>
             <button type="submit">Abschicken</button>
           </StyledForm>
@@ -123,5 +165,13 @@ const StyledForm = styled.form`
   * {
     display: grid;
     margin: 0.5rem;
+  }
+
+  input {
+    padding: 0.5rem 1rem;
+  }
+
+  label {
+    display: none;
   }
 `;
