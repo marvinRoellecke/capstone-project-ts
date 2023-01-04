@@ -120,7 +120,7 @@ export default function NewEntryForm() {
               />
               <InputCheckbox type="checkbox" id="isPublic" label="öffentlich" />
             </fieldset>
-            <button type="submit">Abschicken</button>
+            <button type="submit">Hinzufügen</button>
           </StyledForm>
         </main>
         <Footer atNewEntryForm />
@@ -140,6 +140,8 @@ const StyledMobileLayout = styled.div`
 `;
 
 const StyledForm = styled.form`
+  display: grid;
+
   fieldset {
     display: grid;
     border: none;
@@ -178,6 +180,15 @@ const StyledForm = styled.form`
     padding: 0.5rem;
     border: none;
     box-shadow: 0 1px 0 0 #e5e5e5;
+  }
+
+  button {
+    justify-self: center;
+    padding: 0.5rem;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
   }
 `;
 
