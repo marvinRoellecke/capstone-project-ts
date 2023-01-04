@@ -141,6 +141,7 @@ const StyledMobileLayout = styled.div`
 
 const StyledForm = styled.form`
   display: grid;
+  margin: 0.5rem 1rem;
 
   fieldset {
     display: grid;
@@ -151,35 +152,26 @@ const StyledForm = styled.form`
     display: none;
   }
 
-  * {
-    margin: 0.5rem 0.5rem 0.2rem 0.5rem;
-  }
-
   fieldset[id="infrastructure"] div {
     display: inline-flex;
     margin-top: 0.1rem;
-    margin-bottom: 0;
   }
 
-  fieldset[id="infrastructure"] input {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  fieldset[id="infrastructure"] label {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  input {
-    padding: 0.5rem 1rem;
+  input[type="checkbox"] {
+    margin-right: 0.5rem;
   }
 
   select {
-    font-size: 0.8rem;
-    padding: 0.5rem;
+    font-size: 1rem;
+    padding: 2px 0 2px 2px;
     border: none;
     box-shadow: 0 1px 0 0 #e5e5e5;
+    margin-bottom: 1rem;
+  }
+
+  select:focus {
+    box-shadow: 0 2px 0 0 green;
+    outline: none;
   }
 
   button {
@@ -189,9 +181,11 @@ const StyledForm = styled.form`
     color: white;
     border: none;
     border-radius: 5px;
+    margin-top: 1rem;
   }
 `;
 
 const StyledSelectLabel = styled.label`
-  display: none;
+  font-size: 0.75rem;
+  color: #999;
 `;

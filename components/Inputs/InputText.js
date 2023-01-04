@@ -33,9 +33,12 @@ export default function InputText({ type, id, label }) {
 
 const StyledFieldWrapper = styled.div`
   position: relative;
+  margin-left: 0;
+  margin-bottom: 1rem;
 `;
 const StyledLabel = styled.label`
   position: absolute;
+  margin-left: 0;
   left: 0;
   top: 10px;
   color: #999;
@@ -43,18 +46,20 @@ const StyledLabel = styled.label`
   z-index: 10;
   transition: transform 150ms ease-out, font-size 150ms ease-out;
 
-  transform: ${(props) => props.isFocused && "translateY(-125%)"};
-  font-size: ${(props) => props.isFocused && "0.75em"};
+  transform: ${(props) => props.isFocused && "translateY(-120%)"};
+  font-size: ${(props) => props.isFocused && "0.75rem"};
 `;
 
 const StyledInput = styled.input`
+  margin-left: 0;
   position: relative;
-  padding: 12px 0px 5px 0;
+  padding: 0.6rem 0 2px 0.5rem;
   width: 100%;
   outline: 0;
   border: 0;
   box-shadow: 0 1px 0 0 #e5e5e5;
   transition: box-shadow 150ms ease-out;
+  font-size: 1rem;
 
   &:focus {
     box-shadow: 0 2px 0 0 green;
