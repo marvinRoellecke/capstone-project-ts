@@ -6,6 +6,14 @@ import Footer from "../../components/Footer/Footer";
 import InputText from "../../components/InputText/InputText";
 
 export default function NewEntryForm() {
+  async function handleCreateNewNote(newLocation) {
+    await fetch("/api/locations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newLocation),
+    });
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target.elements;
@@ -28,17 +36,24 @@ export default function NewEntryForm() {
     const isPublic = form.isPublic.checked;
 
     const newLocation = {
+      id: 16,
       title: title,
       info: info,
       address: address,
+      latitude: "52.124535",
+      longitude: "6.36345",
+      image: `/img/defaultPics/${info.sport}.jpg`,
       infrastructure: infrastructure,
+      outdoor: "outdoor",
       public: isPublic,
+      rating: 4.2,
     };
 
     //onCreateNewLocation(newLocation);
     console.log(newLocation);
     //event.target.reset();
     form.title.focus();
+    handleCreateNewNote(newLocation);
   }
 
   return (
