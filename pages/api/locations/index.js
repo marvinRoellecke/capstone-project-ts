@@ -9,7 +9,7 @@ export default async function handler(request, response) {
 
     const locationsArray = locations.map((location) => {
       return {
-        id: location.id,
+        id: location._id,
         title: location.title,
         info: location.info,
         address: location.address,

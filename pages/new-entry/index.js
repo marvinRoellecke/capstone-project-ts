@@ -38,7 +38,6 @@ export default function NewEntryForm() {
     const rating = Number(form.rating.value);
 
     const newLocation = {
-      id: 16,
       title: title,
       info: info,
       address: address,
@@ -51,9 +50,7 @@ export default function NewEntryForm() {
       rating: rating,
     };
 
-    //onCreateNewLocation(newLocation);
-    console.log(newLocation);
-    //event.target.reset();
+    event.target.reset();
     form.title.focus();
     handleCreateNewNote(newLocation);
   }

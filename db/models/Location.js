@@ -9,7 +9,6 @@ const infoSchema = new Schema({
 });
 
 const locationSchema = new Schema({
-  id: { type: Number, required: true },
   title: { type: String, required: true },
   info: [infoSchema],
   address: {
