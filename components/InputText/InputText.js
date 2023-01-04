@@ -60,7 +60,3 @@ const StyledInput = styled.input`
     box-shadow: 0 2px 0 0 green;
   }
 `;
-
-/* transform: ${(props) => props.isFocused && "translateY(-125%)"};
-font-size: ${(props) => props.isFocused && "0.75em"};
- */

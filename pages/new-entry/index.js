@@ -25,7 +25,6 @@ export default function NewEntryForm() {
       lighting: form.lighting.checked,
       wheelchair: form.wheelchair.checked,
     };
-    const outdoor = form.outdoor.checked;
     const isPublic = form.isPublic.checked;
 
     const newLocation = {
@@ -33,7 +32,6 @@ export default function NewEntryForm() {
       info: info,
       address: address,
       infrastructure: infrastructure,
-      outdoor: outdoor,
       public: isPublic,
     };
 
@@ -60,16 +58,17 @@ export default function NewEntryForm() {
             </fieldset>
             <fieldset>
               <legend>Sportplatz</legend>
-              <label htmlFor="sport">Sportart</label>
+              <StyledSelectLabel htmlFor="sport">Sportart</StyledSelectLabel>
               <select name="sport" id="sport" required>
                 <option value="">-- Sportart --</option>
-                <option value="american football">American Football</option>
+                <option value="athletics">Leichtathletik</option>
                 <option value="basketball">Basketball</option>
+                <option value="boule">Boule</option>
                 <option value="fitness">Fitness</option>
-                <option value="fussball">Fussball</option>
-                <option value="skateboard">Skateboard</option>
+                <option value="football">Fussball</option>
+                <option value="skate">Skateboard</option>
                 <option value="tennis">Tennis</option>
-                <option value="tischtennis">Tischtennis</option>
+                <option value="tabletennis">Tischtennis</option>
                 <option value="volleyball">Volleyball</option>
               </select>
               <InputText
@@ -78,7 +77,9 @@ export default function NewEntryForm() {
                 label="Anzahl an Plätzen"
               />
 
-              <label htmlFor="surface">Untergrund</label>
+              <StyledSelectLabel htmlFor="surface">
+                Untergrund
+              </StyledSelectLabel>
               <select name="surface" id="surface">
                 <option value="">-- Untergrund --</option>
                 <option value="ash">Asche</option>
@@ -94,19 +95,20 @@ export default function NewEntryForm() {
               <InputText type="number" id="postcode" label="Postleitzahl" />
               <InputText type="text" id="city" label="Stadt" />
             </fieldset>
-            <fieldset>
+            <fieldset id="infrastructure">
               <legend>Infrastruktur</legend>
-              <input type="checkbox" name="lighting" id="lighting" />
-              <label htmlFor="lighting">Beleuchtung</label>
-              <input type="checkbox" name="wheelchair" id="wheelchair" />
-              <label htmlFor="wheelchair">Barrierefreiheit</label>
-            </fieldset>
-            <fieldset>
-              <legend>Weitere Infos</legend>
-              <input type="checkbox" name="outdoor" id="outdoor" />
-              <label htmlFor="outdoor">draußen</label>
-              <input type="checkbox" name="isPublic" id="isPublic" />
-              <label htmlFor="isPublic">öffentlich</label>
+              <div>
+                <input type="checkbox" name="lighting" id="lighting" />
+                <label htmlFor="lighting">beleuchtet</label>
+              </div>
+              <div>
+                <input type="checkbox" name="wheelchair" id="wheelchair" />
+                <label htmlFor="wheelchair">barrierefrei</label>
+              </div>
+              <div>
+                <input type="checkbox" name="isPublic" id="isPublic" />
+                <label htmlFor="isPublic">öffentlich</label>
+              </div>
             </fieldset>
             <button type="submit">Abschicken</button>
           </StyledForm>
@@ -128,73 +130,47 @@ const StyledMobileLayout = styled.div`
 `;
 
 const StyledForm = styled.form`
-  * {
+  fieldset {
     display: grid;
-    margin: 0.5rem;
+    border: none;
+  }
+
+  legend {
+    display: none;
+  }
+
+  * {
+    margin: 0.5rem 0.5rem 0.2rem 0.5rem;
+  }
+
+  fieldset[id="infrastructure"] div {
+    display: inline-flex;
+    margin-top: 0.1rem;
+    margin-bottom: 0;
+  }
+
+  fieldset[id="infrastructure"] input {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  fieldset[id="infrastructure"] label {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   input {
     padding: 0.5rem 1rem;
   }
-`;
 
-const StyledFieldWrapper = styled.div`
-  position: relative;
-`;
-const StyledLabel = styled.label`
-  position: absolute;
-  left: 0;
-  top: 10px;
-  color: #999;
-  background-color: #fff;
-  z-index: 10;
-  transition: transform 150ms ease-out, font-size 150ms ease-out;
-`;
-
-const StyledInput = styled.input`
-  position: relative;
-  padding: 12px 0px 5px 0;
-  width: 100%;
-  outline: 0;
-  border: 0;
-  box-shadow: 0 1px 0 0 #e5e5e5;
-  transition: box-shadow 150ms ease-out;
-
-  &:focus {
-    box-shadow: 0 2px 0 0 green;
+  select {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    border: none;
+    box-shadow: 0 1px 0 0 #e5e5e5;
   }
 `;
 
-/* 
-  function handleMoveLabelUp() {
-    setIsFocused(true);
-  }
-
-  function handleMoveLabelDown(event) {
-    console.log(event);
-    if (event.target.value === "") {
-      setIsFocused(false);
-    }
-  }
-
-  const [isFocused, setIsFocused] = useState(false);
-
-
-<StyledFieldWrapper>
-<StyledLabel isFocused={isFocused} htmlFor="title">
-  Titel
-</StyledLabel>
-<StyledInput
-  type="text"
-  name="title"
-  id="title"
-  onFocus={handleMoveLabelUp}
-  onBlur={handleMoveLabelDown}
-  required
-/>
-</StyledFieldWrapper>
-
-
-  transform: ${(props) => props.isFocused && "translateY(-125%)"};
-  font-size: ${(props) => props.isFocused && "0.75em"};
- */
+const StyledSelectLabel = styled.label`
+  display: none;
+`;
