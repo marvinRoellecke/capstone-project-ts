@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import { useState } from "react";
 import Head from "next/head";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import InputText from "../../components/InputText/InputText";
 
-export default function newEntryForm() {
+export default function NewEntryForm() {
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target.elements;
@@ -54,14 +56,7 @@ export default function newEntryForm() {
           <StyledForm aria-labelledby="formTitle" onSubmit={handleSubmit}>
             <fieldset>
               <legend>Allgemeine Infos</legend>
-              <label htmlFor="title">Titel</label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                placeholder="Titel"
-                required
-              />
+              <InputText type="text" id="title" label="Titel" />
             </fieldset>
             <fieldset>
               <legend>Sportplatz</legend>
@@ -77,13 +72,12 @@ export default function newEntryForm() {
                 <option value="tischtennis">Tischtennis</option>
                 <option value="volleyball">Volleyball</option>
               </select>
-              <label htmlFor="numberOfCourts">Anzahl an Plätzen</label>
-              <input
+              <InputText
                 type="number"
-                name="numberOfCourts"
                 id="numberOfCourts"
-                placeholder="Anzahl an Plätzen"
+                label="Anzahl an Plätzen"
               />
+
               <label htmlFor="surface">Untergrund</label>
               <select name="surface" id="surface">
                 <option value="">-- Untergrund --</option>
@@ -95,38 +89,10 @@ export default function newEntryForm() {
             </fieldset>
             <fieldset>
               <legend>Adresse</legend>
-              <label htmlFor="street">Straße</label>
-              <input
-                type="text"
-                name="street"
-                id="street"
-                placeholder="Straße"
-                required
-              />
-              <label htmlFor="houseNumber">Hausnummer</label>
-              <input
-                type="number"
-                name="houseNumber"
-                id="houseNumber"
-                placeholder="Hausnummer"
-                required
-              />
-              <label htmlFor="postcode">Postleitzahl</label>
-              <input
-                type="number"
-                name="postcode"
-                id="postcode"
-                placeholder="Postleitzahl"
-                required
-              />
-              <label htmlFor="city">Stadt</label>
-              <input
-                type="text"
-                name="city"
-                id="city"
-                placeholder="Stadt"
-                required
-              />
+              <InputText type="text" id="street" label="Straße" />
+              <InputText type="number" id="houseNumber" label="Hausnummer" />
+              <InputText type="number" id="postcode" label="Postleitzahl" />
+              <InputText type="text" id="city" label="Stadt" />
             </fieldset>
             <fieldset>
               <legend>Infrastruktur</legend>
@@ -170,8 +136,65 @@ const StyledForm = styled.form`
   input {
     padding: 0.5rem 1rem;
   }
+`;
 
-  label {
-    display: none;
+const StyledFieldWrapper = styled.div`
+  position: relative;
+`;
+const StyledLabel = styled.label`
+  position: absolute;
+  left: 0;
+  top: 10px;
+  color: #999;
+  background-color: #fff;
+  z-index: 10;
+  transition: transform 150ms ease-out, font-size 150ms ease-out;
+`;
+
+const StyledInput = styled.input`
+  position: relative;
+  padding: 12px 0px 5px 0;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  box-shadow: 0 1px 0 0 #e5e5e5;
+  transition: box-shadow 150ms ease-out;
+
+  &:focus {
+    box-shadow: 0 2px 0 0 green;
   }
 `;
+
+/* 
+  function handleMoveLabelUp() {
+    setIsFocused(true);
+  }
+
+  function handleMoveLabelDown(event) {
+    console.log(event);
+    if (event.target.value === "") {
+      setIsFocused(false);
+    }
+  }
+
+  const [isFocused, setIsFocused] = useState(false);
+
+
+<StyledFieldWrapper>
+<StyledLabel isFocused={isFocused} htmlFor="title">
+  Titel
+</StyledLabel>
+<StyledInput
+  type="text"
+  name="title"
+  id="title"
+  onFocus={handleMoveLabelUp}
+  onBlur={handleMoveLabelDown}
+  required
+/>
+</StyledFieldWrapper>
+
+
+  transform: ${(props) => props.isFocused && "translateY(-125%)"};
+  font-size: ${(props) => props.isFocused && "0.75em"};
+ */
