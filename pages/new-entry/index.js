@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { useState } from "react";
 import Head from "next/head";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import InputText from "../../components/InputText/InputText";
+import InputText from "../../components/Inputs/InputText";
+import InputCheckbox from "../../components/Inputs/InputCheckbox";
 
 export default function NewEntryForm() {
   async function handleCreateNewNote(newLocation) {
@@ -112,18 +112,13 @@ export default function NewEntryForm() {
             </fieldset>
             <fieldset id="infrastructure">
               <legend>Infrastruktur</legend>
-              <div>
-                <input type="checkbox" name="lighting" id="lighting" />
-                <label htmlFor="lighting">beleuchtet</label>
-              </div>
-              <div>
-                <input type="checkbox" name="wheelchair" id="wheelchair" />
-                <label htmlFor="wheelchair">barrierefrei</label>
-              </div>
-              <div>
-                <input type="checkbox" name="isPublic" id="isPublic" />
-                <label htmlFor="isPublic">öffentlich</label>
-              </div>
+              <InputCheckbox type="checkbox" id="lighting" label="beleuchtet" />
+              <InputCheckbox
+                type="checkbox"
+                id="wheelchair"
+                label="barrierefrei"
+              />
+              <InputCheckbox type="checkbox" id="isPublic" label="öffentlich" />
             </fieldset>
             <button type="submit">Abschicken</button>
           </StyledForm>
