@@ -33,7 +33,9 @@ export default function NewEntryForm() {
       lighting: form.lighting.checked,
       wheelchair: form.wheelchair.checked,
     };
+    const outdoor = form.outdoor.checked;
     const isPublic = form.isPublic.checked;
+    const rating = Number(form.rating.value);
 
     const newLocation = {
       id: 16,
@@ -44,9 +46,9 @@ export default function NewEntryForm() {
       longitude: "6.36345",
       image: `/img/defaultPics/${info.sport}.jpg`,
       infrastructure: infrastructure,
-      outdoor: "outdoor",
+      outdoor: outdoor,
       public: isPublic,
-      rating: 4.2,
+      rating: rating,
     };
 
     //onCreateNewLocation(newLocation);
@@ -101,6 +103,7 @@ export default function NewEntryForm() {
                 <option value="beton">Beton</option>
                 <option value="rubber">Kunststoff</option>
                 <option value="green">Rasen</option>
+                <option value="sand">Sand</option>
               </select>
             </fieldset>
             <fieldset>
@@ -118,7 +121,26 @@ export default function NewEntryForm() {
                 id="wheelchair"
                 label="barrierefrei"
               />
+              <InputCheckbox type="checkbox" id="outdoor" label="outdoor" />
               <InputCheckbox type="checkbox" id="isPublic" label="öffentlich" />
+              <StyledRangeLabel htmlFor="rating">Bewertung</StyledRangeLabel>
+              <input
+                type="range"
+                id="rating"
+                name="rating"
+                min={0}
+                max={5}
+                step={0.1}
+                list="values"
+              />
+              <datalist id="values">
+                <option value="0" label="0"></option>
+                <option value="1" label="1"></option>
+                <option value="2" label="2"></option>
+                <option value="3" label="3"></option>
+                <option value="4" label="4"></option>
+                <option value="5" label="5"></option>
+              </datalist>
             </fieldset>
             <button type="submit">Hinzufügen</button>
           </StyledForm>
@@ -183,9 +205,27 @@ const StyledForm = styled.form`
     border-radius: 5px;
     margin-top: 1rem;
   }
+
+  datalist {
+    display: flex;
+    justify-content: space-between;
+    writing-mode: horizontal-tb;
+    margin: 0 1rem;
+  }
+
+  input[type="range"] {
+    margin: 0 1rem;
+  }
 `;
 
 const StyledSelectLabel = styled.label`
   font-size: 0.75rem;
   color: #999;
+`;
+
+const StyledRangeLabel = styled.label`
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
 `;
