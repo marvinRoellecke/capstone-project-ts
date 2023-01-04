@@ -2,7 +2,11 @@ import Link from "next/link";
 import styled from "styled-components";
 import Icon from "../Icon/Icon";
 
-export default function NavigationBar({ atHomePage, atFavoritesPage }) {
+export default function NavigationBar({
+  atHomePage,
+  atFavoritesPage,
+  atNewEntryForm,
+}) {
   return (
     <nav>
       <StyledUl>
@@ -10,6 +14,12 @@ export default function NavigationBar({ atHomePage, atFavoritesPage }) {
           <StyledLink href={"/"}>
             <Icon list />
             {atHomePage && <hr />}
+          </StyledLink>
+        </li>
+        <li>
+          <StyledLink href={"/new-entry"}>
+            <Icon create />
+            {atNewEntryForm && <hr />}
           </StyledLink>
         </li>
         <li>
