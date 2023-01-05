@@ -5,6 +5,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import InputText from "../../components/Inputs/InputText";
 import InputCheckbox from "../../components/Inputs/InputCheckbox";
+import { selectSports, selectSurfaces } from "../../lib/data/selectData";
 
 export default function NewEntryForm() {
   const [isSent, setIsSent] = useState(false);
@@ -59,7 +60,7 @@ export default function NewEntryForm() {
     setIsSent(true);
     setTimeout(() => {
       setIsSent(false);
-    }, 4000);
+    }, 3000);
   }
 
   return (
@@ -90,16 +91,11 @@ export default function NewEntryForm() {
               <legend>Sportplatz</legend>
               <StyledSelectLabel htmlFor="sport">Sportart</StyledSelectLabel>
               <select name="sport" id="sport" required>
-                <option value="">-- Sportart --</option>
-                <option value="athletics">Leichtathletik</option>
-                <option value="basketball">Basketball</option>
-                <option value="boule">Boule</option>
-                <option value="fitness">Fitness</option>
-                <option value="football">Fussball</option>
-                <option value="skate">Skateboard</option>
-                <option value="tennis">Tennis</option>
-                <option value="tabletennis">Tischtennis</option>
-                <option value="volleyball">Volleyball</option>
+                {selectSports.map((sport) => (
+                  <option key={sport.value} value={sport.value}>
+                    {sport.content}
+                  </option>
+                ))}
               </select>
               <InputText
                 type="number"
@@ -112,12 +108,11 @@ export default function NewEntryForm() {
                 Untergrund
               </StyledSelectLabel>
               <select name="surface" id="surface">
-                <option value="">-- Untergrund --</option>
-                <option value="ash">Asche</option>
-                <option value="beton">Beton</option>
-                <option value="rubber">Kunststoff</option>
-                <option value="green">Rasen</option>
-                <option value="sand">Sand</option>
+                {selectSurfaces.map((surface) => (
+                  <option key={surface.value} value={surface.value}>
+                    {surface.content}
+                  </option>
+                ))}
               </select>
             </fieldset>
             <fieldset>
@@ -203,15 +198,16 @@ const StyledPopUp = styled.div`
   justify-self: center;
   position: absolute;
   top: 10rem;
-  background-color: green;
-  opacity: 0.95;
-  color: var(--color-foreground-alt);
-  font-size: 1.5rem;
-  padding: 3rem;
-  border-radius: 5px;
   z-index: 100;
-  width: 90%;
+  padding: 2.5rem;
+  margin: 0 1rem;
+  background-color: green;
+  color: var(--color-foreground-alt);
+  opacity: 0.95;
+  font-size: 1.5rem;
+  line-height: 2.2rem;
   text-align: center;
+  border-radius: 5px;
 `;
 
 const StyledForm = styled.form`
@@ -251,12 +247,13 @@ const StyledForm = styled.form`
 
   button {
     justify-self: center;
+    margin-top: 2rem;
     padding: 0.5rem;
+    font-size: 1.5rem;
     background-color: green;
     color: white;
     border: none;
     border-radius: 5px;
-    margin-top: 1rem;
   }
 
   datalist {
