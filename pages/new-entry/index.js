@@ -7,7 +7,7 @@ import InputText from "../../components/Inputs/InputText";
 import InputCheckbox from "../../components/Inputs/InputCheckbox";
 import { selectSports, selectSurfaces } from "../../lib/data/selectData";
 
-export default function NewEntryForm() {
+export default function NewEntryForm({ startFetching }) {
   const [isSent, setIsSent] = useState(false);
 
   async function handleCreateNewNote(newLocation) {
@@ -16,6 +16,7 @@ export default function NewEntryForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newLocation),
     });
+    startFetching();
   }
 
   function handleSubmit(event) {
