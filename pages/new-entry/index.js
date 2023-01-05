@@ -45,7 +45,7 @@ export default function NewEntryForm() {
       title: title,
       info: info,
       address: address,
-      latitude: "52.124535",
+      latitude: "52.124535", //hardcoded for the moment -> function will be added after map added to the app
       longitude: "6.36345",
       image: `/img/defaultPics/${info.sport}.jpg`,
       infrastructure: infrastructure,
@@ -102,6 +102,7 @@ export default function NewEntryForm() {
                 id="numberOfCourts"
                 label="Anzahl an Plätzen"
                 max={100}
+                min={1}
               />
 
               <StyledSelectLabel htmlFor="surface">
@@ -129,12 +130,14 @@ export default function NewEntryForm() {
                 id="houseNumber"
                 label="Hausnummer"
                 max={99999}
+                min={0}
                 required={true}
               />
               <InputText
                 type="number"
                 id="postcode"
                 max={99999}
+                min={0}
                 label="Postleitzahl"
                 required={true}
               />
@@ -156,6 +159,8 @@ export default function NewEntryForm() {
               />
               <InputCheckbox type="checkbox" id="outdoor" label="outdoor" />
               <InputCheckbox type="checkbox" id="isPublic" label="öffentlich" />
+            </fieldset>
+            <fieldset>
               <StyledRangeLabel htmlFor="rating">Bewertung</StyledRangeLabel>
               <input
                 type="range"
@@ -219,17 +224,22 @@ const StyledForm = styled.form`
     border: none;
   }
 
+  fieldset[id="infrastructure"] {
+    display: grid;
+    grid-row: auto;
+    grid-template-columns: 1fr 1fr;
+  }
+
   legend {
     display: none;
   }
 
-  fieldset[id="infrastructure"] div {
-    display: inline-flex;
-    margin-top: 0.1rem;
-  }
-
   input[type="checkbox"] {
     margin-right: 0.5rem;
+  }
+
+  input[type="range"] {
+    margin: 0 1rem;
   }
 
   select {
@@ -248,7 +258,7 @@ const StyledForm = styled.form`
   button {
     justify-self: center;
     margin-top: 2rem;
-    padding: 0.5rem;
+    padding: 0.5rem 0.8rem;
     font-size: 1.5rem;
     background-color: green;
     color: white;
@@ -260,10 +270,6 @@ const StyledForm = styled.form`
     display: flex;
     justify-content: space-between;
     writing-mode: horizontal-tb;
-    margin: 0 1rem;
-  }
-
-  input[type="range"] {
     margin: 0 1rem;
   }
 `;

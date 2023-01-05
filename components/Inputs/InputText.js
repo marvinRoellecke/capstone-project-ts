@@ -6,6 +6,7 @@ export default function InputText({
   id,
   label,
   max,
+  min,
   maxLength,
   required,
 }) {
@@ -33,6 +34,7 @@ export default function InputText({
         onFocus={handleMoveLabelUp}
         onBlur={handleMoveLabelDown}
         max={max}
+        min={min}
         maxLength={maxLength}
         required={required}
       />
