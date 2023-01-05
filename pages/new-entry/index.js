@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 import Head from "next/head";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -6,6 +7,8 @@ import InputText from "../../components/Inputs/InputText";
 import InputCheckbox from "../../components/Inputs/InputCheckbox";
 
 export default function NewEntryForm() {
+  const [isSent, setIsSent] = useState(false);
+
   async function handleCreateNewNote(newLocation) {
     await fetch("/api/locations", {
       method: "POST",
@@ -50,9 +53,13 @@ export default function NewEntryForm() {
       rating: rating,
     };
 
-    event.target.reset();
+    //event.target.reset();
     form.title.focus();
     handleCreateNewNote(newLocation);
+    setIsSent(true);
+    setTimeout(() => {
+      setIsSent(false);
+    }, 4000);
   }
 
   return (
@@ -64,11 +71,20 @@ export default function NewEntryForm() {
       </Head>
       <StyledMobileLayout>
         <Header addLocation />
+        {isSent && (
+          <StyledPopUp>Sportplatz wurde erfolgreich hinzugefügt!</StyledPopUp>
+        )}
         <main>
           <StyledForm aria-labelledby="formTitle" onSubmit={handleSubmit}>
             <fieldset>
               <legend>Allgemeine Infos</legend>
-              <InputText type="text" id="title" label="Titel" />
+              <InputText
+                type="text"
+                id="title"
+                label="Titel"
+                maxLength="50"
+                required={true}
+              />
             </fieldset>
             <fieldset>
               <legend>Sportplatz</legend>
@@ -89,6 +105,7 @@ export default function NewEntryForm() {
                 type="number"
                 id="numberOfCourts"
                 label="Anzahl an Plätzen"
+                max={100}
               />
 
               <StyledSelectLabel htmlFor="surface">
@@ -105,10 +122,34 @@ export default function NewEntryForm() {
             </fieldset>
             <fieldset>
               <legend>Adresse</legend>
-              <InputText type="text" id="street" label="Straße" />
-              <InputText type="number" id="houseNumber" label="Hausnummer" />
-              <InputText type="number" id="postcode" label="Postleitzahl" />
-              <InputText type="text" id="city" label="Stadt" />
+              <InputText
+                type="text"
+                id="street"
+                label="Straße"
+                maxLength="40"
+                required={true}
+              />
+              <InputText
+                type="number"
+                id="houseNumber"
+                label="Hausnummer"
+                max={99999}
+                required={true}
+              />
+              <InputText
+                type="number"
+                id="postcode"
+                max={99999}
+                label="Postleitzahl"
+                required={true}
+              />
+              <InputText
+                type="text"
+                id="city"
+                label="Stadt"
+                maxLength="40"
+                required={true}
+              />
             </fieldset>
             <fieldset id="infrastructure">
               <legend>Infrastruktur</legend>
@@ -156,6 +197,21 @@ const StyledMobileLayout = styled.div`
   main {
     overflow-y: scroll;
   }
+`;
+
+const StyledPopUp = styled.div`
+  justify-self: center;
+  position: absolute;
+  top: 10rem;
+  background-color: green;
+  opacity: 0.95;
+  color: var(--color-foreground-alt);
+  font-size: 1.5rem;
+  padding: 3rem;
+  border-radius: 5px;
+  z-index: 100;
+  width: 90%;
+  text-align: center;
 `;
 
 const StyledForm = styled.form`

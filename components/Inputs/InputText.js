@@ -1,7 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useState } from "react";
 
-export default function InputText({ type, id, label }) {
+export default function InputText({
+  type,
+  id,
+  label,
+  max,
+  maxLength,
+  required,
+}) {
   function handleMoveLabelUp() {
     setIsFocused(true);
   }
@@ -25,7 +32,9 @@ export default function InputText({ type, id, label }) {
         id={id}
         onFocus={handleMoveLabelUp}
         onBlur={handleMoveLabelDown}
-        required
+        max={max}
+        maxLength={maxLength}
+        required={required}
       />
     </StyledFieldWrapper>
   );
@@ -46,8 +55,12 @@ const StyledLabel = styled.label`
   z-index: 10;
   transition: transform 150ms ease-out, font-size 150ms ease-out;
 
-  transform: ${(props) => props.isFocused && "translateY(-120%)"};
-  font-size: ${(props) => props.isFocused && "0.75rem"};
+  ${(props) =>
+    props.isFocused &&
+    css`
+      transform: translateY(-120%);
+      font-size: 0.75rem;
+    `}
 `;
 
 const StyledInput = styled.input`
@@ -65,3 +78,6 @@ const StyledInput = styled.input`
     box-shadow: 0 2px 0 0 green;
   }
 `;
+
+/* transform: ${(props) => props.isFocused && "translateY(-120%)"};
+font-size: ${(props) => props.isFocused && "0.75rem"}; */
