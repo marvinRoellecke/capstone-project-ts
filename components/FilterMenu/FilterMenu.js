@@ -25,8 +25,6 @@ export default function FilterMenu({
           <option value="default">choose option</option>
           <option value="az">a - z</option>
           <option value="za">z - a</option>
-          <option value="toOld">newest first</option>
-          <option value="toNew">oldest first</option>
         </StyledSelect>
       </form>
 
