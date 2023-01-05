@@ -3,13 +3,17 @@ import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
-  useEffect(() => {
-    async function startFetching() {
+  async function startFetching() {
+    try {
       const response = await fetch("/api/locations");
       const data = await response.json();
       setLocations(data);
+    } catch (error) {
+      console.error(error);
     }
+  }
 
+  useEffect(() => {
     startFetching();
   }, []);
 
@@ -39,6 +43,7 @@ export default function App({ Component, pageProps }) {
         onToggleFavorite={handleToggleFavorite}
         favorites={favorites}
         setLocations={setLocations}
+        startFetching={startFetching}
       />
     </>
   );

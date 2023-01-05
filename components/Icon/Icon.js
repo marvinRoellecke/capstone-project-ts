@@ -2,6 +2,8 @@ import {
   IoListOutline,
   IoLocationSharp,
   IoChevronBackOutline,
+  IoCreate,
+  IoCreateOutline,
   IoShareOutline,
   IoStar,
   IoHeartOutline,
@@ -12,6 +14,7 @@ import styled from "styled-components";
 
 export default function Icon({
   back,
+  create,
   favorite,
   isFavorite,
   location,
@@ -24,6 +27,7 @@ export default function Icon({
     <>
       <IconStyleWrapper>
         {back && <IoChevronBackOutline />}
+        {create && <IoCreateOutline />}
         {favorite && !isFavorite && <IoHeartOutline />}
         {favorite && isFavorite && <IoHeart />}
         {list && <IoListOutline />}

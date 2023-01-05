@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Icon from "../Icon/Icon";
 
-export default function Header({ onShowFilterMenu, filterMenu }) {
+export default function Header({ onShowFilterMenu, filterMenu, addLocation }) {
   return (
     <StyledHeader>
       <StyledH1>localSports</StyledH1>
@@ -10,6 +10,7 @@ export default function Header({ onShowFilterMenu, filterMenu }) {
           <Icon option />
         </StyledButton>
       )}
+      {addLocation && <StyledH2 id="formTitle">add location</StyledH2>}
     </StyledHeader>
   );
 }
@@ -24,6 +25,10 @@ const StyledHeader = styled.header`
 const StyledH1 = styled.h1`
   width: fit-content;
   height: fit-content;
+`;
+
+const StyledH2 = styled.h2`
+  font-size: 1rem;
 `;
 
 const StyledButton = styled.button`

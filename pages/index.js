@@ -77,10 +77,6 @@ export default function Home({
           return 0;
         })
       );
-    } else if (event === "toOld") {
-      setLocations([...locations].sort((a, b) => a.id - b.id));
-    } else if (event === "toNew") {
-      setLocations([...locations].sort((a, b) => b.id - a.id));
     }
   }
 
