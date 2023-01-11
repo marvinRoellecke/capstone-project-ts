@@ -37,7 +37,13 @@ export default async function handler(request, response) {
       filter["infrastructure.wheelchair"] = request.query.wheelchair;
     }
 
-    const locations = await Location.find(filter);
+    const sort = {};
+
+    if (request.query.title) {
+      sort.title = request.query.title;
+    }
+
+    const locations = await Location.find(filter).sort(sort);
 
     const locationsArray = locations.map((location) => {
       return {

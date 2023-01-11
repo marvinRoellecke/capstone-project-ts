@@ -127,34 +127,13 @@ export default function Home({
 
   //sort function
   function handleChangeSort(event) {
-    if (event === "az") {
-      setLocations(
-        [...locations].sort((a, b) => {
-          const nameA = a.title.toLowerCase();
-          const nameB = b.title.toLowerCase();
-          if (nameA < nameB) {
-            return -1;
-          }
-          if (nameA > nameB) {
-            return 1;
-          }
-          return 0;
-        })
-      );
-    } else if (event === "za") {
-      setLocations(
-        [...locations].sort((a, b) => {
-          const nameA = a.title.toLowerCase();
-          const nameB = b.title.toLowerCase();
-          if (nameA < nameB) {
-            return 1;
-          }
-          if (nameA > nameB) {
-            return -1;
-          }
-          return 0;
-        })
-      );
+    if (event.target.value !== "default") {
+      params.searchParams.delete(event.target.name);
+      params.searchParams.append(event.target.name, event.target.value);
+      searchApi(params);
+    } else {
+      params.searchParams.delete(event.target.name);
+      searchApi(params);
     }
   }
 

@@ -21,14 +21,10 @@ export default function FilterMenu({
       <StyledH2>sort</StyledH2>
       <form>
         <label htmlFor="sort"></label>
-        <StyledSelect
-          name="sort"
-          id="sort"
-          onChange={(event) => onChangeSort(event.target.value)}
-        >
+        <StyledSelect name="title" id="title" onChange={onChangeSort}>
           <option value="default">choose option</option>
-          <option value="az">a - z</option>
-          <option value="za">z - a</option>
+          <option value="1">a - z</option>
+          <option value="-1">z - a</option>
         </StyledSelect>
       </form>
 
