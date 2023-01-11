@@ -8,6 +8,7 @@ export default function FilterMenu({
   onFilter,
   onCityFilter,
   filterData,
+  cityFilter,
 }) {
   return (
     <StyledMenu>
@@ -53,7 +54,14 @@ export default function FilterMenu({
       <StyledH3>city</StyledH3>
       <form>
         <StyledInputWrapper>
-          <StyledInput type="text" name="city" onBlur={onCityFilter} />
+          <StyledLabel htmlFor="city"></StyledLabel>
+          <StyledInput
+            type="text"
+            name="city"
+            id="city"
+            onBlur={onCityFilter}
+            defaultValue={cityFilter}
+          />
         </StyledInputWrapper>
       </form>
     </StyledMenu>

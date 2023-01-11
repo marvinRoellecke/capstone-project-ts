@@ -33,10 +33,14 @@ export default function Home({
     setIsShowingFilterMenu(!isShowingFilterMenu);
   }
 
-  const params = new URL("http://localhost:3000/api/locations/?");
+  //const params = new URL("http://localhost:3000/api/locations/?");
+  const [params, setParams] = useState(
+    new URL("http://localhost:3000/api/locations/?")
+  );
 
   async function searchApi(params) {
     const searchURL = params.searchParams.toString();
+    console.log(searchURL);
     try {
       const response = await fetch("/api/locations/?" + searchURL);
       const data = await response.json();
@@ -57,6 +61,8 @@ export default function Home({
         },
       };
 
+      params.searchParams.delete(category); //only needed because on city text input
+
       Object.entries(newFilterData).map((filterCategory) =>
         Object.entries(filterCategory[1])
           .filter((entry) => {
@@ -76,6 +82,7 @@ export default function Home({
   function handleCityFilter(event) {
     if (event.target.value !== "") {
       setCityFilter(event.target.value);
+      params.searchParams.delete(event.target.name);
       params.searchParams.append(event.target.name, event.target.value);
       searchApi(params);
     } else {
