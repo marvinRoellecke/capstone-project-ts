@@ -32,6 +32,7 @@ export default function Home({
   });
 
   const [cityFilter, setCityFilter] = useState();
+  const [sortData, setSortData] = useState();
 
   //show / hide Filter Menu
   const [isShowingFilterMenu, setIsShowingFilterMenu] = useState(false);
@@ -113,6 +114,7 @@ export default function Home({
   }
 
   function handleCityFilter(event) {
+    event.preventDefault();
     if (event.target.value !== "") {
       setCityFilter(event.target.value);
       params.searchParams.delete(event.target.name);
@@ -128,11 +130,13 @@ export default function Home({
   //sort function
   function handleChangeSort(event) {
     if (event.target.value !== "default") {
-      params.searchParams.delete(event.target.name);
-      params.searchParams.append(event.target.name, event.target.value);
+      setSortData(event.target.value);
+      params.searchParams.delete("sort");
+      params.searchParams.append("sort", event.target.value);
       searchApi(params);
     } else {
-      params.searchParams.delete(event.target.name);
+      setSortData("");
+      params.searchParams.delete("sort");
       searchApi(params);
     }
   }
@@ -156,6 +160,7 @@ export default function Home({
           <FilterMenu
             onShowFilterMenu={handleShowFilterMenu}
             onChangeSort={handleChangeSort}
+            sortData={sortData}
             onFilter={handleFilter}
             onFilterAlt={handleFilterAlt}
             onCityFilter={handleCityFilter}

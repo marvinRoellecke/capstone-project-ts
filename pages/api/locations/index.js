@@ -39,8 +39,20 @@ export default async function handler(request, response) {
 
     const sort = {};
 
-    if (request.query.title) {
-      sort.title = request.query.title;
+    if (request.query.sort === "sortTitle1") {
+      sort.title = 1;
+    }
+
+    if (request.query.sort === "sortTitle-1") {
+      sort.title = -1;
+    }
+
+    if (request.query.sort === "sortRating1") {
+      sort.rating = 1;
+    }
+
+    if (request.query.sort === "sortRating-1") {
+      sort.rating = -1;
     }
 
     const locations = await Location.find(filter).sort(sort);
