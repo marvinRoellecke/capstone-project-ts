@@ -16,14 +16,15 @@ export default function Home({
     sport: {
       basketball: false,
       fitness: false,
-      other: false,
-      soccer: false,
+      boule: false,
+      football: false,
       tennis: false,
       volleyball: false,
+      skateboard: false,
+      tischtennis: false,
     },
-    city: { Münster: false, Düsseldorf: false },
-    rating: { 1: false, 2: false, 3: false, 4: false, 5: false },
   });
+  const [cityFilter, setCityFilter] = useState();
 
   //show / hide Filter Menu
   const [isShowingFilterMenu, setIsShowingFilterMenu] = useState(false);
@@ -32,18 +33,55 @@ export default function Home({
     setIsShowingFilterMenu(!isShowingFilterMenu);
   }
 
+  const params = new URL("http://localhost:3000/api/locations/?");
+
+  async function searchApi(params) {
+    const searchURL = params.searchParams.toString();
+    try {
+      const response = await fetch("/api/locations/?" + searchURL);
+      const data = await response.json();
+      setLocations(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   //filter function
-  function handleFilter(event, category) {
-    if (event.target.checked) {
-      setFilterData({
+  async function handleFilter(event, category) {
+    setFilterData((prevState) => {
+      const newFilterData = {
         ...filterData,
-        [category]: { ...filterData[category], [event.target.value]: true },
-      });
+        [category]: {
+          ...filterData[category],
+          [event.target.value]: event.target.checked,
+        },
+      };
+
+      Object.entries(newFilterData).map((filterCategory) =>
+        Object.entries(filterCategory[1])
+          .filter((entry) => {
+            return entry[1];
+          })
+          .map((entry) => {
+            return params.searchParams.append(filterCategory[0], entry[0]);
+          })
+      );
+
+      searchApi(params);
+
+      return newFilterData;
+    });
+  }
+
+  function handleCityFilter(event) {
+    if (event.target.value !== "") {
+      setCityFilter(event.target.value);
+      params.searchParams.append(event.target.name, event.target.value);
+      searchApi(params);
     } else {
-      setFilterData({
-        ...filterData,
-        [category]: { ...filterData[category], [event.target.value]: false },
-      });
+      setCityFilter("");
+      params.searchParams.delete(event.target.name);
+      searchApi(params);
     }
   }
 
@@ -100,7 +138,9 @@ export default function Home({
             onShowFilterMenu={handleShowFilterMenu}
             onChangeSort={handleChangeSort}
             onFilter={handleFilter}
+            onCityFilter={handleCityFilter}
             filterData={filterData}
+            cityFilter={cityFilter}
           />
         )}
         <Footer atHomePage />

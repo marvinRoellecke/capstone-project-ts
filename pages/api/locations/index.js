@@ -11,11 +11,32 @@ export default async function handler(request, response) {
       filter["info.sport"] = request.query.sport;
     }
     if (request.query.rating) {
-      filter.rating = { $gte: request.query.rating };
+      const limit = Number(request.query.rating) + 1;
+      filter.rating = {
+        $gte: request.query.rating,
+        $lt: limit,
+      };
     }
     if (request.query.city) {
       filter["address.city"] = request.query.city;
     }
+
+    if (request.query.outdoor) {
+      filter.outdoor = request.query.outdoor;
+    }
+
+    if (request.query.public) {
+      filter.public = request.query.public;
+    }
+
+    if (request.query.lighting) {
+      filter["infrastructure.lighting"] = request.query.lighting;
+    }
+
+    if (request.query.wheelchair) {
+      filter["infrastructure.wheelchair"] = request.query.wheelchair;
+    }
+
     const locations = await Location.find(filter);
 
     const locationsArray = locations.map((location) => {

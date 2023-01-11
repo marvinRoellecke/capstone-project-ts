@@ -6,6 +6,7 @@ export default function FilterMenu({
   onShowFilterMenu,
   onChangeSort,
   onFilter,
+  onCityFilter,
   filterData,
 }) {
   return (
@@ -48,6 +49,13 @@ export default function FilterMenu({
           </form>
         </Fragment>
       ))}
+
+      <StyledH3>city</StyledH3>
+      <form>
+        <StyledInputWrapper>
+          <StyledInput type="text" name="city" onBlur={onCityFilter} />
+        </StyledInputWrapper>
+      </form>
     </StyledMenu>
   );
 }
