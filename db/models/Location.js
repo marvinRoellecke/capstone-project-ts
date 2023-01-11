@@ -24,8 +24,8 @@ const locationSchema = new Schema({
     lighting: { type: Boolean, required: false },
     wheelchair: { type: Boolean, required: false },
   },
-  outdoor: { type: String, required: false },
-  public: { type: String, required: false },
+  outdoor: { type: Boolean, required: false },
+  public: { type: Boolean, required: false },
   rating: { type: Number, required: false },
 });
 

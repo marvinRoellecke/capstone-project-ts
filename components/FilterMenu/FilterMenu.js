@@ -6,8 +6,10 @@ export default function FilterMenu({
   onShowFilterMenu,
   onChangeSort,
   onFilter,
+  onFilterAlt,
   onCityFilter,
   filterData,
+  filterDataAlt,
   cityFilter,
 }) {
   return (
@@ -50,6 +52,22 @@ export default function FilterMenu({
           </form>
         </Fragment>
       ))}
+
+      <StyledH3>other</StyledH3>
+      <form>
+        {Object.entries(filterDataAlt).map((entry) => (
+          <StyledInputWrapper key={entry[0]}>
+            <StyledInput
+              type="checkbox"
+              value={entry[0]}
+              id={entry[0]}
+              onChange={(event) => onFilterAlt(event, entry[0])}
+              checked={entry[1]}
+            />
+            <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
+          </StyledInputWrapper>
+        ))}
+      </form>
 
       <StyledH3>city</StyledH3>
       <form>

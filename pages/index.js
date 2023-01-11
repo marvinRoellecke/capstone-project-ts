@@ -24,6 +24,13 @@ export default function Home({
       tischtennis: false,
     },
   });
+  const [filterDataAlt, setFilterDataAlt] = useState({
+    lighting: false,
+    wheelchair: false,
+    outdoor: false,
+    public: false,
+  });
+
   const [cityFilter, setCityFilter] = useState();
 
   //show / hide Filter Menu
@@ -76,6 +83,32 @@ export default function Home({
       searchApi(params);
 
       return newFilterData;
+    });
+  }
+
+  async function handleFilterAlt(event, category) {
+    setFilterDataAlt((prevState) => {
+      const newFilterDataAlt = {
+        ...filterDataAlt,
+        [category]: event.target.checked,
+      };
+      console.log(category, "category");
+
+      Object.entries(newFilterDataAlt).map((entry) => {
+        return params.searchParams.delete(entry[0]);
+      });
+
+      Object.entries(newFilterDataAlt)
+        .filter((entry) => {
+          return entry[1];
+        })
+        .map((entry) => {
+          return params.searchParams.append(entry[0], entry[1]);
+        });
+
+      searchApi(params);
+
+      return newFilterDataAlt;
     });
   }
 
@@ -145,8 +178,10 @@ export default function Home({
             onShowFilterMenu={handleShowFilterMenu}
             onChangeSort={handleChangeSort}
             onFilter={handleFilter}
+            onFilterAlt={handleFilterAlt}
             onCityFilter={handleCityFilter}
             filterData={filterData}
+            filterDataAlt={filterDataAlt}
             cityFilter={cityFilter}
           />
         )}
