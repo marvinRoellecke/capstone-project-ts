@@ -2,10 +2,10 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-export default function Map() {
+export default function Map({ locations }) {
   let DefaultIcon = L.icon({
-    iconUrl: "/favicon.ico",
-    iconSize: [30, 30],
+    iconUrl: "/marker.svg",
+    iconSize: [25, 25],
   });
   return (
     <>
@@ -15,11 +15,9 @@ export default function Map() {
         scrollWheelZoom={true}
         style={{ height: "100%", width: "100%" }}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={[51.505, -0.09]} icon={DefaultIcon}>
+        <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
+
+        <Marker position={[51.5, 10.09]} icon={DefaultIcon}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
@@ -28,3 +26,5 @@ export default function Map() {
     </>
   );
 }
+
+//{locations.map((location))}

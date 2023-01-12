@@ -19,7 +19,7 @@ export default function MapPage({ locations }) {
       <StyledMobileLayout>
         <Header />
         <main>
-          <Map />
+          <Map locations={locations} />
         </main>
         <Footer atMapPage />
       </StyledMobileLayout>
