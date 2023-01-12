@@ -19,33 +19,30 @@ export default function Home({
       boule: false,
       football: false,
       tennis: false,
-      volleyball: false,
+      beachvolleyball: false,
       skateboard: false,
       tischtennis: false,
     },
   });
-  const [filterDataAlt, setFilterDataAlt] = useState({
+  const [filterDataOther, setFilterDataOther] = useState({
     lighting: false,
     wheelchair: false,
     outdoor: false,
     public: false,
   });
-
   const [cityFilter, setCityFilter] = useState();
   const [sortData, setSortData] = useState();
-
-  //show / hide Filter Menu
+  const [params, setParams] = useState(
+    new URL("http://localhost:3000/api/locations/?")
+  );
   const [isShowingFilterMenu, setIsShowingFilterMenu] = useState(false);
 
+  //show / hide Filter Menu
   function handleShowFilterMenu() {
     setIsShowingFilterMenu(!isShowingFilterMenu);
   }
 
-  //const params = new URL("http://localhost:3000/api/locations/?");
-  const [params, setParams] = useState(
-    new URL("http://localhost:3000/api/locations/?")
-  );
-
+  //fetch with query url
   async function searchApi(params) {
     const searchURL = params.searchParams.toString();
     console.log(searchURL);
@@ -58,7 +55,6 @@ export default function Home({
     }
   }
 
-  //filter function
   async function handleFilter(event, category) {
     setFilterData((prevState) => {
       const newFilterData = {
@@ -87,19 +83,18 @@ export default function Home({
     });
   }
 
-  async function handleFilterAlt(event, category) {
-    setFilterDataAlt((prevState) => {
-      const newFilterDataAlt = {
-        ...filterDataAlt,
+  async function handleFilterOther(event, category) {
+    setFilterDataOther((prevState) => {
+      const newFilterDataOther = {
+        ...filterDataOther,
         [category]: event.target.checked,
       };
-      console.log(category, "category");
 
-      Object.entries(newFilterDataAlt).map((entry) => {
+      Object.entries(newFilterDataOther).map((entry) => {
         return params.searchParams.delete(entry[0]);
       });
 
-      Object.entries(newFilterDataAlt)
+      Object.entries(newFilterDataOther)
         .filter((entry) => {
           return entry[1];
         })
@@ -109,7 +104,7 @@ export default function Home({
 
       searchApi(params);
 
-      return newFilterDataAlt;
+      return newFilterDataOther;
     });
   }
 
@@ -159,14 +154,14 @@ export default function Home({
         {isShowingFilterMenu && (
           <FilterMenu
             onShowFilterMenu={handleShowFilterMenu}
-            onChangeSort={handleChangeSort}
-            sortData={sortData}
             onFilter={handleFilter}
-            onFilterAlt={handleFilterAlt}
+            onFilterOther={handleFilterOther}
             onCityFilter={handleCityFilter}
+            onChangeSort={handleChangeSort}
             filterData={filterData}
-            filterDataAlt={filterDataAlt}
+            filterDataOther={filterDataOther}
             cityFilter={cityFilter}
+            sortData={sortData}
           />
         )}
         <Footer atHomePage />

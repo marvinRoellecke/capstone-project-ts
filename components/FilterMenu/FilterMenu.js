@@ -4,14 +4,14 @@ import Icon from "../Icon/Icon";
 
 export default function FilterMenu({
   onShowFilterMenu,
-  onChangeSort,
-  sortData,
   onFilter,
-  onFilterAlt,
+  onFilterOther,
   onCityFilter,
+  onChangeSort,
   filterData,
-  filterDataAlt,
+  filterDataOther,
   cityFilter,
+  sortData,
 }) {
   return (
     <StyledMenu>
@@ -20,7 +20,6 @@ export default function FilterMenu({
       </StyledButton>
 
       <StyledH2>sort</StyledH2>
-
       <label htmlFor="sort"></label>
       <StyledSelect
         name="sort"
@@ -39,7 +38,6 @@ export default function FilterMenu({
       {Object.entries(filterData).map((entry) => (
         <Fragment key={entry[0]}>
           <StyledH3>{entry[0]}</StyledH3>
-
           {Object.entries(entry[1]).map((entryData) => (
             <StyledInputWrapper key={entryData[0]}>
               <StyledInput
@@ -56,14 +54,13 @@ export default function FilterMenu({
       ))}
 
       <StyledH3>other</StyledH3>
-
-      {Object.entries(filterDataAlt).map((entry) => (
+      {Object.entries(filterDataOther).map((entry) => (
         <StyledInputWrapper key={entry[0]}>
           <StyledInput
             type="checkbox"
             value={entry[0]}
             id={entry[0]}
-            onChange={(event) => onFilterAlt(event, entry[0])}
+            onChange={(event) => onFilterOther(event, entry[0])}
             checked={entry[1]}
           />
           <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
@@ -71,7 +68,6 @@ export default function FilterMenu({
       ))}
 
       <StyledH3>city</StyledH3>
-
       <StyledInputWrapper>
         <StyledLabel htmlFor="city"></StyledLabel>
         <StyledInput
