@@ -3,15 +3,17 @@ import styled from "styled-components";
 
 export default function Footer({
   atHomePage,
-  atFavoritesPage,
+  atMapPage,
   atNewEntryForm,
+  atFavoritesPage,
 }) {
   return (
     <StyledFooter>
       <NavigationBar
         atHomePage={atHomePage}
-        atFavoritesPage={atFavoritesPage}
+        atMapPage={atMapPage}
         atNewEntryForm={atNewEntryForm}
+        atFavoritesPage={atFavoritesPage}
       />
     </StyledFooter>
   );

@@ -4,6 +4,7 @@ import {
   IoChevronBackOutline,
   IoCreate,
   IoCreateOutline,
+  IoMapOutline,
   IoShareOutline,
   IoStar,
   IoHeartOutline,
@@ -18,6 +19,7 @@ export default function Icon({
   favorite,
   isFavorite,
   location,
+  map,
   list,
   option,
   share,
@@ -31,6 +33,7 @@ export default function Icon({
         {favorite && !isFavorite && <IoHeartOutline />}
         {favorite && isFavorite && <IoHeart />}
         {list && <IoListOutline />}
+        {map && <IoMapOutline />}
         {option && <IoOptionsOutline />}
         {share && <IoShareOutline />}
       </IconStyleWrapper>

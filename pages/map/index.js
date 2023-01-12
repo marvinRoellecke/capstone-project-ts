@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
 export default function MapPage({ locations }) {
@@ -17,7 +16,6 @@ export default function MapPage({ locations }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <StyledMobileLayout>
-        <Header />
         <main>
           <Map locations={locations} />
         </main>
@@ -29,10 +27,6 @@ export default function MapPage({ locations }) {
 
 const StyledMobileLayout = styled.div`
   display: grid;
-  grid-template-rows: 4rem auto 4rem;
+  grid-template-rows: auto 4rem;
   height: 100vh;
-
-  main {
-    overflow-y: scroll;
-  }
 `;
