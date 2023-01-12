@@ -21,7 +21,7 @@ export default function Home({
       tennis: false,
       beachvolleyball: false,
       skateboard: false,
-      tischtennis: false,
+      tabletennis: false,
     },
   });
   const [filterDataOther, setFilterDataOther] = useState({
