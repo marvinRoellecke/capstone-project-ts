@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import Header from "../../components/Header/Header";
-import Main from "../../components/Main/Main";
 import Footer from "../../components/Footer/Footer";
 
-export default function FavoritesPage({ locations }) {
+export default function MapPage({ locations }) {
+  const Map = dynamic(() => import("../../components/Map/Map"), {
+    loading: () => <p>Map is loading</p>,
+    ssr: false,
+  });
   return (
     <>
       <Head>
@@ -14,7 +18,9 @@ export default function FavoritesPage({ locations }) {
       </Head>
       <StyledMobileLayout>
         <Header />
-        <Main locations={locations} />
+        <main>
+          <Map />
+        </main>
         <Footer atMapPage />
       </StyledMobileLayout>
     </>
