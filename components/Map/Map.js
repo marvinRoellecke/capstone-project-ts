@@ -13,7 +13,7 @@ export default function Map({ locations }) {
   return (
     <>
       <MapContainer
-        center={[51.57158268136762, 10.200763543026689]}
+        center={[51.5, 10.2]}
         zoom={6}
         scrollWheelZoom={true}
         style={{ height: "100%", width: "100%" }}

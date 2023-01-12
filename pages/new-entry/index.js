@@ -46,8 +46,7 @@ export default function NewEntryForm({ startFetching }) {
       title: title,
       info: info,
       address: address,
-      latitude: "52.124535", //hardcoded for the moment -> function will be added after map added to the app
-      longitude: "6.36345",
+      coordinates: [51.5, 10.2], //hardcoded for the moment -> function will be added after map added to the app
       image: `/img/defaultPics/${info.sport}.jpg`,
       infrastructure: infrastructure,
       outdoor: outdoor,
