@@ -19,7 +19,17 @@ export default function NewEntryForm({ startFetching }) {
     startFetching();
   }
 
-  function handleSubmit(event) {
+  async function getCoordinates(address) {
+    const response = await fetch(
+      `https://api.geoapify.com/v1/geocode/search?housenumber=${address.houseNumber}&street=${address.street}&city=${address.city}&format=json&apiKey=aa57917c767c47368ecd1f7da4ebe977`,
+      { method: "GET" }
+    );
+    const { results } = await response.json();
+    const coordinates = [results[0].lat, results[0].lon];
+    return coordinates;
+  }
+
+  async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target.elements;
     const title = form.title.value;
@@ -42,11 +52,13 @@ export default function NewEntryForm({ startFetching }) {
     const isPublic = form.isPublic.checked;
     const rating = Number(form.rating.value);
 
+    const coordinates = await getCoordinates(address);
+
     const newLocation = {
       title: title,
       info: info,
       address: address,
-      coordinates: [51.5, 10.2], //hardcoded for the moment -> function will be added after map added to the app
+      coordinates: coordinates,
       image: `/img/defaultPics/${info.sport}.jpg`,
       infrastructure: infrastructure,
       outdoor: outdoor,
