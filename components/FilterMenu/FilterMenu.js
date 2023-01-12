@@ -4,9 +4,14 @@ import Icon from "../Icon/Icon";
 
 export default function FilterMenu({
   onShowFilterMenu,
-  onChangeSort,
   onFilter,
+  onFilterOther,
+  onCityFilter,
+  onChangeSort,
   filterData,
+  filterDataOther,
+  cityFilter,
+  sortData,
 }) {
   return (
     <StyledMenu>
@@ -15,39 +20,64 @@ export default function FilterMenu({
       </StyledButton>
 
       <StyledH2>sort</StyledH2>
-      <form>
-        <label htmlFor="sort"></label>
-        <StyledSelect
-          name="sort"
-          id="sort"
-          onChange={(event) => onChangeSort(event.target.value)}
-        >
-          <option value="default">choose option</option>
-          <option value="az">a - z</option>
-          <option value="za">z - a</option>
-        </StyledSelect>
-      </form>
+      <label htmlFor="sort"></label>
+      <StyledSelect
+        name="sort"
+        id="sort"
+        value={sortData}
+        onChange={onChangeSort}
+      >
+        <option value="default">choose option</option>
+        <option value="sortTitle1">a - z</option>
+        <option value="sortTitle-1">z - a</option>
+        <option value="sortRating1">rating up</option>
+        <option value="sortRating-1">rating down</option>
+      </StyledSelect>
 
       <StyledH2>filter</StyledH2>
       {Object.entries(filterData).map((entry) => (
         <Fragment key={entry[0]}>
           <StyledH3>{entry[0]}</StyledH3>
-          <form>
-            {Object.entries(entry[1]).map((entryData) => (
-              <StyledInputWrapper key={entryData[0]}>
-                <StyledInput
-                  type="checkbox"
-                  value={entryData[0]}
-                  id={entryData[0]}
-                  onChange={(event) => onFilter(event, entry[0])}
-                  checked={entryData[1]}
-                />
-                <StyledLabel htmlFor={entryData[0]}>{entryData}</StyledLabel>
-              </StyledInputWrapper>
-            ))}
-          </form>
+          {Object.entries(entry[1]).map((entryData) => (
+            <StyledInputWrapper key={entryData[0]}>
+              <StyledInput
+                type="checkbox"
+                value={entryData[0]}
+                id={entryData[0]}
+                onChange={(event) => onFilter(event, entry[0])}
+                checked={entryData[1]}
+              />
+              <StyledLabel htmlFor={entryData[0]}>{entryData}</StyledLabel>
+            </StyledInputWrapper>
+          ))}
         </Fragment>
       ))}
+
+      <StyledH3>other</StyledH3>
+      {Object.entries(filterDataOther).map((entry) => (
+        <StyledInputWrapper key={entry[0]}>
+          <StyledInput
+            type="checkbox"
+            value={entry[0]}
+            id={entry[0]}
+            onChange={(event) => onFilterOther(event, entry[0])}
+            checked={entry[1]}
+          />
+          <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
+        </StyledInputWrapper>
+      ))}
+
+      <StyledH3>city</StyledH3>
+      <StyledInputWrapper>
+        <StyledLabel htmlFor="city"></StyledLabel>
+        <StyledInput
+          type="text"
+          name="city"
+          id="city"
+          onBlur={onCityFilter}
+          defaultValue={cityFilter}
+        />
+      </StyledInputWrapper>
     </StyledMenu>
   );
 }
