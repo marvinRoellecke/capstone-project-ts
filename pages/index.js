@@ -45,7 +45,6 @@ export default function Home({
   //fetch with query url
   async function searchApi(params) {
     const searchURL = params.searchParams.toString();
-    console.log(searchURL);
     try {
       const response = await fetch("/api/locations/?" + searchURL);
       const data = await response.json();
@@ -56,7 +55,7 @@ export default function Home({
   }
 
   async function handleFilter(event, category) {
-    setFilterData((prevState) => {
+    setFilterData(() => {
       const newFilterData = {
         ...filterData,
         [category]: {
@@ -84,7 +83,7 @@ export default function Home({
   }
 
   async function handleFilterOther(event, category) {
-    setFilterDataOther((prevState) => {
+    setFilterDataOther(() => {
       const newFilterDataOther = {
         ...filterDataOther,
         [category]: event.target.checked,
