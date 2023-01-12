@@ -7,7 +7,7 @@ import styled from "styled-components";
 export default function Map({ locations }) {
   let DefaultIcon = L.icon({
     iconUrl: "/marker.svg",
-    iconSize: [25, 25],
+    iconSize: [30, 30],
     popupAnchor: [0, -15],
   });
   return (
