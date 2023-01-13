@@ -25,18 +25,14 @@ export default function Map({ locations, currentPosition }) {
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
-        {locations.map((location) => (
-          <Marker
-            key={location.id}
-            position={location.coordinates}
-            icon={DefaultIcon}
-          >
+        {locations.map(({ id, coordinates, title, info }) => (
+          <Marker key={id} position={coordinates} icon={DefaultIcon}>
             <Popup>
-              <StyledLink href={`/${location.id}`}>
-                <h2>{location.title}</h2>
+              <StyledLink href={`/${id}`}>
+                <h2>{title}</h2>
                 <StyledTagWrapper>
-                  {location.info.map((tag) => (
-                    <StyledTag key={tag.sport}>{tag.sport}</StyledTag>
+                  {info.map(({ sport }) => (
+                    <StyledTag key={sport}>{sport}</StyledTag>
                   ))}
                 </StyledTagWrapper>
               </StyledLink>
