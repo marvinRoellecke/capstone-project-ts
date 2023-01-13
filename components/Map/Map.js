@@ -5,11 +5,17 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export default function Map({ locations }) {
-  let DefaultIcon = L.icon({
+  const DefaultIcon = L.icon({
     iconUrl: "/marker.svg",
     iconSize: [30, 30],
     popupAnchor: [0, -15],
   });
+
+  const PositionIcon = L.icon({
+    iconUrl: "/position.svg",
+    iconSize: [30, 30],
+  });
+
   return (
     <>
       <MapContainer
