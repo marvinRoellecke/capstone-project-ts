@@ -2,12 +2,14 @@ import styled from "styled-components";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import Footer from "../../components/Footer/Footer";
+import useCurrentPosition from "../../helpers/useCurrentPosition";
 
 export default function MapPage({ locations }) {
   const Map = dynamic(() => import("../../components/Map/Map"), {
     loading: () => <p>Map is loading</p>,
     ssr: false,
   });
+  const currentPosition = useCurrentPosition();
   return (
     <>
       <Head>
@@ -17,7 +19,7 @@ export default function MapPage({ locations }) {
       </Head>
       <StyledMobileLayout>
         <main>
-          <Map locations={locations} />
+          <Map locations={locations} currentPosition={currentPosition} />
         </main>
         <Footer atMapPage />
       </StyledMobileLayout>
