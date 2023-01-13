@@ -4,8 +4,9 @@ import Icon from "../Icon/Icon";
 
 export default function NavigationBar({
   atHomePage,
-  atFavoritesPage,
+  atMapPage,
   atNewEntryForm,
+  atFavoritesPage,
 }) {
   return (
     <nav>
@@ -14,6 +15,12 @@ export default function NavigationBar({
           <StyledLink href={"/"}>
             <Icon list />
             {atHomePage && <hr />}
+          </StyledLink>
+        </li>
+        <li>
+          <StyledLink href={"/map"}>
+            <Icon map />
+            {atMapPage && <hr />}
           </StyledLink>
         </li>
         <li>
