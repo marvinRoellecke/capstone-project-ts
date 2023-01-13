@@ -172,7 +172,7 @@ export default function Home({
 const StyledMobileLayout = styled.div`
   display: grid;
   grid-template-rows: 4rem auto 4rem;
-  height: 100vh;
+  height: 100svh;
 
   main {
     overflow-y: scroll;

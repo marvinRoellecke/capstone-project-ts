@@ -4,40 +4,45 @@ import L from "leaflet";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function Map({ locations }) {
-  let DefaultIcon = L.icon({
+export default function Map({ locations, currentPosition }) {
+  const DefaultIcon = L.icon({
     iconUrl: "/marker.svg",
     iconSize: [30, 30],
     popupAnchor: [0, -15],
   });
+
+  const PositionIcon = L.icon({
+    iconUrl: "/position.svg",
+    iconSize: [30, 30],
+  });
+
   return (
     <>
       <MapContainer
-        center={[51.5, 10.2]}
-        zoom={6}
+        center={currentPosition === null ? [51.5, 10.2] : currentPosition}
+        zoom={currentPosition === null ? 6 : 12}
         scrollWheelZoom={true}
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
-
-        {locations.map((location) => (
-          <Marker
-            key={location.id}
-            position={location.coordinates}
-            icon={DefaultIcon}
-          >
+        {locations.map(({ id, coordinates, title, info }) => (
+          <Marker key={id} position={coordinates} icon={DefaultIcon}>
             <Popup>
-              <StyledLink href={`/${location.id}`}>
-                <h2>{location.title}</h2>
+              <StyledLink href={`/${id}`}>
+                <h2>{title}</h2>
                 <StyledTagWrapper>
-                  {location.info.map((tag) => (
-                    <StyledTag key={tag.sport}>{tag.sport}</StyledTag>
+                  {info.map(({ sport }) => (
+                    <StyledTag key={sport}>{sport}</StyledTag>
                   ))}
                 </StyledTagWrapper>
               </StyledLink>
             </Popup>
           </Marker>
         ))}
+
+        {currentPosition !== null && (
+          <Marker position={currentPosition} icon={PositionIcon}></Marker>
+        )}
       </MapContainer>
     </>
   );
