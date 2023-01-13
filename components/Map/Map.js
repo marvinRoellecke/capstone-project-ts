@@ -16,13 +16,11 @@ export default function Map({ locations, currentPosition }) {
     iconSize: [30, 30],
   });
 
-  console.log(currentPosition);
-
   return (
     <>
       <MapContainer
-        center={[51.5, 10.2]}
-        zoom={6}
+        center={currentPosition === null ? [51.5, 10.2] : currentPosition}
+        zoom={currentPosition === null ? 6 : 12}
         scrollWheelZoom={true}
         style={{ height: "100%", width: "100%" }}
       >
