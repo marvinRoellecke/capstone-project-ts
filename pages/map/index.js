@@ -30,5 +30,5 @@ export default function MapPage({ locations }) {
 const StyledMobileLayout = styled.div`
   display: grid;
   grid-template-rows: auto 4rem;
-  height: 100vh;
+  height: 100svh;
 `;
