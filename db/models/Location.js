@@ -17,7 +17,7 @@ const locationSchema = new Schema({
     postcode: { type: Number, required: true },
     city: { type: String, required: true },
   },
-  coordinates: [{ type: Number, required: false }],
+  coordinates: { type: Array, required: false },
 
   image: { type: String, required: false },
   infrastructure: {
