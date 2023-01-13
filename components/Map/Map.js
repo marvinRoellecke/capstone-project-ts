@@ -54,8 +54,6 @@ export default function Map({ locations, currentPosition }) {
   );
 }
 
-//<Marker position={currentPosition} icon={PositionIcon}></Marker>
-
 const StyledLink = styled(Link)`
   text-decoration: none;
   h2 {
