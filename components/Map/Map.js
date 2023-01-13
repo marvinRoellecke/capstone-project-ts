@@ -4,7 +4,7 @@ import L from "leaflet";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function Map({ locations }) {
+export default function Map({ locations, currentPosition }) {
   const DefaultIcon = L.icon({
     iconUrl: "/marker.svg",
     iconSize: [30, 30],
@@ -16,6 +16,8 @@ export default function Map({ locations }) {
     iconSize: [30, 30],
   });
 
+  console.log(currentPosition);
+
   return (
     <>
       <MapContainer
@@ -25,7 +27,6 @@ export default function Map({ locations }) {
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
-
         {locations.map((location) => (
           <Marker
             key={location.id}
@@ -44,10 +45,16 @@ export default function Map({ locations }) {
             </Popup>
           </Marker>
         ))}
+
+        {currentPosition !== null && (
+          <Marker position={currentPosition} icon={PositionIcon}></Marker>
+        )}
       </MapContainer>
     </>
   );
 }
+
+//<Marker position={currentPosition} icon={PositionIcon}></Marker>
 
 const StyledLink = styled(Link)`
   text-decoration: none;
