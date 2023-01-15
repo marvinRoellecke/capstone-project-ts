@@ -19,18 +19,18 @@ export default function CardLocationInfo({ currentLocation }) {
           <StyledBox>
             <Image
               src={`/img/sportLogos/icon-basketball-field.png`}
-              alt="Logo of sport"
-              width={35}
-              height={35}
+              alt="Logo of court"
+              width={40}
+              height={40}
             />
             <span>
               {numberOfCourts === 0
-                ? "keine Angabe"
+                ? "n/a"
                 : numberOfCourts === 1
                 ? "1 Spielfeld"
                 : numberOfCourts + " Spielfelder"}
             </span>
-            <span>{surface !== "" ? surface : "keine Angabe"}</span>
+            <span>{surface !== "" ? surface : "n/a"}</span>
           </StyledBox>
         </StyledBoxWrapper>
       ))}

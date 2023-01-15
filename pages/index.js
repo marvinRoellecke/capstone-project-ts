@@ -14,14 +14,17 @@ export default function Home({
 }) {
   const [filterData, setFilterData] = useState({
     sport: {
-      basketball: false,
-      fitness: false,
-      boule: false,
       football: false,
-      tennis: false,
+      basketball: false,
       beachvolleyball: false,
+      boule: false,
+      fitness: false,
+      fussball: false,
+      leichtathletik: false,
+      parkour: false,
       skateboard: false,
-      tabletennis: false,
+      tennis: false,
+      tischtennis: false,
     },
   });
   const [filterDataOther, setFilterDataOther] = useState({

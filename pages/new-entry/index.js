@@ -29,6 +29,43 @@ export default function NewEntryForm({ startFetching }) {
     return coordinates;
   }
 
+  function selectImage(sport) {
+    if (sport === "american-football") {
+      const image =
+        "https://res.cloudinary.com/didesfi8h/image/upload/v1673806279/localSports/defaultPics/american-football.webp";
+      return image;
+    }
+    if (sport === "basketball") {
+      const image =
+        "https://res.cloudinary.com/didesfi8h/image/upload/v1673270938/localSports/defaultPics/basketball.webp";
+      return image;
+    }
+    if (sport === "fussball") {
+      const image =
+        "https://res.cloudinary.com/didesfi8h/image/upload/v1673808689/localSports/defaultPics/fussball.webp";
+      return image;
+    }
+    if (sport === "parkour") {
+      const image =
+        "https://res.cloudinary.com/didesfi8h/image/upload/v1673806279/localSports/defaultPics/parkour.webp";
+      return image;
+    }
+    if (sport === "tennis") {
+      const image =
+        "https://res.cloudinary.com/didesfi8h/image/upload/v1673270938/localSports/defaultPics/tennis.webp";
+      return image;
+    }
+    if (sport === "tischtennis") {
+      const image =
+        "https://res.cloudinary.com/didesfi8h/image/upload/v1673270938/localSports/defaultPics/tischtennis.webp";
+      return image;
+    } else {
+      const image = `https://res.cloudinary.com/didesfi8h/image/upload/v1673270937/localSports/defaultPics/${sport}.webp`;
+      return image;
+      //beachvolleyball, boule, fitness, leichtathletik, skateboard
+    }
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target.elements;
@@ -52,12 +89,14 @@ export default function NewEntryForm({ startFetching }) {
 
     const coordinates = await getCoordinates(address);
 
+    const image = selectImage(info.sport);
+
     const newLocation = {
       title: title,
       info: info,
       address: address,
       coordinates: coordinates,
-      image: `https://res.cloudinary.com/didesfi8h/image/upload/v1673270938/localSports/defaultPics/${info.sport}.webp`,
+      image: image,
       infrastructure: infrastructure,
       rating: rating,
     };
