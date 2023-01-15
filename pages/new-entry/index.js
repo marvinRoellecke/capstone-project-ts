@@ -57,7 +57,7 @@ export default function NewEntryForm({ startFetching }) {
       info: info,
       address: address,
       coordinates: coordinates,
-      image: `/img/defaultPics/${info.sport}.jpg`,
+      image: `https://res.cloudinary.com/didesfi8h/image/upload/v1673270938/localSports/defaultPics/${info.sport}.webp`,
       infrastructure: infrastructure,
       rating: rating,
     };
