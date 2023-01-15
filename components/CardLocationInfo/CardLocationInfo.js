@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 export default function CardLocationInfo({ currentLocation }) {
   return (
@@ -7,12 +8,22 @@ export default function CardLocationInfo({ currentLocation }) {
       {currentLocation.info.map(({ sport, numberOfCourts, surface }) => (
         <StyledBoxWrapper key={sport}>
           <StyledBox>
-            <h3>sport</h3>
+            <Image
+              src={`/img/sportLogos/icon-${sport}.png`}
+              alt="Logo of sport"
+              width={35}
+              height={35}
+            />
             <span>{sport}</span>
           </StyledBox>
           <StyledBox>
-            <h3>courts</h3>
-            <span>{numberOfCourts}</span>
+            <Image
+              src={`/img/sportLogos/icon-basketball-field.png`}
+              alt="Logo of sport"
+              width={35}
+              height={35}
+            />
+            <span>{numberOfCourts} Spielfelder</span>
             <span>{surface}</span>
           </StyledBox>
         </StyledBoxWrapper>
@@ -21,13 +32,25 @@ export default function CardLocationInfo({ currentLocation }) {
       <StyledDivider />
       <StyledBoxWrapper>
         <StyledBox>
-          <h3>lighting</h3>
-          <span>{currentLocation.infrastructure.lighting ? "yes" : "no"}</span>
+          <Image
+            src={`/img/sportLogos/icon-light.png`}
+            alt="Logo of sport"
+            width={35}
+            height={35}
+          />
+          <h3>Beleuchtung</h3>
+          <span>{currentLocation.infrastructure.lighting ? "ja" : "nein"}</span>
         </StyledBox>
         <StyledBox>
-          <h3>wheelchair</h3>
+          <Image
+            src={`/img/sportLogos/icon-wheelchair.png`}
+            alt="Logo of sport"
+            width={35}
+            height={35}
+          />
+          <h3>Barrierefreiheit</h3>
           <span>
-            {currentLocation.infrastructure.wheelchair ? "yes" : "no"}
+            {currentLocation.infrastructure.wheelchair ? "ja" : "nein"}
           </span>
         </StyledBox>
       </StyledBoxWrapper>
@@ -63,6 +86,7 @@ const StyledBox = styled.div`
   display: grid;
   align-items: center;
   justify-items: center;
+  text-transform: capitalize;
 `;
 
 //grid-template-columns: repeat(${columns}, 1fr);
