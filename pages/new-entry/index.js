@@ -30,11 +30,6 @@ export default function NewEntryForm({ startFetching }) {
   }
 
   function selectImage(sport) {
-    if (sport === "american-football") {
-      const image =
-        "https://res.cloudinary.com/didesfi8h/image/upload/v1673806279/localSports/defaultPics/american-football.webp";
-      return image;
-    }
     if (sport === "basketball") {
       const image =
         "https://res.cloudinary.com/didesfi8h/image/upload/v1673270938/localSports/defaultPics/basketball.webp";

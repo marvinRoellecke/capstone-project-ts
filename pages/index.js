@@ -14,7 +14,6 @@ export default function Home({
 }) {
   const [filterData, setFilterData] = useState({
     sport: {
-      football: false,
       basketball: false,
       beachvolleyball: false,
       boule: false,
