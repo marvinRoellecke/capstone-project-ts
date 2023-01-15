@@ -27,8 +27,6 @@ export default function Home({
   const [filterDataOther, setFilterDataOther] = useState({
     lighting: false,
     wheelchair: false,
-    outdoor: false,
-    public: false,
   });
   const [cityFilter, setCityFilter] = useState();
   const [sortData, setSortData] = useState();

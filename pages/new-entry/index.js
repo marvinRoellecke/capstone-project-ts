@@ -48,8 +48,6 @@ export default function NewEntryForm({ startFetching }) {
       lighting: form.lighting.checked,
       wheelchair: form.wheelchair.checked,
     };
-    const outdoor = form.outdoor.checked;
-    const isPublic = form.isPublic.checked;
     const rating = Number(form.rating.value);
 
     const coordinates = await getCoordinates(address);
@@ -61,8 +59,6 @@ export default function NewEntryForm({ startFetching }) {
       coordinates: coordinates,
       image: `/img/defaultPics/${info.sport}.jpg`,
       infrastructure: infrastructure,
-      outdoor: outdoor,
-      public: isPublic,
       rating: rating,
     };
 
@@ -169,8 +165,6 @@ export default function NewEntryForm({ startFetching }) {
                 id="wheelchair"
                 label="barrierefrei"
               />
-              <InputCheckbox type="checkbox" id="outdoor" label="outdoor" />
-              <InputCheckbox type="checkbox" id="isPublic" label="öffentlich" />
             </fieldset>
             <fieldset>
               <StyledRangeLabel htmlFor="rating">Bewertung</StyledRangeLabel>
