@@ -23,8 +23,14 @@ export default function CardLocationInfo({ currentLocation }) {
               width={35}
               height={35}
             />
-            <span>{numberOfCourts} Spielfelder</span>
-            <span>{surface}</span>
+            <span>
+              {numberOfCourts === 0
+                ? "keine Angabe"
+                : numberOfCourts === 1
+                ? "1 Spielfeld"
+                : numberOfCourts + " Spielfelder"}
+            </span>
+            <span>{surface !== "" ? surface : "keine Angabe"}</span>
           </StyledBox>
         </StyledBoxWrapper>
       ))}
