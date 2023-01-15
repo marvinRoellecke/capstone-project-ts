@@ -4,23 +4,22 @@ export default function CardLocationInfo({ currentLocation }) {
   return (
     <>
       <StyledDivider />
-      <StyledBoxWrapper columns={3}>
-        <StyledBox>
-          <h3>sport</h3>
-          <span>{currentLocation.info[0].sport}</span>
-        </StyledBox>
-        <StyledBox>
-          <h3>courts</h3>
-          <span>{currentLocation.info[0].numberOfCourts}</span>
-        </StyledBox>
-        <StyledBox>
-          <h3>surface</h3>
-          <span>{currentLocation.info[0].surface}</span>
-        </StyledBox>
-      </StyledBoxWrapper>
+      {currentLocation.info.map(({ sport, numberOfCourts, surface }) => (
+        <StyledBoxWrapper key={sport}>
+          <StyledBox>
+            <h3>sport</h3>
+            <span>{sport}</span>
+          </StyledBox>
+          <StyledBox>
+            <h3>courts</h3>
+            <span>{numberOfCourts}</span>
+            <span>{surface}</span>
+          </StyledBox>
+        </StyledBoxWrapper>
+      ))}
 
       <StyledDivider />
-      <StyledBoxWrapper columns={2}>
+      <StyledBoxWrapper>
         <StyledBox>
           <h3>lighting</h3>
           <span>{currentLocation.infrastructure.lighting ? "yes" : "no"}</span>
@@ -30,12 +29,6 @@ export default function CardLocationInfo({ currentLocation }) {
           <span>
             {currentLocation.infrastructure.wheelchair ? "yes" : "no"}
           </span>
-        </StyledBox>
-        <StyledBox>
-          <h3>{currentLocation.outdoor ? "outdoor" : "indoor"}</h3>
-        </StyledBox>
-        <StyledBox>
-          <h3>{currentLocation.public ? "public" : "private"}</h3>{" "}
         </StyledBox>
       </StyledBoxWrapper>
     </>
@@ -53,16 +46,17 @@ const StyledDivider = styled.aside`
 
 const StyledBoxWrapper = styled.article`
   display: grid;
-  grid-template-columns: ${({ columns }) => `repeat(${columns}, 1fr)`};
+  grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   justify-content: space-evenly;
   gap: 0.5rem;
+  margin-top: 1rem;
 `;
 
 const StyledBox = styled.div`
   font-size: 0.8rem;
-  height: 7rem;
-  min-width: 7rem;
+  height: 8rem;
+  min-width: 8rem;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
   padding: 1rem;
