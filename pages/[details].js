@@ -89,17 +89,7 @@ export default function DetailsPage({
             {locationAddress.postcode} {locationAddress.city}
           </StyledAddress>
         </StyledAdressLink>
-        <CardLocationInfo title={"Description"}>
-          Lorem ipsum dolor sit amet, pro lorem graeco consequuntur no, pri an
-          dictas placerat, pri labore delenit no. Ad sea errem legendos, et eos
-          posse prompta. An adhuc aliquam vis, commune nominavi ex pro, legere
-          quidam essent cu duo. Diceret postulant vis no, nam in commodo
-          labitur, in dicit viris legendos pri. Virtute sententiae no quo, ea
-          malis soluta convenire vis, volutpat argumentum voluptatibus id sea.
-        </CardLocationInfo>
-        <CardLocationInfo title={"Opening Times"}>
-          8:00 - 22:00
-        </CardLocationInfo>
+        <CardLocationInfo currentLocation={currentLocation} />
       </main>
     </StyledContainer>
   );

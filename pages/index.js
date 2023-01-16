@@ -15,20 +15,20 @@ export default function Home({
   const [filterData, setFilterData] = useState({
     sport: {
       basketball: false,
-      fitness: false,
-      boule: false,
-      football: false,
-      tennis: false,
       beachvolleyball: false,
+      boule: false,
+      fitness: false,
+      fussball: false,
+      leichtathletik: false,
+      parkour: false,
       skateboard: false,
-      tabletennis: false,
+      tennis: false,
+      tischtennis: false,
     },
   });
   const [filterDataOther, setFilterDataOther] = useState({
     lighting: false,
     wheelchair: false,
-    outdoor: false,
-    public: false,
   });
   const [cityFilter, setCityFilter] = useState();
   const [sortData, setSortData] = useState();
