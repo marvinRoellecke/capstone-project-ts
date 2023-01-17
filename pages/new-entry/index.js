@@ -5,35 +5,36 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import InputText from "../../components/Inputs/InputText";
 import InputCheckbox from "../../components/Inputs/InputCheckbox";
+import PreviewImage from "../../components/PreviewImage/PreviewImage";
 import { selectSports, selectSurfaces } from "../../lib/data/selectData";
 import Image from "next/image";
 
 export default function NewEntryForm({ startFetching }) {
   const [isSent, setIsSent] = useState(false);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(null);
+  const [imageValue, setImageValue] = useState("");
   const [isUploading, setIsUploading] = useState(false);
 
   async function handleFileUpload(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-
     formData.append("file", image);
     formData.append("upload_preset", process.env.NEXT_PUBLIC_UPLOAD_PRESET);
 
     setIsUploading(true);
 
-    const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_UPLOAD_PRESET}/image/upload`;
+    const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDNAME}/image/upload`;
     const response = await fetch(url, {
       method: "POST",
       body: formData,
     });
-    const json = await response.json();
+    const uploadData = await response.json();
 
+    setImage(null);
     setIsUploading(false);
 
-    const formValues = Object.fromEntries(formData);
-    console.log(formValues, "from Entries");
+    return uploadData.secure_url;
   }
 
   async function handleCreateNewNote(newLocation) {
@@ -89,6 +90,7 @@ export default function NewEntryForm({ startFetching }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     const form = event.target.elements;
     const title = form.title.value;
     const info = {
@@ -110,7 +112,8 @@ export default function NewEntryForm({ startFetching }) {
 
     const coordinates = await getCoordinates(address);
 
-    const image = selectImage(info.sport);
+    const image = await handleFileUpload(event);
+    //const image = selectImage(info.sport);
 
     const newLocation = {
       title: title,
@@ -246,7 +249,23 @@ export default function NewEntryForm({ startFetching }) {
                 <option value="5" label="5"></option>
               </datalist>
             </fieldset>
-            <button type="submit">Hinzufügen</button>
+            <label htmlFor="imgUpload">Bild auswählen</label>
+            <input
+              type="file"
+              name="file"
+              id="imgUpload"
+              value={imageValue}
+              onChange={(event) => {
+                setImageValue(event.target.value);
+                setImage(event.target.files[0]);
+              }}
+            />
+
+            {image && <PreviewImage file={image} />}
+
+            <button type="submit">
+              {isUploading ? "hochladen..." : "Hinzufügen"}
+            </button>
           </StyledForm>
         </main>
         <Footer atNewEntryForm />
