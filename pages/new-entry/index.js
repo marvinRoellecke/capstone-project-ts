@@ -6,6 +6,7 @@ import Footer from "../../components/Footer/Footer";
 import InputText from "../../components/Inputs/InputText";
 import InputCheckbox from "../../components/Inputs/InputCheckbox";
 import PreviewImage from "../../components/PreviewImage/PreviewImage";
+import Icon from "../../components/Icon/Icon";
 import { selectSports, selectSurfaces } from "../../lib/data/selectData";
 
 export default function NewEntryForm({ startFetching }) {
@@ -250,20 +251,28 @@ export default function NewEntryForm({ startFetching }) {
                 <option value="5" label="5"></option>
               </datalist>
             </fieldset>
-            <label htmlFor="imgUpload">Bild auswählen</label>
-            <input
-              type="file"
-              name="file"
-              id="imgUpload"
-              value={imageValue}
-              onChange={(event) => {
-                setImageValue(event.target.value);
-                setImage(event.target.files[0]);
-              }}
-            />
+            <fieldset>
+              <label htmlFor="imgUpload">
+                {!image && (
+                  <>
+                    <Icon image />
+                    <Icon add />
+                  </>
+                )}
+              </label>
+              <StyledImageUpload
+                type="file"
+                name="file"
+                id="imgUpload"
+                value={imageValue}
+                onChange={(event) => {
+                  setImageValue(event.target.value);
+                  setImage(event.target.files[0]);
+                }}
+              />
 
-            {image && <PreviewImage file={image} />}
-
+              {image && <PreviewImage file={image} />}
+            </fieldset>
             <button type="submit">
               {isUploading ? "hochladen..." : "Hinzufügen"}
             </button>
@@ -370,4 +379,8 @@ const StyledRangeLabel = styled.label`
   color: #999;
   margin-top: 1rem;
   margin-bottom: 0.2rem;
+`;
+
+const StyledImageUpload = styled.input`
+  display: none;
 `;
