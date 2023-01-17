@@ -189,7 +189,7 @@ export default function NewEntryForm({ startFetching }) {
                 ))}
               </select>
             </fieldset>
-            <fieldset>
+            <StyledAddressFields>
               <legend>Adresse</legend>
               <InputText
                 type="text"
@@ -201,7 +201,7 @@ export default function NewEntryForm({ startFetching }) {
               <InputText
                 type="number"
                 id="houseNumber"
-                label="Hausnummer"
+                label="Hausnr."
                 max={99999}
                 min={0}
                 required={true}
@@ -211,7 +211,7 @@ export default function NewEntryForm({ startFetching }) {
                 id="postcode"
                 max={99999}
                 min={0}
-                label="Postleitzahl"
+                label="PLZ"
                 required={true}
               />
               <InputText
@@ -221,7 +221,7 @@ export default function NewEntryForm({ startFetching }) {
                 maxLength="40"
                 required={true}
               />
-            </fieldset>
+            </StyledAddressFields>
             <fieldset id="infrastructure">
               <legend>Infrastruktur</legend>
               <InputCheckbox type="checkbox" id="lighting" label="beleuchtet" />
@@ -252,14 +252,15 @@ export default function NewEntryForm({ startFetching }) {
               </datalist>
             </fieldset>
             <fieldset>
-              <label htmlFor="imgUpload">
+              <StyledImageLabel htmlFor="imgUpload">
                 {!image && (
                   <>
                     <Icon image />
-                    <Icon add />
+                    Bild auswählen
                   </>
                 )}
-              </label>
+                {image && <PreviewImage file={image} />}
+              </StyledImageLabel>
               <StyledImageUpload
                 type="file"
                 name="file"
@@ -270,8 +271,6 @@ export default function NewEntryForm({ startFetching }) {
                   setImage(event.target.files[0]);
                 }}
               />
-
-              {image && <PreviewImage file={image} />}
             </fieldset>
             <button type="submit">
               {isUploading ? "hochladen..." : "Hinzufügen"}
@@ -325,6 +324,10 @@ const StyledForm = styled.form`
     grid-template-columns: 1fr 1fr;
   }
 
+  fieldset:last-of-type {
+    margin-top: 1rem;
+  }
+
   legend {
     display: none;
   }
@@ -352,13 +355,14 @@ const StyledForm = styled.form`
 
   button {
     justify-self: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     padding: 0.5rem 0.8rem;
     font-size: 1.5rem;
     background-color: green;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
   }
 
   datalist {
@@ -381,6 +385,33 @@ const StyledRangeLabel = styled.label`
   margin-bottom: 0.2rem;
 `;
 
+const StyledAddressFields = styled.fieldset`
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto;
+  gap: 1rem;
+
+  div:nth-of-type(1) {
+    grid-column: 1 / span 2;
+  }
+  div:nth-of-type(4) {
+    grid-column: 2 / span 2;
+  }
+`;
+
 const StyledImageUpload = styled.input`
   display: none;
+`;
+
+const StyledImageLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  height: 150px;
+  width: 150px;
+  position: relative;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  color: grey;
 `;

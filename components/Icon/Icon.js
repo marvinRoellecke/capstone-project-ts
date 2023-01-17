@@ -1,9 +1,7 @@
 import {
-  IoAddCircle,
   IoListOutline,
   IoLocationSharp,
   IoChevronBackOutline,
-  IoCreate,
   IoCreateOutline,
   IoMapOutline,
   IoImageOutline,
@@ -16,7 +14,6 @@ import {
 import styled from "styled-components";
 
 export default function Icon({
-  add,
   back,
   create,
   favorite,
@@ -45,7 +42,6 @@ export default function Icon({
       {location && <IoLocationSharp />}
       {image && <StyledImage />}
       {star && <StyledStarIcon />}
-      {add && <StyledAdd />}
     </>
   );
 }
@@ -65,13 +61,5 @@ const StyledStarIcon = styled(IoStar)`
 const StyledImage = styled(IoImageOutline)`
   color: grey;
   height: 4rem;
-  width: auto;
-`;
-
-const StyledAdd = styled(IoAddCircle)`
-  position: relative;
-  left: -2rem;
-  color: grey;
-  height: 2rem;
   width: auto;
 `;
