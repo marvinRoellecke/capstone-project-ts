@@ -6,9 +6,35 @@ import Footer from "../../components/Footer/Footer";
 import InputText from "../../components/Inputs/InputText";
 import InputCheckbox from "../../components/Inputs/InputCheckbox";
 import { selectSports, selectSurfaces } from "../../lib/data/selectData";
+import Image from "next/image";
 
 export default function NewEntryForm({ startFetching }) {
   const [isSent, setIsSent] = useState(false);
+  const [image, setImage] = useState();
+  const [isUploading, setIsUploading] = useState(false);
+
+  async function handleFileUpload(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    formData.append("file", image);
+    formData.append("upload_preset", process.env.NEXT_PUBLIC_UPLOAD_PRESET);
+
+    setIsUploading(true);
+
+    const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_UPLOAD_PRESET}/image/upload`;
+    const response = await fetch(url, {
+      method: "POST",
+      body: formData,
+    });
+    const json = await response.json();
+
+    setIsUploading(false);
+
+    const formValues = Object.fromEntries(formData);
+    console.log(formValues, "from Entries");
+  }
 
   async function handleCreateNewNote(newLocation) {
     await fetch("/api/locations", {
