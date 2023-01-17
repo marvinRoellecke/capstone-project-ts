@@ -7,7 +7,6 @@ import InputText from "../../components/Inputs/InputText";
 import InputCheckbox from "../../components/Inputs/InputCheckbox";
 import PreviewImage from "../../components/PreviewImage/PreviewImage";
 import { selectSports, selectSurfaces } from "../../lib/data/selectData";
-import Image from "next/image";
 
 export default function NewEntryForm({ startFetching }) {
   const [isSent, setIsSent] = useState(false);
@@ -112,15 +111,17 @@ export default function NewEntryForm({ startFetching }) {
 
     const coordinates = await getCoordinates(address);
 
-    const image = await handleFileUpload(event);
-    //const image = selectImage(info.sport);
+    const imageURL =
+      event.target.imgUpload.value === ""
+        ? selectImage(info.sport)
+        : await handleFileUpload(event);
 
     const newLocation = {
       title: title,
       info: info,
       address: address,
       coordinates: coordinates,
-      image: image,
+      image: imageURL,
       infrastructure: infrastructure,
       rating: rating,
     };
