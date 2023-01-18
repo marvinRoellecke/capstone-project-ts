@@ -25,10 +25,11 @@ export default function Map({ locations, currentPosition }) {
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png" />
-        {locations.map(({ id, coordinates, title, info }) => (
+        {locations.map(({ id, coordinates, title, info, image }) => (
           <Marker key={id} position={coordinates} icon={DefaultIcon}>
             <Popup>
               <StyledLink href={`/${id}`}>
+                <StyledImageContainer image={image} />
                 <h2>{title}</h2>
                 <StyledTagWrapper>
                   {info.map(({ sport }) => (
@@ -74,4 +75,13 @@ const StyledTag = styled.span`
   padding: 0 2px;
   white-space: nowrap;
   color: var(--color-foreground);
+`;
+
+const StyledImageContainer = styled.div`
+  height: 8rem;
+  background-image: url(${(props) => props.image});
+  background-position: center;
+  background-size: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
