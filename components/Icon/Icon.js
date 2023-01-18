@@ -49,7 +49,7 @@ export default function Icon({
 const IconStyleWrapper = styled.span`
   & > * {
     width: auto;
-    height: 2rem;
+    height: 1.6rem;
     cursor: pointer;
   }
 `;
