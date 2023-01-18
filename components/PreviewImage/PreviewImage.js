@@ -9,7 +9,7 @@ export default function PreviewImage({ file }) {
       src={src}
       alt="image to upload"
       fill={true}
-      style={{ objectFit: "cover" }}
+      style={{ objectFit: "cover", borderRadius: "var(--border-radius)" }}
     />
   );
 }
