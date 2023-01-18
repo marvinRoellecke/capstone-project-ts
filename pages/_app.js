@@ -1,8 +1,17 @@
 import GlobalStyles from "../components/GlobalStyles";
 import { useState, useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
+import useCurrentPosition from "../helpers/useCurrentPosition";
 
 export default function App({ Component, pageProps }) {
+  const currentPosition = useCurrentPosition();
+
+  const [locations, setLocations] = useState([]);
+  const defaultFavorites = [];
+  const [favorites, setFavorites] = useLocalStorageState("favorites", {
+    defaultValue: defaultFavorites,
+  });
+
   async function startFetching() {
     try {
       const response = await fetch("/api/locations");
@@ -16,13 +25,6 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     startFetching();
   }, []);
-
-  //favorite function
-  const [locations, setLocations] = useState([]);
-  const defaultFavorites = [];
-  const [favorites, setFavorites] = useLocalStorageState("favorites", {
-    defaultValue: defaultFavorites,
-  });
 
   function handleToggleFavorite(event, id) {
     event.preventDefault();
@@ -44,6 +46,7 @@ export default function App({ Component, pageProps }) {
         favorites={favorites}
         setLocations={setLocations}
         startFetching={startFetching}
+        currentPosition={currentPosition}
       />
     </>
   );
