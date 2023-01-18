@@ -66,6 +66,7 @@ export default function DetailsPage({
       {isCopied && <StyledPopUp>in die Zwischenablage kopiert</StyledPopUp>}
 
       <StyledImageContainer image={currentLocation.image} />
+
       <main>
         <StyledCaptionWrapper>
           <StyledTagWrapper>
@@ -100,7 +101,10 @@ const StyledContainer = styled.div`
   flex-direction: column;
 
   main {
-    margin: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
+    position: relative;
+    top: -2rem;
+    border-radius: 1rem 1rem 0 0;
   }
 `;
 
@@ -127,7 +131,7 @@ const StyledBackButton = styled.button`
 
 const StyledTitle = styled.h2`
   font-size: 1rem;
-  margin-left: 0.5rem;
+  margin-left: 1.5rem;
 `;
 
 const StyledButtonWrapper = styled.div`
@@ -158,7 +162,7 @@ const StyledPopUp = styled.div`
 `;
 
 const StyledImageContainer = styled.div`
-  height: 12rem;
+  height: 17rem;
   background-image: var(--background-filter-toBottom),
     url(${(props) => props.image});
   background-position: center;
