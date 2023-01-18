@@ -265,6 +265,7 @@ export default function NewEntryForm({ startFetching }) {
                 type="file"
                 name="file"
                 id="imgUpload"
+                accept="image/*"
                 value={imageValue}
                 onChange={(event) => {
                   setImageValue(event.target.value);
@@ -408,8 +409,8 @@ const StyledImageLabel = styled.label`
   justify-content: center;
   align-items: center;
   justify-self: center;
-  height: 150px;
-  width: 150px;
+  height: 8rem;
+  width: 8rem;
   position: relative;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
