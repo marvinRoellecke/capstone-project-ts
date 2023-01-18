@@ -358,12 +358,13 @@ const StyledForm = styled.form`
     justify-self: center;
     margin-top: 1rem;
     padding: 0.5rem 0.8rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     background-color: green;
     color: white;
     border: none;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    width: 100%;
   }
 
   datalist {
