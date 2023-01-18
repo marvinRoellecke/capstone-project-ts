@@ -24,7 +24,7 @@ export default function Map({ locations, currentPosition }) {
         scrollWheelZoom={true}
         style={{ height: "100%", width: "100%" }}
       >
-        <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
+        <TileLayer url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png" />
         {locations.map(({ id, coordinates, title, info }) => (
           <Marker key={id} position={coordinates} icon={DefaultIcon}>
             <Popup>
