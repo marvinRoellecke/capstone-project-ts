@@ -76,7 +76,7 @@ export default function FilterMenu({
           type="text"
           name="city"
           id="city"
-          onBlur={onCityFilter}
+          onChange={onCityFilter}
           defaultValue={cityFilter}
         />
       </StyledInputWrapper>
@@ -97,6 +97,7 @@ const StyledMenu = styled.div`
 const StyledButton = styled.button`
   background: none;
   border: none;
+  margin: 1rem 0 0 0.5rem;
 `;
 
 const StyledH2 = styled.h2`
