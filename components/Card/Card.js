@@ -70,7 +70,7 @@ const StyledButton = styled.button`
 
 const StyledTitle = styled.h2`
   grid-area: title;
-  font-size: 1rem;
+  font-size: 0.9rem;
   overflow: hidden;
 `;
 

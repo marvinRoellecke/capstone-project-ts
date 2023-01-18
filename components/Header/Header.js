@@ -40,4 +40,9 @@ const StyledH2 = styled.h2`
 const StyledButton = styled.button`
   background: none;
   border: none;
+
+  &:hover {
+    transform: scale(1.2);
+    transition: all 0.2s ease;
+  }
 `;

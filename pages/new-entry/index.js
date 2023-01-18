@@ -365,6 +365,11 @@ const StyledForm = styled.form`
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     width: 100%;
+
+    &:hover {
+      transform: scale(1.02);
+      transition: all 0.2s ease;
+    }
   }
 
   datalist {
