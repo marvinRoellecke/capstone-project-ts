@@ -89,9 +89,8 @@ const StyledMenu = styled.div`
   right: 0;
   z-index: 1;
   height: 100vh;
-  width: 60%;
+  width: 50%;
   background-color: var(--color-background);
-  opacity: 0.95;
 `;
 
 const StyledButton = styled.button`
