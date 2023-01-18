@@ -46,6 +46,7 @@ export default function CardLocationInfo({ currentLocation }) {
           <span>Barrierefreiheit</span>
         </StyledBoxOther>
       </StyledBoxOtherWrapper>
+      <StyledDivider />
     </>
   );
 }

@@ -4,6 +4,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import CardLocationInfo from "../components/CardLocationInfo/CardLocationInfo";
 import Icon from "../components/Icon/Icon";
+import dynamic from "next/dynamic";
+import useCurrentPosition from "../helpers/useCurrentPosition";
 
 export default function DetailsPage({
   locations,
@@ -18,6 +20,12 @@ export default function DetailsPage({
   const locationAddress = currentLocation?.address;
   const isFavorite = favorites.includes(currentLocation?.id);
   const [isCopied, setIsCopied] = useState(false);
+
+  const MapSingle = dynamic(() => import("../components/Map/MapSingle"), {
+    loading: () => <p>Map is loading</p>,
+    ssr: false,
+  });
+  const currentPosition = useCurrentPosition();
 
   async function handleShare() {
     if (navigator.share) {
@@ -91,6 +99,12 @@ export default function DetailsPage({
           </StyledAddress>
         </StyledAdressLink>
         <CardLocationInfo currentLocation={currentLocation} />
+        <StyledMapWrapper>
+          <MapSingle
+            currentLocation={currentLocation}
+            currentPosition={currentPosition}
+          />
+        </StyledMapWrapper>
       </main>
     </StyledContainer>
   );
@@ -206,4 +220,11 @@ const StyledAddress = styled.p`
 
 const StyledAdressLink = styled(Link)`
   color: var(--foreground-color);
+`;
+
+const StyledMapWrapper = styled.div`
+  height: 12rem;
+  width: 100%;
+  margin: 0;
+  box-shadow: var(--box-shadow);
 `;
