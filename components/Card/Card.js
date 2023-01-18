@@ -39,7 +39,7 @@ const StyledLink = styled(Link)`
 
 const StyledLi = styled.li`
   font-size: 0.8rem;
-  height: 10rem;
+  height: 8rem;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
   margin: 0 1rem;
@@ -109,4 +109,5 @@ const StyledAddress = styled.span`
   align-items: center;
   justify-content: flex-end;
   gap: 0.3rem;
+  margin: 0.2rem 0;
 `;
