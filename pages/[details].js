@@ -63,7 +63,7 @@ export default function DetailsPage({
           </StyledButton>
         </StyledButtonWrapper>
       </StyledHeader>
-      {isCopied && <StyledPopUp>copied to clipboard</StyledPopUp>}
+      {isCopied && <StyledPopUp>in die Zwischenablage kopiert</StyledPopUp>}
 
       <StyledImageContainer image={currentLocation.image} />
       <main>

@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import Icon from "../Icon/Icon";
 
-export default function Header({ onShowFilterMenu, filterMenu, addLocation }) {
+export default function Header({
+  onShowFilterMenu,
+  filterMenu,
+  addLocation,
+  favoriteLabel,
+}) {
   return (
     <StyledHeader>
       <StyledH1>localSports</StyledH1>
@@ -10,7 +15,8 @@ export default function Header({ onShowFilterMenu, filterMenu, addLocation }) {
           <Icon option />
         </StyledButton>
       )}
-      {addLocation && <StyledH2 id="formTitle">add location</StyledH2>}
+      {addLocation && <StyledH2 id="formTitle">Platz hinzufügen</StyledH2>}
+      {favoriteLabel && <StyledH2 id="formTitle">Favoriten</StyledH2>}
     </StyledHeader>
   );
 }

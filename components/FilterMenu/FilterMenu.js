@@ -63,7 +63,9 @@ export default function FilterMenu({
             onChange={(event) => onFilterOther(event, entry[0])}
             checked={entry[1]}
           />
-          <StyledLabel htmlFor={entry[0]}>{entry}</StyledLabel>
+          <StyledLabel htmlFor={entry[0]}>
+            {entry[0] === "lighting" ? "beleuchted" : "barrierefrei"}
+          </StyledLabel>
         </StyledInputWrapper>
       ))}
 
