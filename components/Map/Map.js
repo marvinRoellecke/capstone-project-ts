@@ -19,8 +19,8 @@ export default function Map({ locations, currentPosition }) {
   return (
     <>
       <MapContainer
-        center={currentPosition === null ? [51.5, 10.2] : currentPosition}
-        zoom={currentPosition === null ? 6 : 12}
+        center={[51.5, 10.2]}
+        zoom={6}
         scrollWheelZoom={true}
         style={{ height: "100%", width: "100%" }}
       >
