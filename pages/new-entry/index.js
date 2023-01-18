@@ -5,10 +5,37 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import InputText from "../../components/Inputs/InputText";
 import InputCheckbox from "../../components/Inputs/InputCheckbox";
+import PreviewImage from "../../components/PreviewImage/PreviewImage";
+import Icon from "../../components/Icon/Icon";
 import { selectSports, selectSurfaces } from "../../lib/data/selectData";
 
 export default function NewEntryForm({ startFetching }) {
   const [isSent, setIsSent] = useState(false);
+  const [image, setImage] = useState(null);
+  const [imageValue, setImageValue] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
+
+  async function handleFileUpload(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    formData.append("file", image);
+    formData.append("upload_preset", process.env.NEXT_PUBLIC_UPLOAD_PRESET);
+
+    setIsUploading(true);
+
+    const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDNAME}/image/upload`;
+    const response = await fetch(url, {
+      method: "POST",
+      body: formData,
+    });
+    const uploadData = await response.json();
+
+    setImage(null);
+    setIsUploading(false);
+
+    return uploadData.secure_url;
+  }
 
   async function handleCreateNewNote(newLocation) {
     await fetch("/api/locations", {
@@ -63,6 +90,7 @@ export default function NewEntryForm({ startFetching }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     const form = event.target.elements;
     const title = form.title.value;
     const info = {
@@ -84,14 +112,17 @@ export default function NewEntryForm({ startFetching }) {
 
     const coordinates = await getCoordinates(address);
 
-    const image = selectImage(info.sport);
+    const imageURL =
+      event.target.imgUpload.value === ""
+        ? selectImage(info.sport)
+        : await handleFileUpload(event);
 
     const newLocation = {
       title: title,
       info: info,
       address: address,
       coordinates: coordinates,
-      image: image,
+      image: imageURL,
       infrastructure: infrastructure,
       rating: rating,
     };
@@ -158,7 +189,7 @@ export default function NewEntryForm({ startFetching }) {
                 ))}
               </select>
             </fieldset>
-            <fieldset>
+            <StyledAddressFields>
               <legend>Adresse</legend>
               <InputText
                 type="text"
@@ -170,7 +201,7 @@ export default function NewEntryForm({ startFetching }) {
               <InputText
                 type="number"
                 id="houseNumber"
-                label="Hausnummer"
+                label="Hausnr."
                 max={99999}
                 min={0}
                 required={true}
@@ -180,7 +211,7 @@ export default function NewEntryForm({ startFetching }) {
                 id="postcode"
                 max={99999}
                 min={0}
-                label="Postleitzahl"
+                label="PLZ"
                 required={true}
               />
               <InputText
@@ -190,7 +221,7 @@ export default function NewEntryForm({ startFetching }) {
                 maxLength="40"
                 required={true}
               />
-            </fieldset>
+            </StyledAddressFields>
             <fieldset id="infrastructure">
               <legend>Infrastruktur</legend>
               <InputCheckbox type="checkbox" id="lighting" label="beleuchtet" />
@@ -220,7 +251,31 @@ export default function NewEntryForm({ startFetching }) {
                 <option value="5" label="5"></option>
               </datalist>
             </fieldset>
-            <button type="submit">Hinzufügen</button>
+            <fieldset>
+              <StyledImageLabel htmlFor="imgUpload">
+                {!image && (
+                  <>
+                    <Icon image />
+                    Bild auswählen
+                  </>
+                )}
+                {image && <PreviewImage file={image} />}
+              </StyledImageLabel>
+              <StyledImageUpload
+                type="file"
+                name="file"
+                id="imgUpload"
+                accept="image/*"
+                value={imageValue}
+                onChange={(event) => {
+                  setImageValue(event.target.value);
+                  setImage(event.target.files[0]);
+                }}
+              />
+            </fieldset>
+            <button type="submit">
+              {isUploading ? "hochladen..." : "Hinzufügen"}
+            </button>
           </StyledForm>
         </main>
         <Footer atNewEntryForm />
@@ -270,6 +325,10 @@ const StyledForm = styled.form`
     grid-template-columns: 1fr 1fr;
   }
 
+  fieldset:last-of-type {
+    margin-top: 1rem;
+  }
+
   legend {
     display: none;
   }
@@ -297,13 +356,14 @@ const StyledForm = styled.form`
 
   button {
     justify-self: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     padding: 0.5rem 0.8rem;
     font-size: 1.5rem;
     background-color: green;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
   }
 
   datalist {
@@ -324,4 +384,35 @@ const StyledRangeLabel = styled.label`
   color: #999;
   margin-top: 1rem;
   margin-bottom: 0.2rem;
+`;
+
+const StyledAddressFields = styled.fieldset`
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto;
+  gap: 1rem;
+
+  div:nth-of-type(1) {
+    grid-column: 1 / span 2;
+  }
+  div:nth-of-type(4) {
+    grid-column: 2 / span 2;
+  }
+`;
+
+const StyledImageUpload = styled.input`
+  display: none;
+`;
+
+const StyledImageLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  height: 8rem;
+  width: 8rem;
+  position: relative;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  color: grey;
 `;

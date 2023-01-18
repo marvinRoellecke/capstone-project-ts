@@ -2,9 +2,9 @@ import {
   IoListOutline,
   IoLocationSharp,
   IoChevronBackOutline,
-  IoCreate,
   IoCreateOutline,
   IoMapOutline,
+  IoImageOutline,
   IoShareOutline,
   IoStar,
   IoHeartOutline,
@@ -20,6 +20,7 @@ export default function Icon({
   isFavorite,
   location,
   map,
+  image,
   list,
   option,
   share,
@@ -32,13 +33,14 @@ export default function Icon({
         {create && <IoCreateOutline />}
         {favorite && !isFavorite && <IoHeartOutline />}
         {favorite && isFavorite && <IoHeart />}
-        {list && <IoListOutline />}
         {map && <IoMapOutline />}
+        {list && <IoListOutline />}
         {option && <IoOptionsOutline />}
         {share && <IoShareOutline />}
       </IconStyleWrapper>
 
       {location && <IoLocationSharp />}
+      {image && <StyledImage />}
       {star && <StyledStarIcon />}
     </>
   );
@@ -54,4 +56,10 @@ const IconStyleWrapper = styled.span`
 
 const StyledStarIcon = styled(IoStar)`
   color: var(--color-star);
+`;
+
+const StyledImage = styled(IoImageOutline)`
+  color: grey;
+  height: 4rem;
+  width: auto;
 `;

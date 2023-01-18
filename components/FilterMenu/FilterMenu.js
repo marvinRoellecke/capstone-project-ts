@@ -19,7 +19,7 @@ export default function FilterMenu({
         <Icon back />
       </StyledButton>
 
-      <StyledH2>sort</StyledH2>
+      <StyledH2>sortieren</StyledH2>
       <label htmlFor="sort"></label>
       <StyledSelect
         name="sort"
@@ -27,11 +27,11 @@ export default function FilterMenu({
         value={sortData}
         onChange={onChangeSort}
       >
-        <option value="default">choose option</option>
-        <option value="sortTitle1">a - z</option>
-        <option value="sortTitle-1">z - a</option>
-        <option value="sortRating1">rating up</option>
-        <option value="sortRating-1">rating down</option>
+        <option value="default">Wähle Option</option>
+        <option value="sortTitle1">A - Z</option>
+        <option value="sortTitle-1">Z - A</option>
+        <option value="sortRating1">Bewertung aufsteigend</option>
+        <option value="sortRating-1">Bewertung absteigend</option>
       </StyledSelect>
 
       <StyledH2>filter</StyledH2>
@@ -53,7 +53,7 @@ export default function FilterMenu({
         </Fragment>
       ))}
 
-      <StyledH3>other</StyledH3>
+      <StyledH3>weitere</StyledH3>
       {Object.entries(filterDataOther).map((entry) => (
         <StyledInputWrapper key={entry[0]}>
           <StyledInput
@@ -67,7 +67,7 @@ export default function FilterMenu({
         </StyledInputWrapper>
       ))}
 
-      <StyledH3>city</StyledH3>
+      <StyledH3>stadt</StyledH3>
       <StyledInputWrapper>
         <StyledLabel htmlFor="city"></StyledLabel>
         <StyledInput
