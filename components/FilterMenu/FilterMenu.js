@@ -12,9 +12,10 @@ export default function FilterMenu({
   filterDataOther,
   cityFilter,
   sortData,
+  isShowingFilterMenu,
 }) {
   return (
-    <StyledMenu>
+    <StyledMenu isShowingFilterMenu={isShowingFilterMenu}>
       <StyledButton type="button" onClick={onShowFilterMenu}>
         <Icon back />
       </StyledButton>
@@ -88,15 +89,23 @@ const StyledMenu = styled.div`
   position: fixed;
   right: 0;
   z-index: 1;
-  height: 100vh;
-  width: 50%;
+  height: fit-content;
+  width: ${(props) => (props.isShowingFilterMenu ? "50%" : 0)};
   background-color: var(--color-background);
+  padding-bottom: 1rem;
+  border-radius: 0 0 0 1rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: width 0.5s ease-in-out 0.1s;
+  display: flex;
+  flex-direction: column;
 `;
 
 const StyledButton = styled.button`
   background: none;
   border: none;
   margin: 1rem 0 0 0.5rem;
+  align-self: flex-start;
 `;
 
 const StyledH2 = styled.h2`
@@ -115,14 +124,18 @@ const StyledH3 = styled.h3`
 
 const StyledSelect = styled.select`
   margin-left: 0.5rem;
+  margin-right: 0.5rem;
 `;
 
 const StyledInputWrapper = styled.div`
   display: inline-flex;
+  input[type="text"] {
+    width: 100%;
+  }
 `;
 
 const StyledInput = styled.input`
-  margin: 0 0.3rem 0 0.8rem;
+  margin: 0 0.3rem 0 0.5rem;
 `;
 
 const StyledLabel = styled.label`
