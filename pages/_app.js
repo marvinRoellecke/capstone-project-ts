@@ -13,30 +13,6 @@ export default function App({ Component, pageProps }) {
     defaultValue: defaultFavorites,
   });
 
-  async function startFetching() {
-    try {
-      const response = await fetch("/api/locations");
-      const data = await response.json();
-      setLocations(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  useEffect(() => {
-    startFetching();
-  }, []);
-
-  function handleToggleFavorite(event, id) {
-    event.preventDefault();
-    event.stopPropagation();
-    setFavorites(
-      favorites.includes(id)
-        ? favorites.filter((favorite) => favorite !== id)
-        : [...favorites, id]
-    );
-  }
-
   const [filterData, setFilterData] = useState({
     sport: {
       basketball: false,
@@ -61,6 +37,30 @@ export default function App({ Component, pageProps }) {
     new URL("http://localhost:3000/api/locations/?")
   );
   const [isShowingFilterMenu, setIsShowingFilterMenu] = useState(false);
+
+  async function startFetching() {
+    try {
+      const response = await fetch("/api/locations");
+      const data = await response.json();
+      setLocations(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    startFetching();
+  }, []);
+
+  function handleToggleFavorite(event, id) {
+    event.preventDefault();
+    event.stopPropagation();
+    setFavorites(
+      favorites.includes(id)
+        ? favorites.filter((favorite) => favorite !== id)
+        : [...favorites, id]
+    );
+  }
 
   //show / hide Filter Menu
   function handleShowFilterMenu() {
