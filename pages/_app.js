@@ -56,7 +56,7 @@ export default function App({ Component, pageProps }) {
     }, 500);
     setTimeout(() => {
       setLoadingScreen(false);
-    }, 3000);
+    }, 6000);
   }, []);
 
   function handleToggleFavorite(event, id) {
@@ -171,9 +171,11 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyles />
       {loadingScreen || !locations || currentPosition === undefined ? (
-        <StyledLoadingScreen>
-          <StyledH1>localSports</StyledH1>
-        </StyledLoadingScreen>
+        <StyledLoadingScreenAlt>
+          <StyledLoadingScreen>
+            <StyledH1>localSports</StyledH1>
+          </StyledLoadingScreen>
+        </StyledLoadingScreenAlt>
       ) : (
         <Component
           {...pageProps}
@@ -199,34 +201,44 @@ export default function App({ Component, pageProps }) {
   );
 }
 
+const StyledLoadingScreenAlt = styled.div`
+  width: 100vw;
+  height: 100svh;
+  background-image: url("/img/startup.webp");
+  background-position: center;
+  background-size: cover;
+`;
+
 const StyledLoadingScreen = styled.div`
   width: 300px;
   height: 100svh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin: 0 auto;
+  padding-top: 4rem;
   z-index: 1;
+  color: white;
 `;
 
 const typing = keyframes`
   from { width: 0 }
-  to { width: 60% }
+  to { width: 80% }
 `;
 
 const blinkCaret = keyframes`
    from, to { border-color: transparent }
-  50% { border-color: black; }
+  50% { border-color: white; }
 `;
 
 const StyledH1 = styled.h1`
   overflow: hidden;
+  font-size: 3rem;
   border-right: 0.15em solid black;
   white-space: nowrap;
   margin: 0 auto;
   letter-spacing: 0.01em;
-  animation: ${typing} 1.5s steps(15, end),
-    ${blinkCaret} 0.75s step-end infinite;
+  animation: ${typing} 2s steps(15, end), ${blinkCaret} 0.75s step-end infinite;
 `;
 
 /* {!locations || currentPosition === undefined ? (
