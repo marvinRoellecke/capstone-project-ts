@@ -145,9 +145,11 @@ export default function NewEntryForm({ startFetching }) {
       </Head>
       <StyledMobileLayout>
         <Header addLocation />
-        {isSent && (
-          <StyledPopUp>Sportplatz wurde erfolgreich hinzugefügt!</StyledPopUp>
-        )}
+
+        <StyledPopUp isSent={isSent}>
+          <p> Sportplatz wurde erfolgreich hinzugefügt!</p>
+        </StyledPopUp>
+
         <main>
           <StyledForm aria-labelledby="formTitle" onSubmit={handleSubmit}>
             <fieldset>
@@ -241,6 +243,7 @@ export default function NewEntryForm({ startFetching }) {
                 max={5}
                 step={0.1}
                 list="values"
+                defaultValue={2.5}
               />
               <datalist id="values">
                 <option value="0" label="0"></option>
@@ -297,17 +300,19 @@ const StyledMobileLayout = styled.div`
 const StyledPopUp = styled.div`
   justify-self: center;
   position: absolute;
-  top: 10rem;
-  z-index: 100;
-  padding: 2.5rem;
+  bottom: -1rem;
+  z-index: 10;
+  padding: 1rem 2.5rem 0 2.5rem;
   margin: 0 1rem;
-  background-color: green;
   color: var(--color-foreground-alt);
-  opacity: 0.95;
+  background-color: #48bf84;
   font-size: 1.5rem;
   line-height: 2.2rem;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+  height: ${(props) => (props.isSent ? "8rem" : 0)};
+  transition: height 0.5s ease-in-out 0.1s;
 `;
 
 const StyledForm = styled.form`
@@ -337,10 +342,6 @@ const StyledForm = styled.form`
     margin-right: 0.5rem;
   }
 
-  input[type="range"] {
-    margin: 0 1rem;
-  }
-
   select {
     font-size: 1rem;
     padding: 2px 0 2px 2px;
@@ -359,8 +360,8 @@ const StyledForm = styled.form`
     margin-top: 1rem;
     padding: 0.5rem 0.8rem;
     font-size: 1.2rem;
-    background-color: green;
-    color: white;
+    background-color: #48bf84;
+    color: var(--color-foreground-alt);
     border: none;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
@@ -377,6 +378,36 @@ const StyledForm = styled.form`
     justify-content: space-between;
     writing-mode: horizontal-tb;
     margin: 0 1rem;
+  }
+
+  input[type="range"] {
+    height: 38px;
+    -webkit-appearance: none;
+    margin: 5px 0;
+    width: 100%;
+  }
+  input[type="range"]:focus {
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #5da399;
+    background: #5da399;
+    border-radius: 5px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000;
+    border: 1px solid #5da399;
+    height: 30px;
+    width: 15px;
+    border-radius: 5px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -11px;
   }
 `;
 
