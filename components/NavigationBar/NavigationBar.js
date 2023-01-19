@@ -89,8 +89,8 @@ const StyledUl = styled.ul`
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
   list-style: none;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 
   li {
     display: flex;
