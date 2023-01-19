@@ -51,7 +51,9 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     startFetching();
-    setLoadingScreen(true);
+    setTimeout(() => {
+      setLoadingScreen(false);
+    }, 500);
     setTimeout(() => {
       setLoadingScreen(false);
     }, 3000);
