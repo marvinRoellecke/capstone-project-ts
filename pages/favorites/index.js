@@ -17,7 +17,7 @@ export default function FavoritesPage({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <StyledMobileLayout>
-        <Header />
+        <Header favoriteLabel />
         <Main
           locations={locations}
           onToggleFavorite={onToggleFavorite}

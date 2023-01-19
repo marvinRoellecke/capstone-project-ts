@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import Icon from "../Icon/Icon";
 
-export default function Header({ onShowFilterMenu, filterMenu, addLocation }) {
+export default function Header({
+  onShowFilterMenu,
+  filterMenu,
+  addLocation,
+  favoriteLabel,
+  map,
+}) {
   return (
     <StyledHeader>
       <StyledH1>localSports</StyledH1>
@@ -10,7 +16,9 @@ export default function Header({ onShowFilterMenu, filterMenu, addLocation }) {
           <Icon option />
         </StyledButton>
       )}
-      {addLocation && <StyledH2 id="formTitle">add location</StyledH2>}
+      {addLocation && <StyledH2 id="formTitle">Platz hinzufügen</StyledH2>}
+      {favoriteLabel && <StyledH2 id="formTitle">Favoriten</StyledH2>}
+      {map && <StyledH2 id="formTitle">Karte</StyledH2>}
     </StyledHeader>
   );
 }
@@ -34,4 +42,9 @@ const StyledH2 = styled.h2`
 const StyledButton = styled.button`
   background: none;
   border: none;
+  color: #5da399;
+  &:hover {
+    transform: scale(1.2);
+    transition: all 0.2s ease;
+  }
 `;

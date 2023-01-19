@@ -2,14 +2,14 @@ import styled from "styled-components";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import Footer from "../../components/Footer/Footer";
-import useCurrentPosition from "../../helpers/useCurrentPosition";
+import Header from "../../components/Header/Header";
 
-export default function MapPage({ locations }) {
+export default function MapPage({ locations, currentPosition }) {
   const Map = dynamic(() => import("../../components/Map/Map"), {
     loading: () => <p>Map is loading</p>,
     ssr: false,
   });
-  const currentPosition = useCurrentPosition();
+
   return (
     <>
       <Head>
@@ -18,6 +18,7 @@ export default function MapPage({ locations }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <StyledMobileLayout>
+        <Header map />
         <main>
           <Map locations={locations} currentPosition={currentPosition} />
         </main>
@@ -29,6 +30,6 @@ export default function MapPage({ locations }) {
 
 const StyledMobileLayout = styled.div`
   display: grid;
-  grid-template-rows: auto 4rem;
+  grid-template-rows: 4rem auto 4rem;
   height: 100svh;
 `;

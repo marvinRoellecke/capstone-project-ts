@@ -4,6 +4,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import CardLocationInfo from "../components/CardLocationInfo/CardLocationInfo";
 import Icon from "../components/Icon/Icon";
+import dynamic from "next/dynamic";
+import useCurrentPosition from "../helpers/useCurrentPosition";
 
 export default function DetailsPage({
   locations,
@@ -18,6 +20,12 @@ export default function DetailsPage({
   const locationAddress = currentLocation?.address;
   const isFavorite = favorites.includes(currentLocation?.id);
   const [isCopied, setIsCopied] = useState(false);
+
+  const MapSingle = dynamic(() => import("../components/Map/MapSingle"), {
+    loading: () => <p>Map is loading</p>,
+    ssr: false,
+  });
+  const currentPosition = useCurrentPosition();
 
   async function handleShare() {
     if (navigator.share) {
@@ -63,9 +71,10 @@ export default function DetailsPage({
           </StyledButton>
         </StyledButtonWrapper>
       </StyledHeader>
-      {isCopied && <StyledPopUp>copied to clipboard</StyledPopUp>}
+      {isCopied && <StyledPopUp>in die Zwischenablage kopiert</StyledPopUp>}
 
       <StyledImageContainer image={currentLocation.image} />
+
       <main>
         <StyledCaptionWrapper>
           <StyledTagWrapper>
@@ -90,6 +99,12 @@ export default function DetailsPage({
           </StyledAddress>
         </StyledAdressLink>
         <CardLocationInfo currentLocation={currentLocation} />
+        <StyledMapWrapper>
+          <MapSingle
+            currentLocation={currentLocation}
+            currentPosition={currentPosition}
+          />
+        </StyledMapWrapper>
       </main>
     </StyledContainer>
   );
@@ -100,12 +115,15 @@ const StyledContainer = styled.div`
   flex-direction: column;
 
   main {
-    margin: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
+    position: relative;
+    top: -2rem;
+    border-radius: 1rem 1rem 0 0;
   }
 `;
 
 const StyledHeader = styled.header`
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -127,7 +145,7 @@ const StyledBackButton = styled.button`
 
 const StyledTitle = styled.h2`
   font-size: 1rem;
-  margin-left: 0.5rem;
+  margin-left: 1.5rem;
 `;
 
 const StyledButtonWrapper = styled.div`
@@ -158,7 +176,7 @@ const StyledPopUp = styled.div`
 `;
 
 const StyledImageContainer = styled.div`
-  height: 12rem;
+  height: 17rem;
   background-image: var(--background-filter-toBottom),
     url(${(props) => props.image});
   background-position: center;
@@ -179,10 +197,12 @@ const StyledTagWrapper = styled.div`
 
 const StyledTag = styled.span`
   font-size: 0.6rem;
-  border: 1px solid;
   border-radius: 3px;
-  padding: 0 2px;
+  padding: 3px 3px;
   white-space: nowrap;
+  background-color: #f1f2f6;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;
 
 const StyledRating = styled.span`
@@ -202,4 +222,11 @@ const StyledAddress = styled.p`
 
 const StyledAdressLink = styled(Link)`
   color: var(--foreground-color);
+`;
+
+const StyledMapWrapper = styled.div`
+  height: 14rem;
+  width: calc(100% + 2rem);
+  margin-left: -1rem;
+  margin-bottom: -3rem;
 `;

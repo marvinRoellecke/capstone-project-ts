@@ -18,7 +18,7 @@ export default async function handler(request, response) {
       };
     }
     if (request.query.city) {
-      filter["address.city"] = request.query.city;
+      filter["address.city"] = { $regex: request.query.city, $options: "i" };
     }
 
     if (request.query.outdoor) {

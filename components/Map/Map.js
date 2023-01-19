@@ -24,11 +24,12 @@ export default function Map({ locations, currentPosition }) {
         scrollWheelZoom={true}
         style={{ height: "100%", width: "100%" }}
       >
-        <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png" />
-        {locations.map(({ id, coordinates, title, info }) => (
+        <TileLayer url="https://api.mapbox.com/styles/v1/octopusbeaver/cld372w1h003g01m8zha8ftc8/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib2N0b3B1c2JlYXZlciIsImEiOiJjbGQzNnUzZGIwY2dxM3JtbXFjMW5qdmQzIn0.oVEeHd1bBtMNg7MveVGIhw" />
+        {locations.map(({ id, coordinates, title, info, image }) => (
           <Marker key={id} position={coordinates} icon={DefaultIcon}>
             <Popup>
               <StyledLink href={`/${id}`}>
+                <StyledImageContainer image={image} />
                 <h2>{title}</h2>
                 <StyledTagWrapper>
                   {info.map(({ sport }) => (
@@ -69,9 +70,20 @@ const StyledTag = styled.span`
   font-size: 0.6rem;
   margin-top: 0.3rem;
   margin-left: 0.3rem;
-  border: 1px solid;
   border-radius: 3px;
-  padding: 0 2px;
+  padding: 3px 3px;
   white-space: nowrap;
   color: var(--color-foreground);
+  background-color: #f1f2f6;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+`;
+
+const StyledImageContainer = styled.div`
+  height: 8rem;
+  background-image: url(${(props) => props.image});
+  background-position: center;
+  background-size: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
 `;

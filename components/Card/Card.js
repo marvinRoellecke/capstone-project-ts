@@ -39,7 +39,7 @@ const StyledLink = styled(Link)`
 
 const StyledLi = styled.li`
   font-size: 0.8rem;
-  height: 10rem;
+  height: 8rem;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
   margin: 0 1rem;
@@ -70,7 +70,7 @@ const StyledButton = styled.button`
 
 const StyledTitle = styled.h2`
   grid-area: title;
-  font-size: 1rem;
+  font-size: 0.9rem;
   overflow: hidden;
 `;
 
@@ -81,6 +81,7 @@ const StyledRating = styled.p`
   align-items: center;
   justify-content: flex-end;
   gap: 0.3rem;
+  color: #f1f2f6;
 `;
 
 const StyledTagWrapper = styled.div`
@@ -94,13 +95,14 @@ const StyledTagWrapper = styled.div`
 const StyledTag = styled.span`
   width: fit-content;
   height: fit-content;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   margin-top: 0.3rem;
   margin-left: 0.3rem;
   border: 1px solid;
   border-radius: 3px;
   padding: 0 2px;
   white-space: nowrap;
+  color: #f1f2f6;
 `;
 
 const StyledAddress = styled.span`
@@ -109,4 +111,6 @@ const StyledAddress = styled.span`
   align-items: center;
   justify-content: flex-end;
   gap: 0.3rem;
+  margin: 0.2rem 0;
+  color: #f1f2f6;
 `;
