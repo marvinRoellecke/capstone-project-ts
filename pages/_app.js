@@ -5,6 +5,7 @@ import useCurrentPosition from "../helpers/useCurrentPosition";
 import styled, { keyframes } from "styled-components";
 
 export default function App({ Component, pageProps }) {
+  const [loadingScreen, setLoadingScreen] = useState();
   const currentPosition = useCurrentPosition();
 
   const [locations, setLocations] = useState([]);
@@ -50,6 +51,10 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     startFetching();
+    setLoadingScreen(true);
+    setTimeout(() => {
+      setLoadingScreen(false);
+    }, 3000);
   }, []);
 
   function handleToggleFavorite(event, id) {
@@ -163,7 +168,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyles />
-      {!locations || currentPosition === undefined ? (
+      {loadingScreen || !locations || currentPosition === undefined ? (
         <StyledLoadingScreen>
           <StyledH1>localSports</StyledH1>
         </StyledLoadingScreen>
@@ -199,6 +204,7 @@ const StyledLoadingScreen = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  z-index: 1;
 `;
 
 const typing = keyframes`
@@ -220,3 +226,29 @@ const StyledH1 = styled.h1`
   animation: ${typing} 1.5s steps(15, end),
     ${blinkCaret} 0.75s step-end infinite;
 `;
+
+/* {!locations || currentPosition === undefined ? (
+  <StyledLoadingScreen>
+    <StyledH1>localSports</StyledH1>
+  </StyledLoadingScreen>
+) : (
+  <Component
+    {...pageProps}
+    locations={locations}
+    onToggleFavorite={handleToggleFavorite}
+    favorites={favorites}
+    setLocations={setLocations}
+    startFetching={startFetching}
+    currentPosition={currentPosition}
+    onShowFilterMenu={handleShowFilterMenu}
+    onFilter={handleFilter}
+    onFilterOther={handleFilterOther}
+    onCityFilter={handleCityFilter}
+    onChangeSort={handleChangeSort}
+    filterData={filterData}
+    filterDataOther={filterDataOther}
+    cityFilter={cityFilter}
+    sortData={sortData}
+    isShowingFilterMenu={isShowingFilterMenu}
+  />
+)} */
