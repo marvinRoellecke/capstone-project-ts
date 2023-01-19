@@ -37,6 +37,129 @@ export default function App({ Component, pageProps }) {
     );
   }
 
+  const [filterData, setFilterData] = useState({
+    sport: {
+      basketball: false,
+      beachvolleyball: false,
+      boule: false,
+      fitness: false,
+      fussball: false,
+      leichtathletik: false,
+      parkour: false,
+      skateboard: false,
+      tennis: false,
+      tischtennis: false,
+    },
+  });
+  const [filterDataOther, setFilterDataOther] = useState({
+    lighting: false,
+    wheelchair: false,
+  });
+  const [cityFilter, setCityFilter] = useState();
+  const [sortData, setSortData] = useState();
+  const [params, setParams] = useState(
+    new URL("http://localhost:3000/api/locations/?")
+  );
+  const [isShowingFilterMenu, setIsShowingFilterMenu] = useState(false);
+
+  //show / hide Filter Menu
+  function handleShowFilterMenu() {
+    setIsShowingFilterMenu(!isShowingFilterMenu);
+  }
+
+  //fetch with query url
+  async function searchApi(params) {
+    const searchURL = params.searchParams.toString();
+    try {
+      const response = await fetch("/api/locations/?" + searchURL);
+      const data = await response.json();
+      setLocations(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleFilter(event, category) {
+    setFilterData(() => {
+      const newFilterData = {
+        ...filterData,
+        [category]: {
+          ...filterData[category],
+          [event.target.value]: event.target.checked,
+        },
+      };
+
+      params.searchParams.delete(category); //only needed because on city text input
+
+      Object.entries(newFilterData).map((filterCategory) =>
+        Object.entries(filterCategory[1])
+          .filter((entry) => {
+            return entry[1];
+          })
+          .map((entry) => {
+            return params.searchParams.append(filterCategory[0], entry[0]);
+          })
+      );
+
+      searchApi(params);
+
+      return newFilterData;
+    });
+  }
+
+  async function handleFilterOther(event, category) {
+    setFilterDataOther(() => {
+      const newFilterDataOther = {
+        ...filterDataOther,
+        [category]: event.target.checked,
+      };
+
+      Object.entries(newFilterDataOther).map((entry) => {
+        return params.searchParams.delete(entry[0]);
+      });
+
+      Object.entries(newFilterDataOther)
+        .filter((entry) => {
+          return entry[1];
+        })
+        .map((entry) => {
+          return params.searchParams.append(entry[0], entry[1]);
+        });
+
+      searchApi(params);
+
+      return newFilterDataOther;
+    });
+  }
+
+  function handleCityFilter(event) {
+    event.preventDefault();
+    if (event.target.value !== "") {
+      setCityFilter(event.target.value);
+      params.searchParams.delete(event.target.name);
+      params.searchParams.append(event.target.name, event.target.value);
+      searchApi(params);
+    } else {
+      setCityFilter("");
+      params.searchParams.delete(event.target.name);
+      searchApi(params);
+    }
+  }
+
+  //sort function
+  function handleChangeSort(event) {
+    if (event.target.value !== "default") {
+      setSortData(event.target.value);
+      params.searchParams.delete("sort");
+      params.searchParams.append("sort", event.target.value);
+      searchApi(params);
+    } else {
+      setSortData("");
+      params.searchParams.delete("sort");
+      searchApi(params);
+    }
+  }
+
   return (
     <>
       <GlobalStyles />
@@ -53,6 +176,16 @@ export default function App({ Component, pageProps }) {
           setLocations={setLocations}
           startFetching={startFetching}
           currentPosition={currentPosition}
+          onShowFilterMenu={handleShowFilterMenu}
+          onFilter={handleFilter}
+          onFilterOther={handleFilterOther}
+          onCityFilter={handleCityFilter}
+          onChangeSort={handleChangeSort}
+          filterData={filterData}
+          filterDataOther={filterDataOther}
+          cityFilter={cityFilter}
+          sortData={sortData}
+          isShowingFilterMenu={isShowingFilterMenu}
         />
       )}
     </>
