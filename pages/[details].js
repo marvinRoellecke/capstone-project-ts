@@ -123,7 +123,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledHeader = styled.header`
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
