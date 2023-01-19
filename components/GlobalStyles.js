@@ -4,7 +4,7 @@ const GlobalStyles = createGlobalStyle`
     html,
     :root {
         --color-background: #FFFFFF;
-        --color-foreground: #000000;
+        --color-foreground: #35393C;
         --color-foreground-alt: #FFFFFF;
         --color-accent: #ABABAB;
         --color-star: orange;

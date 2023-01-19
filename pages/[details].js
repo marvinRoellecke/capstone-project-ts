@@ -223,8 +223,8 @@ const StyledAdressLink = styled(Link)`
 `;
 
 const StyledMapWrapper = styled.div`
-  height: 12rem;
-  width: 100%;
-  margin: 0;
-  box-shadow: var(--box-shadow);
+  height: 14rem;
+  width: calc(100% + 2rem);
+  margin-left: -1rem;
+  margin-bottom: -3rem;
 `;

@@ -48,5 +48,11 @@ const StyledUl = styled.ul`
 `;
 
 const StyledLink = styled(Link)`
-  color: var(--color-foreground);
+  color: #5da399;
+  border-color: #5da399;
+  hr {
+    border: none;
+    height: 1px;
+    background-color: #5da399;
+  }
 `;

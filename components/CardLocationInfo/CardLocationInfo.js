@@ -73,7 +73,8 @@ const StyledBox = styled.div`
   font-size: 0.8rem;
   height: 8rem;
   width: 100%;
-  box-shadow: var(--box-shadow);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: var(--border-radius);
   padding: 1rem;
   display: grid;
@@ -83,6 +84,7 @@ const StyledBox = styled.div`
   align-items: center;
   justify-items: center;
   text-transform: capitalize;
+  background-color: #f1f2f6;
 `;
 
 const StyledBoxOtherWrapper = styled.article`
@@ -98,11 +100,13 @@ const StyledBoxOther = styled.div`
   font-size: 0.8rem;
   height: 8rem;
   min-width: 8rem;
-  box-shadow: var(--box-shadow);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: var(--border-radius);
   padding: 1rem;
   display: grid;
   align-items: center;
   justify-items: center;
   text-transform: capitalize;
+  background-color: #f1f2f6;
 `;

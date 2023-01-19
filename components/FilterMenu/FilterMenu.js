@@ -28,14 +28,14 @@ export default function FilterMenu({
         value={sortData}
         onChange={onChangeSort}
       >
-        <option value="default">Wähle Option</option>
+        <option value="default">wähle eine Option</option>
         <option value="sortTitle1">A - Z</option>
         <option value="sortTitle-1">Z - A</option>
         <option value="sortRating1">Bewertung aufsteigend</option>
         <option value="sortRating-1">Bewertung absteigend</option>
       </StyledSelect>
 
-      <StyledH2>filter</StyledH2>
+      <StyledH2>filtern</StyledH2>
       {Object.entries(filterData).map((entry) => (
         <Fragment key={entry[0]}>
           <StyledH3>{entry[0]}</StyledH3>
@@ -106,11 +106,13 @@ const StyledButton = styled.button`
   border: none;
   margin: 1rem 0 0 0.5rem;
   align-self: flex-start;
+  color: #5da399;
 `;
 
 const StyledH2 = styled.h2`
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin: 1rem 0 0.3rem 0.5rem;
+  font-weight: normal;
 `;
 
 const StyledH3 = styled.h3`
