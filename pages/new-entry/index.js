@@ -127,8 +127,8 @@ export default function NewEntryForm({ startFetching }) {
       rating: rating,
     };
 
-    //event.target.reset();
-    form.title.focus();
+    event.target.reset();
+
     handleCreateNewNote(newLocation);
     setIsSent(true);
     setTimeout(() => {
@@ -300,9 +300,9 @@ const StyledMobileLayout = styled.div`
 const StyledPopUp = styled.div`
   justify-self: center;
   position: absolute;
-  bottom: -1rem;
+  bottom: -2.5rem;
   z-index: 10;
-  padding: 1rem 2.5rem 0 2.5rem;
+  padding: 2.5rem 2.5rem 0 2.5rem;
   margin: 0 1rem;
   color: var(--color-foreground-alt);
   background-color: #48bf84;
@@ -311,7 +311,7 @@ const StyledPopUp = styled.div`
   text-align: center;
   border-radius: 10px 10px 0 0;
   width: 100%;
-  height: ${(props) => (props.isSent ? "8rem" : 0)};
+  height: ${(props) => (props.isSent ? "12rem" : 0)};
   transition: height 0.5s ease-in-out 0.1s;
 `;
 
