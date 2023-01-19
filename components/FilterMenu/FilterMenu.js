@@ -110,13 +110,13 @@ const StyledButton = styled.button`
 
 const StyledH2 = styled.h2`
   font-size: 1rem;
-  margin: 2rem 0 0.3rem 0.5rem;
+  margin: 1rem 0 0.3rem 0.5rem;
 `;
 
 const StyledH3 = styled.h3`
   font-size: 1rem;
   font-weight: lighter;
-  margin: 2rem 0 0.3rem 0.5rem;
+  margin: 1rem 0 0.3rem 0.5rem;
   &:first-of-type {
     margin-top: 0;
   }
