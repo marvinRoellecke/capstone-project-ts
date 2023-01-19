@@ -1,8 +1,8 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-export default function MapSingle({ currentLocation, currentPosition }) {
+export default function MapSingle({ currentLocation }) {
   const DefaultIcon = L.icon({
     iconUrl: "/marker.svg",
     iconSize: [30, 30],
@@ -29,10 +29,6 @@ export default function MapSingle({ currentLocation, currentPosition }) {
           position={currentLocation.coordinates}
           icon={DefaultIcon}
         ></Marker>
-
-        {currentPosition !== null && (
-          <Marker position={currentPosition} icon={PositionIcon}></Marker>
-        )}
       </MapContainer>
     </>
   );
