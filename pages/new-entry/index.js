@@ -145,11 +145,9 @@ export default function NewEntryForm({ startFetching }) {
       </Head>
       <StyledMobileLayout>
         <Header addLocation />
-
-        <StyledPopUp isSent={isSent}>
-          <p> Sportplatz wurde erfolgreich hinzugefügt!</p>
-        </StyledPopUp>
-
+        {isSent && (
+          <StyledPopUp>Sportplatz wurde erfolgreich hinzugefügt!</StyledPopUp>
+        )}
         <main>
           <StyledForm aria-labelledby="formTitle" onSubmit={handleSubmit}>
             <fieldset>
@@ -300,19 +298,17 @@ const StyledMobileLayout = styled.div`
 const StyledPopUp = styled.div`
   justify-self: center;
   position: absolute;
-  bottom: -2.5rem;
-  z-index: 10;
-  padding: 2.5rem 2.5rem 0 2.5rem;
+  top: 10rem;
+  z-index: 100;
+  padding: 2.5rem;
   margin: 0 1rem;
-  color: var(--color-foreground-alt);
   background-color: #48bf84;
+  color: var(--color-foreground-alt);
+  opacity: 0.95;
   font-size: 1.5rem;
   line-height: 2.2rem;
   text-align: center;
-  border-radius: 10px 10px 0 0;
-  width: 100%;
-  height: ${(props) => (props.isSent ? "12rem" : 0)};
-  transition: height 0.5s ease-in-out 0.1s;
+  border-radius: 5px;
 `;
 
 const StyledForm = styled.form`
@@ -420,7 +416,6 @@ const StyledRangeLabel = styled.label`
   font-size: 0.75rem;
   color: #999;
   margin-top: 1rem;
-  margin-bottom: 0.2rem;
 `;
 
 const StyledAddressFields = styled.fieldset`
