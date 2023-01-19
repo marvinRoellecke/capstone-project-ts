@@ -6,6 +6,7 @@ export default function Header({
   filterMenu,
   addLocation,
   favoriteLabel,
+  map,
 }) {
   return (
     <StyledHeader>
@@ -17,6 +18,7 @@ export default function Header({
       )}
       {addLocation && <StyledH2 id="formTitle">Platz hinzufügen</StyledH2>}
       {favoriteLabel && <StyledH2 id="formTitle">Favoriten</StyledH2>}
+      {map && <StyledH2 id="formTitle">Karte</StyledH2>}
     </StyledHeader>
   );
 }
