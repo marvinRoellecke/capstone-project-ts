@@ -161,10 +161,10 @@ export default function App({ Component, pageProps }) {
     startFetching();
     setTimeout(() => {
       setLoadingScreen(true);
-    }, 500);
+    }, 100);
     setTimeout(() => {
       setLoadingScreen(false);
-    }, 6000);
+    }, 5500);
   }, []);
 
   return (
