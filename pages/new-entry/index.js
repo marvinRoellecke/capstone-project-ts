@@ -12,7 +12,6 @@ import { selectSports, selectSurfaces } from "../../lib/data/selectData";
 export default function NewEntryForm({ startFetching }) {
   const [isSent, setIsSent] = useState(false);
   const [image, setImage] = useState(null);
-  const [imageValue, setImageValue] = useState("");
   const [isUploading, setIsUploading] = useState(false);
 
   async function handleFileUpload(event) {
@@ -233,6 +232,7 @@ export default function NewEntryForm({ startFetching }) {
             </fieldset>
             <fieldset>
               <StyledRangeLabel htmlFor="rating">Bewertung</StyledRangeLabel>
+
               <input
                 type="range"
                 id="rating"
@@ -267,9 +267,7 @@ export default function NewEntryForm({ startFetching }) {
                 name="file"
                 id="imgUpload"
                 accept="image/*"
-                value={imageValue}
                 onChange={(event) => {
-                  setImageValue(event.target.value);
                   setImage(event.target.files[0]);
                 }}
               />

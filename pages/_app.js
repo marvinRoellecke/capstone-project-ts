@@ -49,16 +49,6 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  useEffect(() => {
-    startFetching();
-    setTimeout(() => {
-      setLoadingScreen(true);
-    }, 500);
-    setTimeout(() => {
-      setLoadingScreen(false);
-    }, 6000);
-  }, []);
-
   function handleToggleFavorite(event, id) {
     event.preventDefault();
     event.stopPropagation();
@@ -167,10 +157,20 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  useEffect(() => {
+    startFetching();
+    setTimeout(() => {
+      setLoadingScreen(true);
+    }, 500);
+    setTimeout(() => {
+      setLoadingScreen(false);
+    }, 6000);
+  }, []);
+
   return (
     <>
       <GlobalStyles />
-      {loadingScreen || !locations || currentPosition === undefined ? (
+      {loadingScreen ? (
         <StyledLoadingScreenAlt>
           <StyledLoadingScreen>
             <StyledH1>localSports</StyledH1>
@@ -223,7 +223,7 @@ const StyledLoadingScreen = styled.div`
 
 const typing = keyframes`
   from { width: 0 }
-  to { width: 80% }
+  to { width: 90% }
 `;
 
 const blinkCaret = keyframes`
@@ -240,29 +240,3 @@ const StyledH1 = styled.h1`
   letter-spacing: 0.01em;
   animation: ${typing} 2s steps(15, end), ${blinkCaret} 0.75s step-end infinite;
 `;
-
-/* {!locations || currentPosition === undefined ? (
-  <StyledLoadingScreen>
-    <StyledH1>localSports</StyledH1>
-  </StyledLoadingScreen>
-) : (
-  <Component
-    {...pageProps}
-    locations={locations}
-    onToggleFavorite={handleToggleFavorite}
-    favorites={favorites}
-    setLocations={setLocations}
-    startFetching={startFetching}
-    currentPosition={currentPosition}
-    onShowFilterMenu={handleShowFilterMenu}
-    onFilter={handleFilter}
-    onFilterOther={handleFilterOther}
-    onCityFilter={handleCityFilter}
-    onChangeSort={handleChangeSort}
-    filterData={filterData}
-    filterDataOther={filterDataOther}
-    cityFilter={cityFilter}
-    sortData={sortData}
-    isShowingFilterMenu={isShowingFilterMenu}
-  />
-)} */
